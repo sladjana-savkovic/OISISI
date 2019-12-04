@@ -11,6 +11,7 @@ import java.util.ArrayList;
  */
 public class Profesor {
 	private String ime,prezime,datumRodjenja,adresaStanovanja,telefon,email,adresaKancelarije,brLicneKarte,titula,zvanje;
+	//U ArrayList-i cuvam sifre predmeta jer su mi one "primarni kljuc" za svaki predmet
 	private ArrayList<String> spisakPredmeta=new ArrayList<String>();
 	
 	public Profesor(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String telefon,
