@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class Predmet {
 	private String sifra,naziv,predmetniProfesor;
 	private int semestar,godinaStudija;
+	//U ArrayList-i cuvam indekse studenata jer su mi oni "primarni kljucevi" za studenta
 	private ArrayList<String> spisakStudenata=new ArrayList<String>();
 	
 	public Predmet(String sifra, String naziv, String predmetniProfesor, int semestar, int godinaStudija,
