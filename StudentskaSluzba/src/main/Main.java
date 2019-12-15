@@ -3,6 +3,8 @@
  */
 package main;
 
+import model.BazaPredmeta;
+import model.BazaProfesora;
 import view.MainFrame;
 
 /**
@@ -11,10 +13,9 @@ import view.MainFrame;
  */
 public class Main {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
+		BazaPredmeta.getInstance();
+		BazaProfesora.getInstance();
 		MainFrame.getInstance();
 	}
 
