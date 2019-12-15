@@ -4,7 +4,6 @@
 package view;
 
 import java.awt.BorderLayout;
-
 import javax.swing.*;
 
 /**
@@ -13,9 +12,6 @@ import javax.swing.*;
  */
 public class MyTab extends JPanel{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private String tabName;
 	private JPanel basicPanel;
@@ -32,12 +28,20 @@ public class MyTab extends JPanel{
 			this.add(basicPanel, BorderLayout.NORTH);
 		}
 		else if(tabName.equals("Profesori")) {
-			basicPanel.add(new JLabel("Test " + this.tabName));
-			this.add(basicPanel, BorderLayout.NORTH);
+			ProfesorJTable tabelaProfesora = new ProfesorJTable();
+
+			JScrollPane scrollPane = new JScrollPane(tabelaProfesora);
+			add(scrollPane, BorderLayout.CENTER);
+			
+			setVisible(true);
 		}
-		else {
-			basicPanel.add(new JLabel("Test " + this.tabName));
-			this.add(basicPanel, BorderLayout.NORTH);
+		else {			
+			PredmetJTable tabelaPredmeta = new PredmetJTable();
+
+			JScrollPane scrollPane = new JScrollPane(tabelaPredmeta);
+			add(scrollPane, BorderLayout.CENTER);
+			
+			setVisible(true);
 		}
 	}
 }
