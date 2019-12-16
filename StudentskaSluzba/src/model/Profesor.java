@@ -14,6 +14,7 @@ public class Profesor {
 	//U ArrayList-i cuvam sifre predmeta jer su mi one "primarni kljuc" za svaki predmet
 	private ArrayList<String> spisakPredmeta=new ArrayList<String>();
 	
+	public Profesor() {}
 	public Profesor(String ime, String prezime, String datumRodjenja, String adresaStanovanja, String telefon,
 			String email, String adresaKancelarije, String brLicneKarte, String titula, String zvanje,
 			ArrayList<String> spisakPredmeta) {
@@ -96,6 +97,9 @@ public class Profesor {
 	}
 	public void setSpisakPredmeta(ArrayList<String> spisakPredmeta) {
 		this.spisakPredmeta = spisakPredmeta;
+	}
+	public int getBrojPredmeta() {
+		return this.spisakPredmeta.size();
 	}
 	
 }
