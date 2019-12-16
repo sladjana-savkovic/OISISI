@@ -47,7 +47,11 @@ public class MainFrame extends JFrame{
 		createToolbar();
 		createTabbedPane();
 		
+		MenuBar menu = new MenuBar();
+		this.setJMenuBar(menu);
+		
 		setVisible(true);
+		
 	}
 	public void createToolbar() {
 		Toolbar toolbar = new Toolbar();
@@ -59,4 +63,5 @@ public class MainFrame extends JFrame{
 		TabbedPane tabbedPane = new TabbedPane();
 		add(tabbedPane,BorderLayout.CENTER);
 	}
+	
 }
