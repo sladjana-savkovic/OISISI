@@ -25,6 +25,7 @@ public class BazaPredmeta implements Serializable{
 	//samo da ubacim neke podatke za pocetak
 	private ArrayList<Predmet> predmeti;
 	private ArrayList<String> studenti;
+	private ArrayList<String> studenti1;
 	
 	
 	public BazaPredmeta() {
@@ -34,12 +35,16 @@ public class BazaPredmeta implements Serializable{
 	public void initPredmete() {
 		this.predmeti = new ArrayList<Predmet>();
 		this.studenti = new ArrayList<String>();
+		this.studenti1= new ArrayList<String>();
 		studenti.add("RA1/2017");
 		studenti.add("RA78/2015");
 		studenti.add("RA25/2016");
+		studenti1.add("PSI14/2017");
+		studenti1.add("E3154/2015");
+		studenti1.add("MEH215/2016");
 		predmeti.add(new Predmet("E2123","Matematička analiza 1", "Nebojša Ralevic", 1, 1, studenti));
 		predmeti.add(new Predmet("E2485", "Arhitektura racunara", "Miroslav Hajduković", 2, 1, studenti));
-		predmeti.add(new Predmet("E2458", "Fizika", "Ljuba Budinski", 2, 1, studenti));
+		predmeti.add(new Predmet("E2458", "Fizika", "Ljuba Budinski", 2, 1, studenti1));
 	}
 	public ArrayList<Predmet> getPredmeti() {
 		return predmeti;
