@@ -47,6 +47,9 @@ public class MainFrame extends JFrame{
 		createToolbar();
 		createTabbedPane();
 		
+		//DodavanjePredmeta dodaj = new DodavanjePredmeta();
+		//dodaj.setVisible(true);
+		
 		MenuBar menu = new MenuBar();
 		this.setJMenuBar(menu);
 		

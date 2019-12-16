@@ -42,7 +42,7 @@ public class SpisakStudenata extends JFrame{
 	public void addComponentJFrame(int row) {
 		
 		lbNaslov.setText("Spisak studenata");
-		lbNaslov.setFont(new Font("Times New Roman", Font.BOLD, 20));
+		lbNaslov.setFont(new Font("Times New Roman", Font.BOLD, 18));
 		lbNaslov.setOpaque(true);
 		lbNaslov.setBackground(lightBlue);
 		lbNaslov.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.lightGray));
