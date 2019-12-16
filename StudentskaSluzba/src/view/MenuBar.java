@@ -63,8 +63,11 @@ public class MenuBar extends JMenuBar{
 		help.addSeparator();
 		
 		add(mnew);
+		mnew.setVisible(true);
 		add(edit);
+		edit.setVisible(true);
 		add(help);
+		help.setVisible(true);
 	}
 
 }
