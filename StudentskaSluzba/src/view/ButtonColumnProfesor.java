@@ -15,6 +15,10 @@ import javax.swing.table.*;
 public class ButtonColumnProfesor extends AbstractCellEditor
 	implements TableCellRenderer, TableCellEditor, MouseListener{
 	
+	
+	private static final long serialVersionUID = 1L;
+	public static int selectedRow=-1;
+	
 	// dugme koje se iscrtava
 	private JButton renderButton;
 	// dugme koje obradjuje akciju
@@ -43,7 +47,7 @@ public class ButtonColumnProfesor extends AbstractCellEditor
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			fireEditingStopped();
-			JOptionPane.showMessageDialog(table, "Selektovan je profesor u redu: " + table.getSelectedRow());
+			new SpisakPredmeta(selectedRow).setVisible(true);
 		}
 		});
 
