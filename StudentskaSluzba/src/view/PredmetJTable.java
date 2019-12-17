@@ -31,6 +31,7 @@ public class PredmetJTable extends JTable{
 		// selektovani red ce imati drugaciju boju od ostalih
 		if (isRowSelected(row)) {
 			c.setBackground(lightBlue);
+			ButtonColumnPredmet.selectedRow=getSelectedRow();
 		} else {
 			c.setBackground(Color.WHITE);
 		}

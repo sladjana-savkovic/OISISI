@@ -16,6 +16,7 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 	implements TableCellRenderer, TableCellEditor, MouseListener{
 	
 	private static final long serialVersionUID = 1L;
+	public static int selectedRow=-1;
 	
 	// dugme koje se iscrtava
 	private JButton renderButton;
@@ -42,11 +43,11 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 
 		this.editorButton.addActionListener(new ActionListener() {
 		// mozemo odavde pozvati nas kontroler da se nesto smisleno odradi
+			
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			fireEditingStopped();
-			JOptionPane.showMessageDialog(table, "Selektovan je predmet u redu: " + table.getSelectedRow());
-			//SpisakStudenata spisak=new SpisakStudenata(1);
+			new SpisakStudenata(selectedRow).setVisible(true);
 		}
 		});
 

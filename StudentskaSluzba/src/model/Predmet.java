@@ -3,18 +3,23 @@
  */
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * @author Sladjana Savkovic
  *
  */
-public class Predmet {
+public class Predmet implements Serializable{
+
+	private static final long serialVersionUID = 1640112284986110952L;
+	
 	private String sifra,naziv,predmetniProfesor;
 	private int semestar,godinaStudija;
 	//U ArrayList-i cuvam indekse studenata jer su mi oni "primarni kljucevi" za studenta
 	private ArrayList<String> spisakStudenata=new ArrayList<String>();
 	
+	public Predmet() {}
 	public Predmet(String sifra, String naziv, String predmetniProfesor, int semestar, int godinaStudija,
 			ArrayList<String> spisakStudenata) {
 		super();
@@ -72,5 +77,8 @@ public class Predmet {
 
 	public void setSpisakStudenata(ArrayList<String> spisakStudenata) {
 		this.spisakStudenata = spisakStudenata;
+	}
+	public int getBrojStudenata() {
+		return this.spisakStudenata.size();
 	}
 }

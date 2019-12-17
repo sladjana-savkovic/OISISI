@@ -50,6 +50,15 @@ public class MainFrame extends JFrame{
 		createMenuBar();
 		
 
+
+
+		//DodavanjePredmeta dodaj = new DodavanjePredmeta();
+		//dodaj.setVisible(true);
+		
+		MenuBar menu = new MenuBar();
+		this.setJMenuBar(menu);
+		
+
 		setVisible(true);
 		
 	}

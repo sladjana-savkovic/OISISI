@@ -3,13 +3,21 @@
  */
 package model;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * @author Sladjana Savkovic
  *
  */
-public class BazaProfesora {
+public class BazaProfesora implements Serializable{
+	
+	private static final long serialVersionUID = -1577699150536258996L;
 	
 	private static BazaProfesora instance = null;
 
@@ -22,28 +30,39 @@ public class BazaProfesora {
 	
 	//samo da ubacim neke podatke za pocetak
 	private ArrayList<Profesor> profesori;
-	private ArrayList<String> predmeti;
+	//private ArrayList<String> predmeti;
+	//private ArrayList<String> predmeti1;
 	
 	public BazaProfesora() {
-		initProfesore();
+		readProfesori();
+		//initProfesore();
 		//writeProfesori();
 	}
-	public void initProfesore() {
+	/*public void initProfesore() {
 		this.profesori = new ArrayList<Profesor>();
 		this.predmeti = new ArrayList<String>();
+		this.predmeti1 = new ArrayList<String>();
 		predmeti.add("E2123");
-		predmeti.add("E3125");
-		predmeti.add("SIIT852");
+		predmeti.add("E2485");
+		predmeti.add("E2458");
+		predmeti1.add("E1042");
+		predmeti1.add("MA750");
+		predmeti1.add("II802");
 		profesori.add(new Profesor("Nebojša","Ralević","23.08.1965.","Ćirpanova 25","062/782-41-02","rale65@gmail.com",
 				"Trg Dositeja Obradovića 10","124kl789","doktor","redovni prof.",predmeti));
-		profesori.add(new Profesor("Milan","Rapaić","16.11.1981.","Narodnog fronta 105","062/581-00-72","rapaja1981@gmail.com",
-				"Trg Dositeja Obradovića 10","581af102","doktor","vanredni prof.",predmeti));
-	}
+		profesori.add(new Profesor("Miroslav","Hajdukovic","17.11.1983.","Narodnog fronta 105","062/581-00-72","rapaja1981@gmail.com",
+				"Trg Dositeja Obradovića 10","581af102","doktor","vanredni prof.",predmeti1));
+		profesori.add(new Profesor("Ljuba","Budinski","01.12.1959.","Bulevar oslobodjenja 108a","063/250-78-44","ljuba.budinski59@gmail.com",
+				"Trg Dositeja Obradovića 10","102af188","doktor","redovni prof.",predmeti1));
+	}*/
 	public ArrayList<Profesor> getProfesori() {
 		return profesori;
 	}
 	public void setProfesori(ArrayList<Profesor> profesori) {
 		this.profesori = profesori;
+	}
+	public Profesor getProfesorIndex(int index) {
+		return this.profesori.get(index);
 	}
 	public String getValueAt(int row, int column) {
 		Profesor profesor=this.profesori.get(row);
@@ -72,6 +91,30 @@ public class BazaProfesora {
 			return Integer.toString(profesor.getBrojPredmeta());
 		default:
 			return null;
+		}
+	}
+	@SuppressWarnings("unused")
+	private void writeProfesori(){
+		try {
+			ObjectOutputStream out = new ObjectOutputStream((new FileOutputStream("data_files/profesori.dat")));
+			out.writeObject(profesori);
+		    out.close();
+		} catch (IOException e) {
+		      e.printStackTrace();
+	    }
+	}
+	@SuppressWarnings("unchecked")
+	private void readProfesori(){
+		try {
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream("data_files/profesori.dat"));
+			profesori = (ArrayList<Profesor>) in.readObject();
+			in.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+			return;
 		}
 	}
 }
