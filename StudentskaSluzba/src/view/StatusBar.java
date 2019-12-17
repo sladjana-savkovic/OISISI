@@ -22,7 +22,7 @@ public class StatusBar extends JPanel{
     
     public StatusBar() {
     	super();
-    	JLabel naslov = new JLabel("Studentska sluzba", JLabel.LEFT);
+    	JLabel naslov = new JLabel("Studentska služba", JLabel.LEFT);
     	JLabel datum =  new JLabel();
     	
     	this.add(naslov, BorderLayout.WEST);
