@@ -48,19 +48,6 @@ public class MainFrame extends JFrame{
 		createToolbar();
 		createTabbedPane();
 		createStatusBar();
-
-
-		createMenuBar();
-
-		
-
-
-
-		//DodavanjePredmeta dodaj = new DodavanjePredmeta();
-		//dodaj.setVisible(true);
-		
-		MenuBar menu = new MenuBar();
-		this.setJMenuBar(menu);
 		
 		setVisible(true);
 		
@@ -81,20 +68,7 @@ public class MainFrame extends JFrame{
 		this.setJMenuBar(menu);
 	}
 	public void createStatusBar() {
-		//StatusBar sbar=new StatusBar();
-		//add(sbar,BordetLayout.SOUTH);
+		StatusBar sbar=new StatusBar();
+		add(sbar,BorderLayout.SOUTH);
 	}
-
-	
-	public void createStatusBar() {
-		StatusBar sbar = new StatusBar();
-		add(sbar, BorderLayout.SOUTH);
-	}
-	
-	public void createMenuBar() {
-		MenuBar menu = new MenuBar();
-		add(menu, BorderLayout.NORTH);
-	}
-	
-
 }
