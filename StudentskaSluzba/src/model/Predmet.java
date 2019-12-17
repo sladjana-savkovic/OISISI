@@ -11,6 +11,9 @@ import java.util.ArrayList;
  *
  */
 public class Predmet implements Serializable{
+
+	private static final long serialVersionUID = 1640112284986110952L;
+	
 	private String sifra,naziv,predmetniProfesor;
 	private int semestar,godinaStudija;
 	//U ArrayList-i cuvam indekse studenata jer su mi oni "primarni kljucevi" za studenta
