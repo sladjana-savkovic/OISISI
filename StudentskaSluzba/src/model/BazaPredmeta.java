@@ -12,7 +12,8 @@ import java.util.ArrayList;
  */
 public class BazaPredmeta implements Serializable{
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8628871629589964560L;
+	
 	private static BazaPredmeta instance = null;
 
 	public static BazaPredmeta getInstance() {
@@ -24,15 +25,16 @@ public class BazaPredmeta implements Serializable{
 	
 	//samo da ubacim neke podatke za pocetak
 	private ArrayList<Predmet> predmeti;
-	private ArrayList<String> studenti;
-	private ArrayList<String> studenti1;
+	//private ArrayList<String> studenti;
+	//private ArrayList<String> studenti1;
 	
 	
 	public BazaPredmeta() {
-		initPredmete();
-		writePredmeti();
+		readPredmeti();
+		//initPredmete();
+		//writePredmeti();
 	}
-	public void initPredmete() {
+	/*public void initPredmete() {
 		this.predmeti = new ArrayList<Predmet>();
 		this.studenti = new ArrayList<String>();
 		this.studenti1= new ArrayList<String>();
@@ -45,7 +47,11 @@ public class BazaPredmeta implements Serializable{
 		predmeti.add(new Predmet("E2123","Matematička analiza 1", "Nebojša Ralevic", 1, 1, studenti));
 		predmeti.add(new Predmet("E2485", "Arhitektura racunara", "Miroslav Hajduković", 2, 1, studenti));
 		predmeti.add(new Predmet("E2458", "Fizika", "Ljuba Budinski", 2, 1, studenti1));
-	}
+		predmeti.add(new Predmet("E1042", "Mehanika", "Ljuba Budinski", 1, 1, studenti1));
+		predmeti.add(new Predmet("MA750", "Alegbra", "Nebojša Ralevic", 1, 1, studenti1));
+		predmeti.add(new Predmet("II802", "Operativni sistemi", "Miroslav Hajduković", 2, 2, studenti1));
+		
+	}*/
 	public ArrayList<Predmet> getPredmeti() {
 		return predmeti;
 	}
@@ -76,26 +82,28 @@ public class BazaPredmeta implements Serializable{
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void writePredmeti(){
 		try {
-			File f=new File("predmeti.dat");
-			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(f)));
+			ObjectOutputStream out = new ObjectOutputStream((new FileOutputStream("data_files/predmeti.dat")));
 			out.writeObject(predmeti);
 		    out.close();
-		} catch (Exception e) {
+		} catch (IOException e) {
 		      e.printStackTrace();
 	    }
 	}
+	@SuppressWarnings("unchecked")
 	private void readPredmeti(){
 		try {
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream("predmeti.dat"));
-			Object obj;
-			while((obj = in.readObject()) != null) {
-				predmeti.add((Predmet)obj);
-			}
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream("data_files/predmeti.dat"));
+			predmeti = (ArrayList<Predmet>) in.readObject();
 			in.close();
-		} catch (Exception e) {
+		} catch (IOException e) {
 			e.printStackTrace();
+			return;
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+			return;
 		}
 	}
 }
