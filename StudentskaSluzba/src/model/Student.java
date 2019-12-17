@@ -1,8 +1,16 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Student {
+/**
+ * @author Dragana Carapic
+ *
+ */
+public class Student implements Serializable{
+
+	private static final long serialVersionUID = 4142896913368939462L;
+
 	public enum statusStudenta{
 		B,S
 	}
