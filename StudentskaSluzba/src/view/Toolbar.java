@@ -5,7 +5,6 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 
 /**
  * @author Sladjana Savkovic
@@ -23,7 +22,7 @@ public class Toolbar extends JToolBar{
 		// u konstruktor natklase, JToolbar prosledjujemo orijentaciju toolbar-a
 		super(SwingConstants.HORIZONTAL);
 		Color lightBlue= new Color(160,215,255);
-		Color darkBlue= new Color(0,200,200);
+		//Color darkBlue= new Color(0,200,200);
 		
 		JButton buttonAdd = new JButton();
 		buttonAdd.setToolTipText("Dodaj(CTRL+A)");
@@ -63,13 +62,14 @@ public class Toolbar extends JToolBar{
 		setVisibleButtonAddProfessor(false);
 		
 		//Dodaje horizontalni razmak izmedju dugmica sa lijeve i desne strane
-		//add(Box.createHorizontalGlue());
-		add(Box.createHorizontalStrut(900));
+		add(Box.createHorizontalGlue());
+		//add(Box.createHorizontalStrut(900));
 		
 		//JPanel panelSearch=new JPanel();
 		JTextField textSearch=new JTextField();
-		textSearch.setPreferredSize(new Dimension(200,30));
+		//textSearch.setPreferredSize(new Dimension(200,30));
 		textSearch.setFont(new Font("TimesRoman", Font.PLAIN, 18));
+		textSearch.setMaximumSize(new Dimension(8160,80));
 		//panelSearch.add(textSearch);
 		add(textSearch);
 		

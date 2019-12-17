@@ -1,12 +1,9 @@
 package view;
 
-import java.util.ArrayList;
-
 import javax.swing.*;
 import javax.swing.table.AbstractTableModel;
 
 import model.BazaPredmeta;
-import model.Predmet;
 
 /**
  * @author Sladjana Savkovic

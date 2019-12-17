@@ -5,9 +5,6 @@ package view;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-
 import javax.swing.*;
 import javax.swing.event.AncestorEvent;
 import javax.swing.event.AncestorListener;
@@ -17,10 +14,8 @@ import javax.swing.event.AncestorListener;
  *
  */
 public class TabbedPane extends JTabbedPane{
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	
+	private static final long serialVersionUID = 8320287704098046391L;
 
 	public TabbedPane() {
 		setFont( new Font( "Dialog", Font.BOLD|Font.ITALIC, 20 ) );
@@ -29,12 +24,13 @@ public class TabbedPane extends JTabbedPane{
 		
 		MyTab firstTab=new MyTab("Studenti");
 		this.addTab("Studenti", firstTab);
-		this.setMnemonicAt(0, KeyEvent.VK_1);
+		this.setMnemonicAt(0, KeyEvent.VK_S);
 		
 		MyTab secondTab=new MyTab("Profesori");
 		secondTab.addAncestorListener(new AncestorListener() {
 			@Override
 			public void ancestorRemoved(AncestorEvent arg0) {
+				Toolbar.buttonAddProfessor.setVisible(false);
 				Toolbar.buttonAddProfessor.setVisible(false);
 			}
 			@Override
@@ -43,11 +39,10 @@ public class TabbedPane extends JTabbedPane{
 			}
 			@Override
 			public void ancestorAdded(AncestorEvent arg0) {
-				Toolbar.buttonAddProfessor.setVisible(true);
 			}
 		});
 		this.addTab("Profesori", secondTab);
-		this.setMnemonicAt(1, KeyEvent.VK_2);
+		this.setMnemonicAt(1, KeyEvent.VK_P);
 		
 		MyTab thirdTab=new MyTab("Predmeti");
 		thirdTab.addAncestorListener(new AncestorListener() {
@@ -68,7 +63,7 @@ public class TabbedPane extends JTabbedPane{
 			}
 		});
 		this.addTab("Predmeti", thirdTab);
-		this.setMnemonicAt(2, KeyEvent.VK_3);
+		this.setMnemonicAt(2, KeyEvent.VK_R);
 		
 	}
 }

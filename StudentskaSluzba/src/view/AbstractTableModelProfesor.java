@@ -5,8 +5,6 @@ package view;
 
 import javax.swing.JButton;
 import javax.swing.table.AbstractTableModel;
-
-import model.BazaPredmeta;
 import model.BazaProfesora;
 
 /**

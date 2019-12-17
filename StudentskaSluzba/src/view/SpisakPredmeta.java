@@ -15,10 +15,9 @@ import model.BazaProfesora;
  * @author Sladjana Savkovic
  *
  */
-public class SpisakPredmeta extends JFrame{
+public class SpisakPredmeta extends JDialog{
 	
-
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -3193560552005285638L;
 	
 	private JList<String> list = null;
 	private JButton bObrisi = new JButton("Obriši");
@@ -31,15 +30,15 @@ public class SpisakPredmeta extends JFrame{
 	
 	public SpisakPredmeta(int row) {
 		
-		setSize(450, 350);
-		setLocationRelativeTo(null);
-		setUndecorated(true);
-		getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
 		
-		addComponentJFrame(row);
+		setSize(450, 350);
+		setUndecorated(true);
+		//getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
+		
+		addComponentJDialog(row);
 		
 	}
-	public void addComponentJFrame(int row) {
+	public void addComponentJDialog(int row) {
 		
 		lbNaslov.setText("Spisak studenata");
 		lbNaslov.setFont(new Font("Times New Roman", Font.BOLD, 20));

@@ -23,36 +23,27 @@ public class SpisakStudenata extends JFrame{
 	private JList<String> list = null;
 	private JButton bObrisi = new JButton("Obriši");
 	private JButton bNazad = new JButton("Nazad");
-	private JLabel lbNaslov = new JLabel();
 	private JPanel pnlList = new JPanel();
 	private JPanel pnlObrisiNazad = new JPanel();
-	private Color lightBlue= new Color(180,231,255);
 	private Color darkerBlue= new Color(0,200,200);
 	
 	public SpisakStudenata(int row) {
 		
+		Toolkit kit=Toolkit.getDefaultToolkit();
 		setSize(450, 350);
 		setLocationRelativeTo(null);
-		setUndecorated(true);
-		getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
-		
+		setTitle("Spisak studenata");
+		Image img=kit.getImage("logo_images/ftn.png");
+		setIconImage(img);		
 		addComponentJFrame(row);
 		
 	}
+	@SuppressWarnings("unchecked")
 	public void addComponentJFrame(int row) {
-		
-		lbNaslov.setText("Spisak studenata");
-		lbNaslov.setFont(new Font("Times New Roman", Font.BOLD, 18));
-		lbNaslov.setOpaque(true);
-		lbNaslov.setBackground(lightBlue);
-		lbNaslov.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.lightGray));
-		getContentPane().add(lbNaslov,BorderLayout.NORTH);
-		
-				
+					
 		FlowLayout pnlObrisiNazadLayout = new FlowLayout(FlowLayout.RIGHT);
 		getContentPane().add(pnlObrisiNazad,BorderLayout.SOUTH);
 		pnlObrisiNazad.setLayout(pnlObrisiNazadLayout);
-		pnlObrisiNazad.setBackground(lightBlue);
 		pnlObrisiNazad.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.lightGray));
 		
 		pnlObrisiNazad.add(bObrisi);
@@ -72,13 +63,14 @@ public class SpisakStudenata extends JFrame{
 		
 		JScrollPane scp = new JScrollPane(list);
 		
-		list.setPreferredSize(new Dimension(300, 200));
+		//list.setMinimumSize(new Dimension(600, 300));
 		
-		pnlList.add(scp);
-		pnlList.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50)); 
+		pnlList.add(scp,BorderLayout.CENTER);
+		//pnlList.setMaximumSize(new Dimension(600, 300));
 		getContentPane().add(pnlList,BorderLayout.CENTER);
 	}
 	
+	@SuppressWarnings("rawtypes")
 	private class MyListBoxModel extends AbstractListModel {
 		
 		private static final long serialVersionUID = 1L;
@@ -103,6 +95,7 @@ public class SpisakStudenata extends JFrame{
 			return studenti.size();
 		}
 	}
+	@SuppressWarnings("rawtypes")
 	private class MyListRenderer extends JLabel implements ListCellRenderer {
 
 		

@@ -44,14 +44,13 @@ public class MainFrame extends JFrame{
 		Image img=kit.getImage("logo_images/ftn.png");
 		setIconImage(img);
 		
+		createMenuBar();
 		createToolbar();
 		createTabbedPane();
+		createStatusBar();
 		
 		//DodavanjePredmeta dodaj = new DodavanjePredmeta();
 		//dodaj.setVisible(true);
-		
-		MenuBar menu = new MenuBar();
-		this.setJMenuBar(menu);
 		
 		setVisible(true);
 		
@@ -66,5 +65,12 @@ public class MainFrame extends JFrame{
 		TabbedPane tabbedPane = new TabbedPane();
 		add(tabbedPane,BorderLayout.CENTER);
 	}
-	
+	public void createMenuBar() {
+		MenuBar menu = new MenuBar();
+		this.setJMenuBar(menu);
+	}
+	public void createStatusBar() {
+		//StatusBar sbar=new StatusBar();
+		//add(sbar,BordetLayout.SOUTH);
+	}
 }
