@@ -62,6 +62,14 @@ public class BazaPredmeta implements Serializable{
 	public Predmet getPredmetIndex(int index) {
 		return this.predmeti.get(index);
 	}
+	public int getIndexOfPredmet(String sifra) {
+		for(int i=0;i<predmeti.size();i++) {
+			Predmet p=predmeti.get(i);
+			if (p.getSifra().equals(sifra))
+				return i;
+		}
+		return -1;
+	}
 	public String getValueAt(int row, int column) {
 		Predmet predmet=this.predmeti.get(row);
 		switch (column) {
@@ -93,7 +101,7 @@ public class BazaPredmeta implements Serializable{
 	    }
 	}
 	@SuppressWarnings("unchecked")
-	private void readPredmeti(){
+	public void readPredmeti(){
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream("data_files/predmeti.dat"));
 			predmeti = (ArrayList<Predmet>) in.readObject();
