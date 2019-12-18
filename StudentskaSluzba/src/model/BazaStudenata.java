@@ -105,6 +105,7 @@ public class BazaStudenata implements Serializable{
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void writeStudenti(){
 		try {
 			ObjectOutputStream out = new ObjectOutputStream((new FileOutputStream("data_files/studenti.dat")));
