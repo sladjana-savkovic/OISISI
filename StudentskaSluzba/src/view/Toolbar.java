@@ -35,7 +35,8 @@ public class Toolbar extends JToolBar{
 		buttonModify.setBackground(lightBlue);
 		add(buttonModify);
 		
-		JButton buttonDelete = new JButton();
+		AbstractActionBrisanje brisanje = new AbstractActionBrisanje();
+		JButton buttonDelete = new JButton(brisanje);
 		buttonDelete.setToolTipText("Obrisi(CTRL+D)");
 		buttonDelete.setIcon(new ImageIcon("logo_images/delete.jpg"));
 		buttonDelete.setBackground(lightBlue);

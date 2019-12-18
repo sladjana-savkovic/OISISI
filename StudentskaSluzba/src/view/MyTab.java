@@ -24,8 +24,15 @@ public class MyTab extends JPanel{
 	}
 	public void createTable() {
 		if(tabName.equals("Studenti")) {
-			basicPanel.add(new JLabel("Test " + this.tabName));
-			this.add(basicPanel, BorderLayout.NORTH);
+			/*basicPanel.add(new JLabel("Test " + this.tabName));
+			this.add(basicPanel, BorderLayout.NORTH);*/
+			
+			StudentJTable tabelaStudenata = new StudentJTable();
+
+			JScrollPane scrollPane = new JScrollPane(tabelaStudenata);
+			add(scrollPane, BorderLayout.CENTER);
+			
+			setVisible(true);
 		}
 		else if(tabName.equals("Profesori")) {
 			ProfesorJTable tabelaProfesora = new ProfesorJTable();

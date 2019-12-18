@@ -106,4 +106,17 @@ public class BazaPredmeta implements Serializable{
 			return;
 		}
 	}
+	public void obrisiPredmet(String sifPredmeta) {
+		for (Predmet p : predmeti) {
+			if (p.getSifra().equals(sifPredmeta)) {
+				predmeti.remove(p);
+				break;
+			}
+		}
+	}
+	@Override
+	public String toString() {
+		return "BazaPredmeta [predmeti=" + predmeti + "]";
+	}
+	
 }

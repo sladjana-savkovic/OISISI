@@ -81,4 +81,11 @@ public class Predmet implements Serializable{
 	public int getBrojStudenata() {
 		return this.spisakStudenata.size();
 	}
+	@Override
+	public String toString() {
+		return "Predmet [sifra=" + sifra + ", naziv=" + naziv + ", predmetniProfesor=" + predmetniProfesor
+				+ ", semestar=" + semestar + ", godinaStudija=" + godinaStudija + ", spisakStudenata=" + spisakStudenata
+				+ "]";
+	}
+	
 }

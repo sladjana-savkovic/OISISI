@@ -22,48 +22,29 @@ public class SpisakPredmeta extends JDialog{
 	private JList<String> list = null;
 	private JButton bObrisi = new JButton("Obriši");
 	private JButton bNazad = new JButton("Nazad");
-	private JLabel lbNaslov = new JLabel();
 	private JPanel pnlList = new JPanel();
 	private JPanel pnlObrisiNazad = new JPanel();
-	private Color lightBlue= new Color(180,231,255);
 	private Color darkerBlue= new Color(0,200,200);
 	
-	public SpisakPredmeta(int row) {
+	public SpisakPredmeta(Frame parent,String title,boolean modal,int row) {
 		
-		
-		setSize(450, 350);
-		setUndecorated(true);
-		//getRootPane().setBorder(BorderFactory.createMatteBorder(2, 2, 2, 2, Color.DARK_GRAY));
+		super(parent,title,modal);
+		Toolkit kit=Toolkit.getDefaultToolkit();
+		setSize(400, 300);
+		Image img=kit.getImage("logo_images/ftn.png");
+		setIconImage(img);		
+		setLocationRelativeTo(parent);
 		
 		addComponentJDialog(row);
 		
 	}
 	public void addComponentJDialog(int row) {
 		
-		lbNaslov.setText("Spisak studenata");
-		lbNaslov.setFont(new Font("Times New Roman", Font.BOLD, 20));
-		lbNaslov.setOpaque(true);
-		lbNaslov.setBackground(lightBlue);
-		lbNaslov.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.lightGray));
-		getContentPane().add(lbNaslov,BorderLayout.NORTH);
-		
-				
 		FlowLayout pnlObrisiNazadLayout = new FlowLayout(FlowLayout.RIGHT);
 		getContentPane().add(pnlObrisiNazad,BorderLayout.SOUTH);
 		pnlObrisiNazad.setLayout(pnlObrisiNazadLayout);
-		pnlObrisiNazad.setBackground(lightBlue);
-		pnlObrisiNazad.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.lightGray));
 		
 		pnlObrisiNazad.add(bObrisi);
-		
-		bNazad.setBackground(darkerBlue);
-		this.bNazad.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();	
-			}
-			});
-
 		pnlObrisiNazad.add(bNazad);
 				
 		list = new JList<String>(new MyListBoxModel(row));
@@ -71,11 +52,26 @@ public class SpisakPredmeta extends JDialog{
 		
 		JScrollPane scp = new JScrollPane(list);
 		
-		list.setPreferredSize(new Dimension(300, 200));
+		list.setPreferredSize(new Dimension(200, 150));
 		
 		pnlList.add(scp);
-		pnlList.setBorder(BorderFactory.createEmptyBorder(50, 50, 50, 50)); 
+		pnlList.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0)); 
 		getContentPane().add(pnlList,BorderLayout.CENTER);
+		
+		this.bNazad.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();	
+			}
+			});
+		this.bObrisi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				//Treba da brise element liste
+			}
+		});
 	}
 	
 	private class MyListBoxModel extends AbstractListModel {

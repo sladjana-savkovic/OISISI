@@ -16,7 +16,7 @@ import model.BazaPredmeta;
  * @author Sladjana Savkovic
  *
  */
-public class SpisakStudenata extends JFrame{
+public class SpisakStudenata extends JDialog{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -27,35 +27,26 @@ public class SpisakStudenata extends JFrame{
 	private JPanel pnlObrisiNazad = new JPanel();
 	private Color darkerBlue= new Color(0,200,200);
 	
-	public SpisakStudenata(int row) {
+	public SpisakStudenata(Frame parent,String title,boolean modal,int row) {
 		
+		super(parent,title,modal);
 		Toolkit kit=Toolkit.getDefaultToolkit();
-		setSize(450, 350);
-		setLocationRelativeTo(null);
-		setTitle("Spisak studenata");
+		setSize(400, 300);
 		Image img=kit.getImage("logo_images/ftn.png");
 		setIconImage(img);		
-		addComponentJFrame(row);
+		setLocationRelativeTo(parent);
+		
+		addComponentJDialog(row);
 		
 	}
 	@SuppressWarnings("unchecked")
-	public void addComponentJFrame(int row) {
+	public void addComponentJDialog(int row) {
 					
 		FlowLayout pnlObrisiNazadLayout = new FlowLayout(FlowLayout.RIGHT);
 		getContentPane().add(pnlObrisiNazad,BorderLayout.SOUTH);
 		pnlObrisiNazad.setLayout(pnlObrisiNazadLayout);
-		pnlObrisiNazad.setBorder(BorderFactory.createMatteBorder(1, 1, 1, 1, Color.lightGray));
 		
 		pnlObrisiNazad.add(bObrisi);
-		
-		bNazad.setBackground(darkerBlue);
-		this.bNazad.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				dispose();	
-			}
-			});
-
 		pnlObrisiNazad.add(bNazad);
 				
 		list = new JList<String>(new MyListBoxModel(row));
@@ -63,11 +54,26 @@ public class SpisakStudenata extends JFrame{
 		
 		JScrollPane scp = new JScrollPane(list);
 		
-		//list.setMinimumSize(new Dimension(600, 300));
+		list.setPreferredSize(new Dimension(200, 150));
 		
-		pnlList.add(scp,BorderLayout.CENTER);
-		//pnlList.setMaximumSize(new Dimension(600, 300));
+		pnlList.add(scp);
+		pnlList.setBorder(BorderFactory.createEmptyBorder(30, 0, 0, 0)); 
 		getContentPane().add(pnlList,BorderLayout.CENTER);
+		
+		this.bNazad.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();	
+			}
+			});
+		this.bObrisi.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				//Treba da brise element liste
+			}
+		});
 	}
 	
 	@SuppressWarnings("rawtypes")

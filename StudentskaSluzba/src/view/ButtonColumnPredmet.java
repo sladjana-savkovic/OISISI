@@ -47,7 +47,7 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			fireEditingStopped();
-			new SpisakStudenata(selectedRow).setVisible(true);
+			new SpisakStudenata(null,"Spisak studenata",true,selectedRow).setVisible(true);
 		}
 		});
 

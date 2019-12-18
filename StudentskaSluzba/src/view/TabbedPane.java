@@ -16,6 +16,7 @@ import javax.swing.event.AncestorListener;
 public class TabbedPane extends JTabbedPane{
 	
 	private static final long serialVersionUID = 8320287704098046391L;
+	public static int activeTab=0;
 
 	public TabbedPane() {
 		setFont( new Font( "Dialog", Font.BOLD|Font.ITALIC, 20 ) );
@@ -23,6 +24,28 @@ public class TabbedPane extends JTabbedPane{
 		setBackground(darkerBlue);
 		
 		MyTab firstTab=new MyTab("Studenti");
+		firstTab.addAncestorListener(new AncestorListener() {
+			
+			@Override
+			public void ancestorRemoved(AncestorEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void ancestorMoved(AncestorEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void ancestorAdded(AncestorEvent event) {
+				Toolbar.buttonAddProfessor.setVisible(false);
+				Toolbar.buttonAddStudent.setVisible(false);
+				activeTab=0;
+				
+			}
+		});
 		this.addTab("Studenti", firstTab);
 		this.setMnemonicAt(0, KeyEvent.VK_S);
 		
@@ -30,8 +53,6 @@ public class TabbedPane extends JTabbedPane{
 		secondTab.addAncestorListener(new AncestorListener() {
 			@Override
 			public void ancestorRemoved(AncestorEvent arg0) {
-				Toolbar.buttonAddProfessor.setVisible(false);
-				Toolbar.buttonAddProfessor.setVisible(false);
 			}
 			@Override
 			public void ancestorMoved(AncestorEvent arg0) {
@@ -39,6 +60,9 @@ public class TabbedPane extends JTabbedPane{
 			}
 			@Override
 			public void ancestorAdded(AncestorEvent arg0) {
+				Toolbar.buttonAddProfessor.setVisible(false);
+				Toolbar.buttonAddStudent.setVisible(false);
+				activeTab=1;
 			}
 		});
 		this.addTab("Profesori", secondTab);
@@ -48,8 +72,6 @@ public class TabbedPane extends JTabbedPane{
 		thirdTab.addAncestorListener(new AncestorListener() {
 			@Override
 			public void ancestorRemoved(AncestorEvent event) {
-				Toolbar.buttonAddProfessor.setVisible(false);
-				Toolbar.buttonAddStudent.setVisible(false);
 			}
 			
 			@Override
@@ -59,6 +81,7 @@ public class TabbedPane extends JTabbedPane{
 			public void ancestorAdded(AncestorEvent event) {
 				Toolbar.buttonAddProfessor.setVisible(true);
 				Toolbar.buttonAddStudent.setVisible(true);
+				activeTab=2;
 				
 			}
 		});
