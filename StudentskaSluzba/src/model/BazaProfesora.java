@@ -117,4 +117,17 @@ public class BazaProfesora implements Serializable{
 			return;
 		}
 	}
+	public void obrisiProfesora(String brLicneKarte) {
+		for (Profesor p : profesori) {
+			if (p.getBrLicneKarte().equals(brLicneKarte)) {
+				profesori.remove(p);
+				break;
+			}
+		}
+	}
+	@Override
+	public String toString() {
+		return "BazaProfesora [profesori=" + profesori + "]";
+	}
+	
 }
