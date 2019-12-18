@@ -31,16 +31,16 @@ public class BazaStudenata implements Serializable{
 	}
 	
 	private ArrayList<Student> studenti;
-	private ArrayList<String> predmeti1;
-	private ArrayList<String> predmeti2;
+	//private ArrayList<String> predmeti1;
+	//private ArrayList<String> predmeti2;
 	
 	public BazaStudenata() {
 		readStudenti();
-		initStudent();
-		writeStudenti();
+		//initStudent();
+		//writeStudenti();
 		
 	}
-	public void initStudent() {
+	/*public void initStudent() {
 		this.studenti = new ArrayList<Student>();
 		this.predmeti1 = new ArrayList<String>();
 		this.predmeti2 = new ArrayList<String>();
@@ -59,7 +59,7 @@ public class BazaStudenata implements Serializable{
 		studenti.add(new Student("Aleksa","Tadić","11.08,1996.","Stražilovska 10", "+38165130065", "talek996@gmail.com", "E3154/2015","01.07.2015","3",6.98,statusStudenta.S,predmeti2));
 		studenti.add(new Student("Milica","Sarić","10.02,1996.","Maksima Gorkog 23", "+38163133099", "milicas96@gmail.com", "MEH215/2016","04.07.2016","4",8.76,statusStudenta.B,predmeti2));
 	
-	}
+	}*/
 	
 	public ArrayList<Student> getStudenti(){
 		return studenti;
@@ -115,14 +115,19 @@ public class BazaStudenata implements Serializable{
 	    }
 	}
 
+	@SuppressWarnings("unchecked")
 	private void readStudenti(){
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream("data_files/studenti.dat"));
+			studenti = (ArrayList<Student>) in.readObject();
 			in.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 			return;
-		} 
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
 	}
 
 
