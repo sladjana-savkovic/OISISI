@@ -32,6 +32,7 @@ public class Student implements Serializable{
 			String emailAdresa, String brojIndeka, String datumUpisa, String trenutnaGodinaStudija,
 			double prosjecnaOcjena, statusStudenta status, ArrayList<String> spisakPredmeta) {
 		super();
+		this.ime = ime;
 		this.prezime = prezime;
 		this.datumRodjenja = datumRodjenja;
 		this.adresaStanovanja = adresaStanovanja;
@@ -139,5 +140,9 @@ public class Student implements Serializable{
 
 	public void setSpisakPredmeta(ArrayList<String> spisakPredmeta) {
 		this.spisakPredmeta = spisakPredmeta;
+	}
+	
+	public int getBrojPredmeta() {
+		return this.spisakPredmeta.size();
 	}
 }
