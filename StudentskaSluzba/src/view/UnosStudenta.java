@@ -4,8 +4,10 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.swing.Box;
@@ -27,6 +29,10 @@ import javax.swing.JTextField;
  *
  */
 public class UnosStudenta extends JDialog{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2430739024892834600L;
 	private JLabel ime;
 	private JLabel prezime;
 	private JLabel datum;
@@ -38,14 +44,16 @@ public class UnosStudenta extends JDialog{
 	private JRadioButton budzet;
 	private JRadioButton samofin;
 	private JTextField txtIme,txtPrezime,txtDatum,txtAdresa,txtTelefon,txtIndeks;
+	private Color darkerBlue= new Color(0,200,200);
 	
-	public UnosStudenta(JFrame frame, boolean modalni) {
-		super();
+	public UnosStudenta(JFrame parent, String title, boolean modal) {
+		super(parent,title,modal);
 		
-		setTitle("Dodavanje studenta");
+		//setTitle("Dodavanje studenta");
 		Toolkit kit=Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		setSize(screenSize.width * 1 / 4, screenSize.height * 1 / 4);
+		Image img=kit.getImage("logo_images/ftn.png");
 		
 		JPanel panelCenter = new JPanel();
 		BoxLayout boxCenter = new BoxLayout(panelCenter, BoxLayout.Y_AXIS);
@@ -97,8 +105,8 @@ public class UnosStudenta extends JDialog{
 				
 		adresa = new JLabel();
 	    panelAdresa.add(adresa);
-		datum.setText("Adresa stanovanja*");
-		datum.setPreferredSize(dim);
+		adresa.setText("Adresa stanovanja*");
+		adresa.setPreferredSize(dim);
 				
 		txtAdresa = new JTextField();
 		txtAdresa.setPreferredSize(dim);
@@ -133,7 +141,7 @@ public class UnosStudenta extends JDialog{
 		
 		//polje za odabir godine studija
 		JPanel panelGodina = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		ComboBoxModel godinaStudija = new DefaultComboBoxModel(new String[] {"I(prva)", "II(druga)", "III(treca)", "IV(cetvrta)"}); 
+		ComboBoxModel godinaStudija = new DefaultComboBoxModel(new String[] {"I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)"}); 
 		godina = new JLabel();
 		godina.setText("Trenutna godina studija*");
 		godina.setPreferredSize(dim);
@@ -147,6 +155,8 @@ public class UnosStudenta extends JDialog{
 		JPanel panelFin = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		budzet = new JRadioButton("Budzet");
 		samofin = new JRadioButton("Samofinansiranje");
+		budzet.setSelected(true);
+		samofin.setSelected(false);
 		
 		ButtonGroup btnGroup1 = new ButtonGroup();
 		btnGroup1.add(budzet);
@@ -172,10 +182,12 @@ public class UnosStudenta extends JDialog{
 		panelBottom.setLayout(box);
 		
 		JButton potvrdi = new JButton("Potvrda");
-		potvrdi.setPreferredSize(new Dimension(80, 30));
+		potvrdi.setPreferredSize(new Dimension(100, 30));
+		potvrdi.setBackground(darkerBlue);
 		
 		JButton odustani = new JButton("Odustanak");
-		odustani.setPreferredSize(new Dimension(80, 30));
+		odustani.setPreferredSize(new Dimension(100, 30));
+		odustani.setBackground(darkerBlue);
 		
 		panelBottom.add(Box.createGlue());
 		panelBottom.add(odustani);
