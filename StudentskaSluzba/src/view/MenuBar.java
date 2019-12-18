@@ -4,11 +4,14 @@
 package view;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.KeyStroke;
 
 /**
  * @author Dragana Carapic
@@ -24,10 +27,10 @@ public class MenuBar extends JMenuBar{
 		mnew.setFont(new Font( "ForMenu", Font.PLAIN|Font.CENTER_BASELINE, 15 ));
 	
 		JMenuItem minew = new JMenuItem("New");
-		minew.setMnemonic('N');
+		minew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		minew.setIcon(new ImageIcon("logo_images/add.jpg"));
 		JMenuItem miclose = new JMenuItem("Close");
-		miclose.setMnemonic('C');
+		miclose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
 		miclose.setIcon(new ImageIcon("logo_images/close.png"));
 		mnew.add(minew);
 		mnew.addSeparator();
@@ -38,10 +41,10 @@ public class MenuBar extends JMenuBar{
 		edit.setFont(new Font( "ForMenu", Font.PLAIN|Font.CENTER_BASELINE, 15 ));
 		
 		JMenuItem miedit = new JMenuItem("Edit");
-		miedit.setMnemonic('E');
+		miedit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		miedit.setIcon(new ImageIcon("logo_images/edit.jpg"));
 		JMenuItem midelete = new JMenuItem("Delete");
-		midelete.setMnemonic('D');
+		midelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		midelete.setIcon(new ImageIcon("logo_images/garbage.jpg"));
 		edit.add(miedit);
 		edit.addSeparator();
@@ -52,10 +55,10 @@ public class MenuBar extends JMenuBar{
 		help.setFont(new Font( "ForMenu", Font.PLAIN|Font.CENTER_BASELINE, 15 ));
 		
 		JMenuItem mihelp = new JMenuItem("Help");
-		mihelp.setMnemonic('H');
+		mihelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
 		mihelp.setIcon(new ImageIcon("logo_images/help.png"));
 		JMenuItem miabout = new JMenuItem("About");
-		miabout.setMnemonic('A');
+		miabout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
 		miabout.setIcon(new ImageIcon("logo_images/about.jpg"));
 		help.add(mihelp);
 		help.addSeparator();
