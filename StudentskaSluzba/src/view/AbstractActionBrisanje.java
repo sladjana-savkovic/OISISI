@@ -37,7 +37,9 @@ public class AbstractActionBrisanje extends AbstractAction{
 		if ((TabbedPane.activeTab == 0) && (ButtonColumnProfesor.selectedRow==10) /*OVDJE CE ICI NESTO DRUGO*/) {
 			int input0 = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete studenta?","Brisanje studenta",
 					JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,icon,options,options[1]);
-			//Implementacija
+			if(input0 == JOptionPane.NO_OPTION) {
+				//Implementacija
+			}
 		} else if ((TabbedPane.activeTab == 1) && (ButtonColumnProfesor.selectedRow != -1)) {
 			int input1 = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete profesora?","Brisanje profesora",
 					JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,icon,options,options[1]);
@@ -45,6 +47,7 @@ public class AbstractActionBrisanje extends AbstractAction{
 				//System.out.println(BazaProfesora.getInstance());
 				ProfesorController.getInstance().obrisiProfesora(ButtonColumnProfesor.selectedRow);
 				//System.out.println(BazaProfesora.getInstance());
+				MyTab.azurirajPrikaz();
 			}
 			//Implementacija
 		} else if ((TabbedPane.activeTab == 2) && (ButtonColumnPredmet.selectedRow != -1)) {
@@ -54,6 +57,7 @@ public class AbstractActionBrisanje extends AbstractAction{
 				//System.out.println(BazaPredmeta.getInstance());
 				PredmetController.getInstance().obrisiPredmet(ButtonColumnPredmet.selectedRow);
 				//System.out.println(BazaPredmeta.getInstance());
+				MyTab.azurirajPrikaz();
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Izaberite neki red u tabeli!","Greška",JOptionPane.ERROR_MESSAGE);
