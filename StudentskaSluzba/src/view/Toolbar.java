@@ -14,8 +14,9 @@ public class Toolbar extends JToolBar{
 	
 	private static final long serialVersionUID = 748775439327687207L;
 	
-	static JButton buttonAddProfessor = new JButton();;
-	static JButton buttonAddStudent = new JButton();
+	static public JButton buttonAddProfessor = new JButton();;
+	static public JButton buttonAddStudent = new JButton();
+	static public JTextField textSearch;
 
 	public Toolbar() {
 		// u konstruktor natklase, JToolbar prosledjujemo orijentaciju toolbar-a
@@ -24,31 +25,31 @@ public class Toolbar extends JToolBar{
 		//Color darkBlue= new Color(0,200,200);
 		
 		JButton buttonAdd = new JButton();
-		buttonAdd.setToolTipText("Dodaj(CTRL+A)");
+		buttonAdd.setToolTipText("Dodaj");
 		buttonAdd.setIcon(new ImageIcon("logo_images/plus.jpg"));
 		buttonAdd.setBackground(lightBlue);
 		add(buttonAdd);
 		
 		JButton buttonModify = new JButton();
-		buttonModify.setToolTipText("Izmijeni(CTRL+M)");
+		buttonModify.setToolTipText("Izmijeni");
 		buttonModify.setIcon(new ImageIcon("logo_images/pencil.jpg"));
 		buttonModify.setBackground(lightBlue);
 		add(buttonModify);
 		
 		AbstractActionBrisanje brisanje = new AbstractActionBrisanje();
 		JButton buttonDelete = new JButton(brisanje);
-		buttonDelete.setToolTipText("Obrisi(CTRL+D)");
+		buttonDelete.setToolTipText("Obrisi");
 		buttonDelete.setIcon(new ImageIcon("logo_images/delete.jpg"));
 		buttonDelete.setBackground(lightBlue);
 		add(buttonDelete);
 		
-		buttonAddStudent.setToolTipText("Dodaj studenta(CTRL+S)");
+		buttonAddStudent.setToolTipText("Dodaj studenta");
 		buttonAddStudent.setIcon(new ImageIcon("logo_images/add_student.jpg"));
 		buttonAddStudent.setBackground(lightBlue);
 		add(buttonAddStudent);
 		buttonAddStudent.setVisible(true);
 		
-		buttonAddProfessor.setToolTipText("Dodaj profesora(CTRL+P)");
+		buttonAddProfessor.setToolTipText("Dodaj profesora");
 		buttonAddProfessor.setIcon(new ImageIcon("logo_images/add_professor.jpg"));
 		buttonAddProfessor.setBackground(lightBlue);
 		add(buttonAddProfessor);
@@ -58,15 +59,15 @@ public class Toolbar extends JToolBar{
 		add(Box.createHorizontalGlue());
 		//add(Box.createHorizontalStrut(900));
 		
-		JTextField textSearch=new JTextField();
-		textSearch.setMaximumSize(new Dimension(200,30));
+		textSearch=new JTextField();
+		textSearch.setMaximumSize(textSearch.getPreferredSize());
 		textSearch.setFont(new Font("TimesRoman", Font.PLAIN, 18));
-
 		textSearch.setMaximumSize(new Dimension(8160,80));
 		add(textSearch);
 		
-		JButton buttonSearch = new JButton();
-		buttonSearch.setToolTipText("Pretraži(CTRL+F)");
+		AbstractActionPretrazi pretrazi = new AbstractActionPretrazi();
+		JButton buttonSearch = new JButton(pretrazi);
+		buttonSearch.setToolTipText("Pretraži");
 		buttonSearch.setIcon(new ImageIcon("logo_images/search.jpg"));
 		buttonSearch.setBackground(lightBlue);
 		add(buttonSearch);

@@ -14,7 +14,7 @@ import model.BazaProfesora;
 public class AbstractTableModelProfesor extends AbstractTableModel{
 	
 	private static final long serialVersionUID = 1L;
-	private String[] columnNames = {"Ime","Prezime","Datum rođenja","Adresa stanovanja","Kontakt telefon","E-mail adresa",
+	private String[] columnNames = {"Ime","Prezime","Datum ro\u0111enja","Adresa stanovanja","Kontakt telefon","E-mail adresa",
 			"Adresa kancelarije","Broj lične karte","Titula","Zvanje","Broj predmeta","Predmeti"};
 	
 	public AbstractTableModelProfesor() {}

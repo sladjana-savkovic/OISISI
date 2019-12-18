@@ -12,9 +12,9 @@ import model.BazaPredmeta;
 
 public class AbstractTableModelPredmet extends AbstractTableModel{
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 4689699655033596007L;
 	
-	private String[] columnNames = { "Šifra", "Naziv", "Godina",
+	private String[] columnNames = { "\u0160ifra", "Naziv", "Godina",
 			"Semestar", "Profesor", "Broj studenata", "Studenti" };
 	
 	public AbstractTableModelPredmet() {}
