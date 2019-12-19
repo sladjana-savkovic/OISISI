@@ -23,42 +23,48 @@ public class MenuBar extends JMenuBar{
 	
 	public MenuBar() {
 		
-		JMenu mnew = new JMenu("New");
+		AbstractActionDodavanje ad = new AbstractActionDodavanje();
+		AbstractActionZatvaranje az = new AbstractActionZatvaranje();
+		
+		JMenu mnew = new JMenu("Dodaj");
 		mnew.setFont(new Font( "ForMenu", Font.PLAIN|Font.CENTER_BASELINE, 15 ));
 	
-		JMenuItem minew = new JMenuItem("New");
-		minew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		JMenuItem minew = new JMenuItem("Dodaj");
+		minew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		minew.setIcon(new ImageIcon("logo_images/add.jpg"));
-		JMenuItem miclose = new JMenuItem("Close");
-		miclose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		JMenuItem miclose = new JMenuItem("Izađi");
+		miclose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
 		miclose.setIcon(new ImageIcon("logo_images/close.png"));
 		mnew.add(minew);
 		mnew.addSeparator();
 		mnew.add(miclose);
 		mnew.addSeparator();
 		
-		JMenu edit = new JMenu("Edit");
+		minew.addActionListener(ad);
+		miclose.addActionListener(az);
+		
+		JMenu edit = new JMenu("Izmijeni");
 		edit.setFont(new Font( "ForMenu", Font.PLAIN|Font.CENTER_BASELINE, 15 ));
 		
-		JMenuItem miedit = new JMenuItem("Edit");
-		miedit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+		JMenuItem miedit = new JMenuItem("Izmijeni");
+		miedit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
 		miedit.setIcon(new ImageIcon("logo_images/edit.jpg"));
-		JMenuItem midelete = new JMenuItem("Delete");
-		midelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		JMenuItem midelete = new JMenuItem("Izbriši");
+		midelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK));
 		midelete.setIcon(new ImageIcon("logo_images/garbage.jpg"));
 		edit.add(miedit);
 		edit.addSeparator();
 		edit.add(midelete);
 		edit.addSeparator();
 		
-		JMenu help = new JMenu("Help");
+		JMenu help = new JMenu("Pomoć");
 		help.setFont(new Font( "ForMenu", Font.PLAIN|Font.CENTER_BASELINE, 15 ));
 		
-		JMenuItem mihelp = new JMenuItem("Help");
-		mihelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
+		JMenuItem mihelp = new JMenuItem("Pomoć");
+		mihelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
 		mihelp.setIcon(new ImageIcon("logo_images/help.png"));
-		JMenuItem miabout = new JMenuItem("About");
-		miabout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
+		JMenuItem miabout = new JMenuItem("O nama");
+		miabout.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_O, ActionEvent.CTRL_MASK));
 		miabout.setIcon(new ImageIcon("logo_images/about.jpg"));
 		help.add(mihelp);
 		help.addSeparator();
