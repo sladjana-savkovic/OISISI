@@ -11,8 +11,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import model.Student.statusStudenta;
-
 /**
  * @author Dragana Carapic
  *
@@ -130,6 +128,31 @@ public class BazaStudenata implements Serializable{
 			return;
 		}
 	}
+	
+	public void obrisiStudenta(String brojIndeksa) {
+		for (Student s : studenti) {
+			if (s.getBrojIndeka().equals(brojIndeksa)) {
+				studenti.remove(s);
+				break;
+			}
+		}
+	}
+	
+	public boolean dodajStudenta(Student t) {
+		for(Student s : studenti) {
+			if(!(s.getBrojIndeka().equals(t.getBrojIndeka()))) {
+				studenti.add(t);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "BazaStudenata [studenti=" + studenti + "]";
+	}
 
 
+	
 }
