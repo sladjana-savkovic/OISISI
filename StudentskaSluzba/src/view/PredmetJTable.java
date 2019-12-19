@@ -14,7 +14,7 @@ import javax.swing.table.*;
  */
 public class PredmetJTable extends JTable{
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -9142591266690440511L;
 
 	public PredmetJTable() {
 		this.setRowSelectionAllowed(true);

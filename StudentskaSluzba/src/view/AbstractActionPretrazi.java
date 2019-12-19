@@ -8,9 +8,6 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
 
-import model.BazaPredmeta;
-import model.BazaProfesora;
-
 
 /**
  * @author Sladjana Savkovic

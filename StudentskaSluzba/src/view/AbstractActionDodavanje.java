@@ -35,7 +35,7 @@ public class AbstractActionDodavanje extends AbstractAction{
 			
 				DodavanjeStudenata dod = new DodavanjeStudenata(null, "Dodavanje studenta", true);
 				dod.setVisible(true);
-		
+				
 
 		}else if(TabbedPane.activeTab == 1) {
 			//to do
