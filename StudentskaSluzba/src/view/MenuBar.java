@@ -32,7 +32,7 @@ public class MenuBar extends JMenuBar{
 		JMenuItem minew = new JMenuItem("Dodaj");
 		minew.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		minew.setIcon(new ImageIcon("logo_images/add.jpg"));
-		JMenuItem miclose = new JMenuItem("Izađi");
+		JMenuItem miclose = new JMenuItem("Iza\u0111i");
 		miclose.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Z, ActionEvent.CTRL_MASK));
 		miclose.setIcon(new ImageIcon("logo_images/close.png"));
 		mnew.add(minew);
@@ -49,7 +49,7 @@ public class MenuBar extends JMenuBar{
 		JMenuItem miedit = new JMenuItem("Izmijeni");
 		miedit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, ActionEvent.CTRL_MASK));
 		miedit.setIcon(new ImageIcon("logo_images/edit.jpg"));
-		JMenuItem midelete = new JMenuItem("Izbriši");
+		JMenuItem midelete = new JMenuItem("Izbri\u0161i");
 		midelete.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_B, ActionEvent.CTRL_MASK));
 		midelete.setIcon(new ImageIcon("logo_images/garbage.jpg"));
 		edit.add(miedit);
@@ -57,10 +57,10 @@ public class MenuBar extends JMenuBar{
 		edit.add(midelete);
 		edit.addSeparator();
 		
-		JMenu help = new JMenu("Pomoć");
+		JMenu help = new JMenu("Pomo\u0107");
 		help.setFont(new Font( "ForMenu", Font.PLAIN|Font.CENTER_BASELINE, 15 ));
 		
-		JMenuItem mihelp = new JMenuItem("Pomoć");
+		JMenuItem mihelp = new JMenuItem("Pomo\0107");
 		mihelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
 		mihelp.setIcon(new ImageIcon("logo_images/help.png"));
 		JMenuItem miabout = new JMenuItem("O nama");
