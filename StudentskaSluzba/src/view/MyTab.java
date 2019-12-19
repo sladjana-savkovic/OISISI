@@ -62,7 +62,7 @@ public class MyTab extends JPanel{
 	}
 	static public void azurirajPrikaz() {
 		
-		modelProfesor.fireTableDataChanged();
+		modelStudent.fireTableDataChanged();
 		modelProfesor.fireTableDataChanged();
 		modelPredmet.fireTableDataChanged();
 		

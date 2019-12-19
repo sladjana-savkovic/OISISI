@@ -50,7 +50,7 @@ public class BazaProfesora implements Serializable{
 		predmeti1.add("II802");
 		profesori.add(new Profesor("Nebojša","Ralević","23.08.1965.","Ćirpanova 25","062/782-41-02","rale65@gmail.com",
 				"Trg Dositeja Obradovića 10","124kl789","doktor","redovni prof.",predmeti));
-		profesori.add(new Profesor("Miroslav","Hajdukovic","17.11.1983.","Narodnog fronta 105","062/581-00-72","rapaja1981@gmail.com",
+		profesori.add(new Profesor("Miroslav","Hajduković","17.11.1983.","Narodnog fronta 105","062/581-00-72","rapaja1981@gmail.com",
 				"Trg Dositeja Obradovića 10","581af102","doktor","vanredni prof.",predmeti1));
 		profesori.add(new Profesor("Ljuba","Budinski","01.12.1959.","Bulevar oslobodjenja 108a","063/250-78-44","ljuba.budinski59@gmail.com",
 				"Trg Dositeja Obradovića 10","102af188","doktor","redovni prof.",predmeti1));
@@ -63,6 +63,14 @@ public class BazaProfesora implements Serializable{
 	}
 	public Profesor getProfesorIndex(int index) {
 		return this.profesori.get(index);
+	}
+	public int getIndexOfProfesor(String licnaKarta) {
+		for(int i=0;i<profesori.size();i++) {
+			Profesor p=profesori.get(i);
+			if (p.getBrLicneKarte().equals(licnaKarta))
+				return i;
+		}
+		return -1;
 	}
 	public String getValueAt(int row, int column) {
 		Profesor profesor=this.profesori.get(row);
@@ -107,6 +115,29 @@ public class BazaProfesora implements Serializable{
 	private void readProfesori(){
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream("data_files/profesori.dat"));
+			profesori = (ArrayList<Profesor>) in.readObject();
+			in.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
+	}
+	public void writeProfesoriIn(String f){
+		try {
+			ObjectOutputStream out = new ObjectOutputStream((new FileOutputStream(f)));
+			out.writeObject(profesori);
+		    out.close();
+		} catch (IOException e) {
+		      e.printStackTrace();
+	    }
+	}
+	@SuppressWarnings("unchecked")
+	public void readProfesoriFrom(String f){
+		try {
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(f));
 			profesori = (ArrayList<Profesor>) in.readObject();
 			in.close();
 		} catch (IOException e) {
