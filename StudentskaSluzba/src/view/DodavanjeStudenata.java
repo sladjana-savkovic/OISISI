@@ -208,7 +208,7 @@ public class DodavanjeStudenata extends JDialog{
 					
 					String datStr = txtDatum.getText();
 					if(datStr.equals("")) {
-						JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Morate unijeti datum rođenja studenta!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Morate unijeti datum ro\u0111enja studenta!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
 						txtPrezime.requestFocus();
 						return;
 					}
@@ -247,7 +247,7 @@ public class DodavanjeStudenata extends JDialog{
 					
 			boolean unijet = StudentController.getInstance().dodajStudenta(t);
 			if(unijet) {
-				JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Uspješno ste unijeli studenta!");
+				JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Uspje\u0161no ste unijeli studenta!");
 				txtIme.setText("");
 				txtPrezime.setText("");
 				txtDatum.setText("");
@@ -255,7 +255,7 @@ public class DodavanjeStudenata extends JDialog{
 				txtTelefon.setText("");
 				txtIndeks.setText("");
 			}else {
-				JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Neuspješno dodavanje studenta!");
+				JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Neuspje\u0161no dodavanje studenta!");
 			}
 				}
 			});
@@ -267,7 +267,7 @@ public class DodavanjeStudenata extends JDialog{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					Object[] options = {"Da","Ne"};
-					int res = JOptionPane.showOptionDialog(DodavanjeStudenata.this, "Da li ste sigurni da želite da odustanete?", "Upozorenje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+					int res = JOptionPane.showOptionDialog(DodavanjeStudenata.this, "Da li ste sigurni da \u017eelite da odustanete?", "Upozorenje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 					if(res == JOptionPane.YES_OPTION) {
 						dispose();
 					}
