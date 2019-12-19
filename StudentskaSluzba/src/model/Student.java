@@ -145,4 +145,5 @@ public class Student implements Serializable{
 	public int getBrojPredmeta() {
 		return this.spisakPredmeta.size();
 	}
+	
 }
