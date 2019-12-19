@@ -26,6 +26,7 @@ public class StudentJTable extends JTable{
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelStudent());
+		new ButtonColumnStudent(this, 12);
 		
 	}
 	@Override
@@ -34,7 +35,7 @@ public class StudentJTable extends JTable{
 		Component c = super.prepareRenderer(renderer, row, column);
 		if (isRowSelected(row)) {
 			c.setBackground(lightBlue);
-			ButtonColumnProfesor.selectedRow=getSelectedRow();
+			ButtonColumnStudent.selectedRow=getSelectedRow();
 		} else {
 			c.setBackground(Color.WHITE);
 		}
