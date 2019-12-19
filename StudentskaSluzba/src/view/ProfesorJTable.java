@@ -16,6 +16,8 @@ import javax.swing.table.TableCellRenderer;
  */
 public class ProfesorJTable extends JTable{
 	
+	private static final long serialVersionUID = -557460832554227306L;
+	
 	public ProfesorJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);

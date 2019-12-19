@@ -42,7 +42,6 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 		this.editorButton = new JButton("Prikaži");
 
 		this.editorButton.addActionListener(new ActionListener() {
-		// mozemo odavde pozvati nas kontroler da se nesto smisleno odradi
 			
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -63,13 +62,10 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 			int row, int column) {
-		// U ovom primeru, sva dugmad ce imati isti ispis,
-		// za promenu ispisa mozemo koristi vrednost parametra value
 		return new SPPTablePanel(this.renderButton, 50, 50);
 	}
 	@Override
 	public Object getCellEditorValue() {
-		// u sustini ne radimo nikakvu izmenu, pa nam ova vrednosti nije preterano bitna
 		return null;
 	}
 

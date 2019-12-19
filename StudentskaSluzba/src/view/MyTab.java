@@ -14,12 +14,17 @@ public class MyTab extends JPanel{
 	
 	private static final long serialVersionUID = 1L;
 	private String tabName;
-	private JPanel basicPanel;
+	static private StudentJTable tabelaStudenata = new StudentJTable();
+	static private ProfesorJTable tabelaProfesora = new ProfesorJTable();
+	static private PredmetJTable tabelaPredmeta = new PredmetJTable();
+	
+	static public AbstractTableModelProfesor modelProfesor = (AbstractTableModelProfesor) tabelaProfesora.getModel();
+	static public AbstractTableModelPredmet modelPredmet = (AbstractTableModelPredmet) tabelaPredmeta.getModel();
+	static public AbstractTableModelStudent modelStudent = (AbstractTableModelStudent) tabelaStudenata.getModel();
 	
 	MyTab(String name) {
 		this.tabName=name;
 		this.setLayout(new BorderLayout());
-		this.basicPanel = new JPanel();
 		createTable();
 	}
 	public void createTable() {
@@ -27,7 +32,7 @@ public class MyTab extends JPanel{
 			/*basicPanel.add(new JLabel("Test " + this.tabName));
 			this.add(basicPanel, BorderLayout.NORTH);*/
 			
-			StudentJTable tabelaStudenata = new StudentJTable();
+			//StudentJTable tabelaStudenata = new StudentJTable();
 
 			JScrollPane scrollPane = new JScrollPane(tabelaStudenata);
 			add(scrollPane, BorderLayout.CENTER);
@@ -35,20 +40,31 @@ public class MyTab extends JPanel{
 			setVisible(true);
 		}
 		else if(tabName.equals("Profesori")) {
-			ProfesorJTable tabelaProfesora = new ProfesorJTable();
+			//ProfesorJTable tabelaProfesora = new ProfesorJTable();
 
 			JScrollPane scrollPane = new JScrollPane(tabelaProfesora);
 			add(scrollPane, BorderLayout.CENTER);
 			
+			azurirajPrikaz();
+			
 			setVisible(true);
 		}
 		else {			
-			PredmetJTable tabelaPredmeta = new PredmetJTable();
+			//PredmetJTable tabelaPredmeta = new PredmetJTable();
 
 			JScrollPane scrollPane = new JScrollPane(tabelaPredmeta);
 			add(scrollPane, BorderLayout.CENTER);
 			
+			azurirajPrikaz();
+			
 			setVisible(true);
 		}
+	}
+	static public void azurirajPrikaz() {
+		
+		modelStudent.fireTableDataChanged();
+		modelProfesor.fireTableDataChanged();
+		modelPredmet.fireTableDataChanged();
+		
 	}
 }

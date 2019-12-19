@@ -29,8 +29,6 @@ public class PredmetController {
 		}
     	// izmena modela
     	Predmet predmet = BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex);
-    	BazaPredmeta.getInstance().obrisiPredmet(predmet.getSifra());
-		// azuriranje prikaza
-		
+    	BazaPredmeta.getInstance().obrisiPredmet(predmet.getSifra());		
     }
 }

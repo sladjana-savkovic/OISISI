@@ -44,11 +44,11 @@ public class BazaPredmeta implements Serializable{
 		studenti1.add("PSI14/2017");
 		studenti1.add("E3154/2015");
 		studenti1.add("MEH215/2016");
-		predmeti.add(new Predmet("E2123","Matematička analiza 1", "Nebojša Ralevic", 1, 1, studenti));
-		predmeti.add(new Predmet("E2485", "Arhitektura racunara", "Miroslav Hajduković", 2, 1, studenti));
+		predmeti.add(new Predmet("E2123","Matematička analiza 1", "Nebojša Ralević", 1, 1, studenti));
+		predmeti.add(new Predmet("E2485", "Arhitektura računara", "Miroslav Hajduković", 2, 1, studenti));
 		predmeti.add(new Predmet("E2458", "Fizika", "Ljuba Budinski", 2, 1, studenti1));
 		predmeti.add(new Predmet("E1042", "Mehanika", "Ljuba Budinski", 1, 1, studenti1));
-		predmeti.add(new Predmet("MA750", "Alegbra", "Nebojša Ralevic", 1, 1, studenti1));
+		predmeti.add(new Predmet("MA750", "Algebra", "Nebojša Ralević", 1, 1, studenti1));
 		predmeti.add(new Predmet("II802", "Operativni sistemi", "Miroslav Hajduković", 2, 2, studenti1));
 		
 	}*/
@@ -61,6 +61,14 @@ public class BazaPredmeta implements Serializable{
 	}
 	public Predmet getPredmetIndex(int index) {
 		return this.predmeti.get(index);
+	}
+	public int getIndexOfPredmet(String sifra) {
+		for(int i=0;i<predmeti.size();i++) {
+			Predmet p=predmeti.get(i);
+			if (p.getSifra().equals(sifra))
+				return i;
+		}
+		return -1;
 	}
 	public String getValueAt(int row, int column) {
 		Predmet predmet=this.predmeti.get(row);
@@ -93,9 +101,32 @@ public class BazaPredmeta implements Serializable{
 	    }
 	}
 	@SuppressWarnings("unchecked")
-	private void readPredmeti(){
+	public void readPredmeti(){
 		try {
 			ObjectInputStream in = new ObjectInputStream(new FileInputStream("data_files/predmeti.dat"));
+			predmeti = (ArrayList<Predmet>) in.readObject();
+			in.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+			return;
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+			return;
+		}
+	}
+	public void writePredmetiIn(String f){
+		try {
+			ObjectOutputStream out = new ObjectOutputStream((new FileOutputStream(f)));
+			out.writeObject(predmeti);
+		    out.close();
+		} catch (IOException e) {
+		      e.printStackTrace();
+	    }
+	}
+	@SuppressWarnings("unchecked")
+	public void readPredmetiFrom(String f){
+		try {
+			ObjectInputStream in = new ObjectInputStream(new FileInputStream(f));
 			predmeti = (ArrayList<Predmet>) in.readObject();
 			in.close();
 		} catch (IOException e) {
@@ -118,5 +149,4 @@ public class BazaPredmeta implements Serializable{
 	public String toString() {
 		return "BazaPredmeta [predmeti=" + predmeti + "]";
 	}
-	
 }
