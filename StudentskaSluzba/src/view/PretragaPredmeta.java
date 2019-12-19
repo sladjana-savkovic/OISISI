@@ -3,8 +3,8 @@
  */
 package view;
 
-import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import controller.PredmetController;
 import model.BazaPredmeta;
 import model.Predmet;
@@ -20,42 +20,55 @@ public class PretragaPredmeta {
 	String predmetniProfesor="";
 	int semestar=0;
 	int godinaStudija=0;
-	//ArrayList<Predmet> lista; //Lista u kojoj ce se nalaziti svi koji nisu ukljuceni u pretragu
-	String[] sifre=new String[100]; //pamtim na kojim indeksima u listi su nekad bili predmeti koji su u listi
+	String[] sifre=new String[100]; //pamtim koje su sifre predmeta koji su nekad bili u bazi
 	int brojac=0;
 	
 	public PretragaPredmeta(String pretraga) {
+		
 		if(pretraga.equals(""))
 			ResetPretrage();
 		
-		//lista = new ArrayList<Predmet>();
+		boolean rezultatPretrage = pretrazi(pretraga);
+		if(rezultatPretrage == false && !pretraga.equals(""))
+			JOptionPane.showMessageDialog(null, "Pogresan unos za pretragu!","Greška",JOptionPane.ERROR_MESSAGE);
+		
+		modifikujBazuPredmeta();
+		
+	}
+	public boolean pretrazi(String pretraga) {
+
 		String[] podaci=new String[5];
 		podaci=pretraga.split(";");
-		
+			
 		for(int i=0;i<podaci.length;i++) {
 			String[] pom = new String[2];
 			pom=podaci[i].split(":");
-			if(pom[0].toUpperCase().equals("ŠIFRA") || (pom[0].toUpperCase().equals("SIFRA")))
-					sifra=pom[1];
-			else if(pom[0].toUpperCase().equals("NAZIV"))
+				
+			if((pom[0].toUpperCase().equals("ŠIFRA") || (pom[0].toUpperCase().equals("SIFRA"))) && (pom.length > 1))
+				sifra=pom[1];
+			else if(pom[0].toUpperCase().equals("NAZIV") && (pom.length > 1))
 				naziv=pom[1];
-			else if(pom[0].toUpperCase().equals("GODINA"))
+			else if(pom[0].toUpperCase().equals("GODINA") && (pom.length > 1))
 				godinaStudija=Integer.parseInt(pom[1]);
-			else if(pom[0].toUpperCase().equals("SEMESTAR"))
+			else if(pom[0].toUpperCase().equals("SEMESTAR") && (pom.length > 1))
 				semestar=Integer.parseInt(pom[1]);
-			else if(pom[0].toUpperCase().equals("PROFESOR"))
+			else if(pom[0].toUpperCase().equals("PROFESOR") && (pom.length > 1))
 				predmetniProfesor=pom[1];
+			else {
+				return false;
+			}	
 		}
-		modifikujBazuPredmeta();
+		return true;
 	}
+	
+	
 	public void modifikujBazuPredmeta() {
 		int size=BazaPredmeta.getInstance().getPredmeti().size(); //Pocetna duzina,prije izmjene
 		for(int i=0; i<size; i++) {
-			//System.out.println(i);
 			Predmet p = BazaPredmeta.getInstance().getPredmetIndex(i);
 			boolean flag=true;
 			for(int j=0; j<5; j++) {
-				if(!sifra.equals(p.getSifra()) && !sifra.equals("")) { //BACA GRESKU AKO UNESEM NESTO KAO Sifra:
+				if(!sifra.equals(p.getSifra()) && !sifra.equals("")) { 
 					flag=false;
 				}
 				if(!naziv.equals(p.getNaziv()) && !naziv.equals("")) {
@@ -73,7 +86,6 @@ public class PretragaPredmeta {
 			}
 			//Ako je flag postao false, znaci da nam vrijednost iz baze predmeta ne treba u bazi, pa je smjestam u pomocnu listu
 			if(flag == false) {
-				//lista.add(p);
 				sifre[brojac++]=p.getSifra();
 			}
 		}
@@ -84,6 +96,6 @@ public class PretragaPredmeta {
 		}
 	}
 	public void ResetPretrage() {
-		BazaPredmeta.getInstance().readPredmeti();
+		BazaPredmeta.getInstance().readPredmetiFrom("data_files/pom.dat");
 	}
 }
