@@ -86,9 +86,9 @@ public class DodavanjePredmeta extends JDialog{
 			
 			//polje za odabir godine na kojoj se predmet slusa
 			JPanel pnlGodinaStudija = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			ComboBoxModel cmbGodinaStudija = new DefaultComboBoxModel(new String[] {"I(prva)", "II(druga)", "III(treca)", "IV(cetvrta)"}); 
+			ComboBoxModel cmbGodinaStudija = new DefaultComboBoxModel(new String[] {"I(prva)", "II(druga)", "III(tre\u0107a)", "IV(\010detvrta)"}); 
 			godinaStudija = new JLabel();
-			godinaStudija.setText("Godina na kojoj se predmet slusa*");
+			godinaStudija.setText("Godina*");
 			godinaStudija.setPreferredSize(dim);
 			
 			CBgodina = new JComboBox();
@@ -100,7 +100,7 @@ public class DodavanjePredmeta extends JDialog{
 			JPanel pnlSemestar = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			ComboBoxModel cmbSemestar = new DefaultComboBoxModel(new String[] {"1", "2", "3", "4","5","6","7","8"}); 
 			semestar = new JLabel();
-			semestar.setText("Semestar u kojem se predmet slusa*");
+			semestar.setText("Semestar*");
 			semestar.setPreferredSize(dim);
 			
 			CBsemestar = new JComboBox();
@@ -131,26 +131,34 @@ public class DodavanjePredmeta extends JDialog{
 				public void actionPerformed(ActionEvent e) {
 					String sifra = txtSifraPredmeta.getText();
 					if(sifra.equals("")) {
-						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Morate unijeti ime studenta!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Morate unijeti \u0161ifru predmeta!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
 						txtSifraPredmeta.requestFocus();
 						return;
 					}
 					
 					String naziv = txtNazivPredmeta.getText();
 					if(naziv.equals("")) {
-						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Morate unijeti prezime studenta!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Morate unijeti naziv predmeta!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
 						txtNazivPredmeta.requestFocus();
 						return;
 					}
 					
 					String profesor = txtPredmetniProfesor.getText();
 					if(profesor.equals("")) {
-						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Morate unijeti datum rođenja studenta!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Morate unijeti predmetnog profesora!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
 						txtPredmetniProfesor.requestFocus();
 						return;
 					}
 					String god = (String)CBgodina.getSelectedItem();
-					int godina=Integer.parseInt(god);
+					int godina;
+					if(god.contains("prva"))
+						godina=1;
+					else if(god.contains("druga"))
+						godina=2;
+					else if(god.contains("tre\u0107a"))
+						godina=3;
+					else
+						godina=4;
 					
 					String sem = (String)CBsemestar	.getSelectedItem();
 					int semestar=Integer.parseInt(sem);
@@ -177,7 +185,7 @@ public class DodavanjePredmeta extends JDialog{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					Object[] options = {"Da","Ne"};
-					int res = JOptionPane.showOptionDialog(DodavanjePredmeta.this, "Da li ste sigurni da želite da odustanete?", "Upozorenje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+					int res = JOptionPane.showOptionDialog(DodavanjePredmeta.this, "Da li ste sigurni da \u017delite da odustanete?", "Upozorenje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 					if(res == JOptionPane.YES_OPTION) {
 						dispose();
 					}
