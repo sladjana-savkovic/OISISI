@@ -4,7 +4,9 @@
 package controller;
 
 import model.BazaPredmeta;
+import model.BazaStudenata;
 import model.Predmet;
+import model.Student;
 
 /**
  * @author Sladjana Savkovic
@@ -31,4 +33,10 @@ public class PredmetController {
     	Predmet predmet = BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex);
     	BazaPredmeta.getInstance().obrisiPredmet(predmet.getSifra());		
     }
+	public boolean dodajPredmet(Predmet p) {
+		if(!(BazaPredmeta.getInstance().dodajPredmet(p))) {
+			return false;
+		}
+		return true;
+	}
 }
