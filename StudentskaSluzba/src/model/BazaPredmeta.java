@@ -145,6 +145,16 @@ public class BazaPredmeta implements Serializable{
 			}
 		}
 	}
+	public boolean dodajPredmet(Predmet p) {
+		for(Predmet pr : predmeti) {
+			if(!(pr.getSifra().equals(p.getSifra()))) {
+				predmeti.add(p);
+				return true;
+			}
+		}
+		return false;
+	}
+
 	@Override
 	public String toString() {
 		return "BazaPredmeta [predmeti=" + predmeti + "]";
