@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -20,9 +21,11 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
 
 /**
  * @author Dragana Carapic
@@ -44,10 +47,13 @@ public class UnosStudenta extends JDialog{
 	private JRadioButton budzet;
 	private JRadioButton samofin;
 	private JTextField txtIme,txtPrezime,txtDatum,txtAdresa,txtTelefon,txtIndeks;
-	private Color darkerBlue= new Color(0,200,200);
+	private boolean provjera;
+	private String imeStr, przStr, datStr, adrStr, telStr, indStr;
 	
 	public UnosStudenta(JFrame parent, String title, boolean modal) {
 		super(parent,title,modal);
+		
+		provjera=true;
 		
 		//setTitle("Dodavanje studenta");
 		Toolkit kit=Toolkit.getDefaultToolkit();
@@ -64,80 +70,75 @@ public class UnosStudenta extends JDialog{
 		//polje za unos imena
 		JPanel panelIme = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
-		ime = new JLabel();
-		panelIme.add(ime);
-		ime.setText("Ime*");
+		ime = new JLabel("Ime*");
 		ime.setPreferredSize(dim);
-		
 		txtIme = new JTextField();
 		txtIme.setPreferredSize(dim);
+		txtIme.setName("txtIme");
+		
 		panelIme.add(ime);
 		panelIme.add(txtIme);
 	
 		//polje za unos prezimena
 		JPanel panelPrezime = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
-		prezime = new JLabel();
-		panelPrezime.add(prezime);
-		prezime.setText("Prezime*");
+		prezime = new JLabel("Prezime*");
 		prezime.setPreferredSize(dim);
-		
 		txtPrezime = new JTextField();
 		txtPrezime.setPreferredSize(dim);
+		txtPrezime.setName("txtPrezime");
+		
 		panelPrezime.add(prezime);
 		panelPrezime.add(txtPrezime);
 		
 		//polje za unos datuma rodjenja
 		JPanel panelDatum = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
-		datum = new JLabel();
-		panelDatum.add(datum);
-		datum.setText("Datum rodjenja*");
+		datum = new JLabel("Datum rodjenja*");
 		datum.setPreferredSize(dim);
-		
 		txtDatum = new JTextField();
 		txtDatum.setPreferredSize(dim);
+		txtDatum.setName("txtPrezime");
+		
 		panelDatum.add(datum);
 		panelDatum.add(txtDatum);
 		
 		//polje za unos adrese
 		JPanel panelAdresa = new JPanel(new FlowLayout(FlowLayout.LEFT));
 				
-		adresa = new JLabel();
-	    panelAdresa.add(adresa);
-		adresa.setText("Adresa stanovanja*");
-		adresa.setPreferredSize(dim);
-				
+		adresa = new JLabel("Adresa stanovanja*");
+		adresa.setPreferredSize(dim);		
 		txtAdresa = new JTextField();
 		txtAdresa.setPreferredSize(dim);
+		txtAdresa.setName("txtAdresa");
+	
 		panelAdresa.add(adresa);
 		panelAdresa.add(txtAdresa);
 		
 		//polje za unos telefona
 		JPanel panelTelefon = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
-		telefon = new JLabel();
-	    panelTelefon.add(telefon);
-		telefon.setText("Broj telefona*");
-		telefon.setPreferredSize(dim);
-				
+		telefon = new JLabel("Broj telefona*");
+		telefon.setPreferredSize(dim);			
 		txtTelefon = new JTextField();
 		txtTelefon.setPreferredSize(dim);
+		txtTelefon.setName("txtTelefon");
+		
 		panelTelefon.add(telefon);
 		panelTelefon.add(txtTelefon);
 		
 		//polje za unos broja indeksa
 		JPanel panelIndeks = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
-		indeks = new JLabel();
-	    panelIndeks.add(indeks);
-		indeks.setText("Broj indeksa*");
+		indeks = new JLabel("Broj indeksa*");
 		indeks.setPreferredSize(dim);
-				
 		txtIndeks = new JTextField();
 		txtIndeks.setPreferredSize(dim);
+		txtIndeks.setName("txtIndeks");
+
 		panelIndeks.add(indeks);
 		panelIndeks.add(txtIndeks);
+
 		
 		//polje za odabir godine studija
 		JPanel panelGodina = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -174,6 +175,7 @@ public class UnosStudenta extends JDialog{
 		panelCenter.add(panelFin);
 		
 		panelCenter.add(Box.createVerticalStrut(50));
+		panelCenter.add(Box.createGlue());
 		add(panelCenter, BorderLayout.CENTER);
 		
 		//potvrda uniejtog sadrzaja ili odustanak
@@ -183,11 +185,10 @@ public class UnosStudenta extends JDialog{
 		
 		JButton potvrdi = new JButton("Potvrda");
 		potvrdi.setPreferredSize(new Dimension(100, 30));
-		potvrdi.setBackground(darkerBlue);
+		
 		
 		JButton odustani = new JButton("Odustanak");
 		odustani.setPreferredSize(new Dimension(100, 30));
-		odustani.setBackground(darkerBlue);
 		
 		panelBottom.add(Box.createGlue());
 		panelBottom.add(odustani);
@@ -198,6 +199,74 @@ public class UnosStudenta extends JDialog{
 		add(panelBottom, BorderLayout.SOUTH);
 		pack();
 		
+	
+	
+			while(provjeraPolja()==false || imeStr.equals("")) {
+				JOptionPane.showMessageDialog(UnosStudenta.this, "Morate unijeti sva polja!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+			}
 	}
+		
+		public boolean provjeraPolja() {
+			
+			imeStr=txtIme.getText();
+			przStr=txtPrezime.getText();
+			datStr=txtDatum.getText();
+			adrStr=txtAdresa.getText();
+			telStr=txtTelefon.getText();
+			indStr=txtIndeks.getText();
+			
+		if(imeStr.equals("")){
+			//JOptionPane.showMessageDialog(UnosStudenta.this, "Morate unijeti ime ", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+			//txtIme.requestFocus();
+			setVisible(true);
+			provjera =false;
+			return provjera;
+		}
+		
+		if(przStr.equals("")){
+			//JOptionPane.showMessageDialog(UnosStudenta.this, "Morate unijeti prezime", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+			//txtIme.requestFocus();
+			setVisible(true);
+			provjera = false;
+			return provjera;
+		}
+		
+		if(datStr.equals("")){
+			//JOptionPane.showMessageDialog(UnosStudenta.this, "Morate unijeti datum", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+			//txtIme.requestFocus();
+			setVisible(true);
+			provjera= false;
+			return provjera;
+		}
+		
+		if(adrStr.equals("")){
+			//JOptionPane.showMessageDialog(UnosStudenta.this, "Morate unijeti adresu", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+			//txtIme.requestFocus();
+			setVisible(true);
+			provjera = false;
+			return provjera;
+		}
+		
+		if(telStr.equals("")){
+			//JOptionPane.showMessageDialog(UnosStudenta.this, "Morate unijeti telefon", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+			//txtIme.requestFocus();
+			setVisible(true);
+			provjera = false;
+			return provjera;
+		}
+		
+		if(indStr.equals("")){
+			//JOptionPane.showMessageDialog(UnosStudenta.this, "Morate unijeti indeks", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+			setVisible(true);
+			//txtIme.requestFocus();
+			provjera = false;
+			return provjera;
+		}
+		provjera = true;
+		return provjera;
+		}
+		
+	
+	
 	
 }

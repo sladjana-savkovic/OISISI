@@ -60,7 +60,7 @@ public class MenuBar extends JMenuBar{
 		JMenu help = new JMenu("Pomo\u0107");
 		help.setFont(new Font( "ForMenu", Font.PLAIN|Font.CENTER_BASELINE, 15 ));
 		
-		JMenuItem mihelp = new JMenuItem("Pomo\0107");
+		JMenuItem mihelp = new JMenuItem("Pomo\u0107");
 		mihelp.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, ActionEvent.CTRL_MASK));
 		mihelp.setIcon(new ImageIcon("logo_images/help.png"));
 		JMenuItem miabout = new JMenuItem("O nama");

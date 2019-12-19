@@ -35,7 +35,6 @@ public class StudentController {
 		if(!(BazaStudenata.getInstance().dodajStudenta(t))) {
 			return false;
 		}
-		BazaStudenata.getInstance().dodajStudenta(t);
 		return true;
 	}
 }
