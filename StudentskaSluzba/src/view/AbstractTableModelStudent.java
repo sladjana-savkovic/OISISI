@@ -18,7 +18,7 @@ public class AbstractTableModelStudent extends AbstractTableModel{
 	 * 
 	 */
 	private static final long serialVersionUID = -538526045258933971L;
-	private String[] naziviKolona= {"Ime", "Prezime","Datum rođenja", "Adresa stanovanja","Broj Telefona","Email adresa","Broj indeksa","Datum upisa","Godina studija", "Prosjek","Status","Broj predmeta","Predmeti"};
+	private String[] naziviKolona= {"Ime", "Prezime","Datum ro\u0111enja", "Adresa stanovanja","Broj Telefona","Email adresa","Broj indeksa","Datum upisa","Godina studija", "Prosjek","Status","Broj predmeta","Predmeti"};
 
 	public AbstractTableModelStudent() {}
 	
@@ -26,7 +26,7 @@ public class AbstractTableModelStudent extends AbstractTableModel{
 	public int getColumnCount() {
 		return naziviKolona.length;
 	}
-
+ 
 	@Override
 	public int getRowCount() {
 		return BazaStudenata.getInstance().getStudenti().size();
@@ -74,5 +74,6 @@ public class AbstractTableModelStudent extends AbstractTableModel{
 	public boolean isCellEditable(int redInd, int kolonaInd) {
 		return kolonaInd == 11;
 	}
+	
 
 }
