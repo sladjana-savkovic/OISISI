@@ -184,7 +184,7 @@ public class DodavanjeStudenata extends JDialog{
 			txtUpis.setPreferredSize(dim);
 			txtUpis.setName("txtUpis");
 			
-			DateFormat dateFormat = new SimpleDateFormat("MM.dd.yyyy", Locale.US);
+			DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.US);
 			Calendar todaysDate = Calendar.getInstance();
 			txtUpis.setText(dateFormat.format(todaysDate.getTime()));
 			
