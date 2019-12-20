@@ -5,10 +5,13 @@ package view;
 
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -24,10 +27,13 @@ public class StatusBar extends JPanel{
     	super();
     	JLabel naslov = new JLabel("Studentska služba", JLabel.LEFT);
     	JLabel datum =  new JLabel();
-    	
+		BoxLayout boxCenter = new BoxLayout(this, BoxLayout.X_AXIS);
+    	this.setLayout(boxCenter);
+   
     	this.add(naslov, BorderLayout.WEST);
+    	this.add(Box.createHorizontalGlue());  
         this.add(datum, BorderLayout.EAST);
-        
+      
         Timer t = new javax.swing.Timer(1000, new ActionListener() {
         	
         	public void actionPerformed(ActionEvent e) {
