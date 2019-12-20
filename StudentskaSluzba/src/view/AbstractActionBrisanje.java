@@ -35,7 +35,7 @@ public class AbstractActionBrisanje extends AbstractAction{
 	public void actionPerformed(ActionEvent arg0) {
 		Object[] options = {"Odustanak","Potvrda"};
 		ImageIcon icon = new ImageIcon("logo_images/garbage.jpg");
-		if ((TabbedPane.activeTab == 0) && (ButtonColumnProfesor.selectedRow==10) /*OVDJE CE ICI NESTO DRUGO*/) {
+		if ((TabbedPane.activeTab == 0) && (ButtonColumnStudent.selectedRow != -1)) {
 			int input0 = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete studenta?","Brisanje studenta",
 					JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,icon,options,options[1]);
 			if(input0 == JOptionPane.NO_OPTION) {

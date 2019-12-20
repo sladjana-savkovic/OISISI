@@ -151,6 +151,7 @@ public class BazaPredmeta implements Serializable{
 				predmeti.add(p);
 				return true;
 			}
+			break;
 		}
 		return false;
 	}
