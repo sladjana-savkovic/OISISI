@@ -5,6 +5,7 @@ package controller;
 
 import model.BazaProfesora;
 import model.Profesor;
+import view.MyTab;
 
 /**
  * @author Sladjana Savkovic
@@ -31,6 +32,6 @@ private static ProfesorController instance = null;
     	Profesor profesor = BazaProfesora.getInstance().getProfesorIndex(rowSelectedIndex);
     	BazaProfesora.getInstance().obrisiProfesora(profesor.getBrLicneKarte());
 		// azuriranje prikaza
-		
+    	MyTab.azurirajPrikaz();
     }
 }
