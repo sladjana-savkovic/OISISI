@@ -51,7 +51,7 @@ public class DodavanjePredmeta extends JDialog{
 			//polje za unos sifre predmeta
 			JPanel pnlSifraPredmeta = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			
-			sifraPredmeta = new JLabel("Sifra predmeta*");
+			sifraPredmeta = new JLabel("\u0160ifra predmeta*");
 			sifraPredmeta.setPreferredSize(dim);
 			txtSifraPredmeta = new JTextField();
 			txtSifraPredmeta.setPreferredSize(dim);
@@ -86,7 +86,7 @@ public class DodavanjePredmeta extends JDialog{
 			
 			//polje za odabir godine na kojoj se predmet slusa
 			JPanel pnlGodinaStudija = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			ComboBoxModel cmbGodinaStudija = new DefaultComboBoxModel(new String[] {"I(prva)", "II(druga)", "III(tre\u0107a)", "IV(\010detvrta)"}); 
+			ComboBoxModel cmbGodinaStudija = new DefaultComboBoxModel(new String[] {"I (prva)", "II (druga)", "III (tre\u0107a)", "IV (\u010detvrta)"}); 
 			godinaStudija = new JLabel();
 			godinaStudija.setText("Godina*");
 			godinaStudija.setPreferredSize(dim);
@@ -178,8 +178,8 @@ public class DodavanjePredmeta extends JDialog{
 						}
 					});
 					
-			JButton odustani = new JButton("Odustanak");
-			odustani.setPreferredSize(new Dimension(80, 30));
+			JButton odustani = new JButton("Odustani");
+			odustani.setPreferredSize(new Dimension(100, 30));
 			odustani.addActionListener(new ActionListener() {
 				
 				@Override
