@@ -26,7 +26,6 @@ public class Toolbar extends JToolBar{
 		
 		AbstractActionDodavanje dodaj = new AbstractActionDodavanje();
 		JButton buttonAdd = new JButton(dodaj);
-		buttonAdd.setToolTipText("Dodaj");
 		buttonAdd.setIcon(new ImageIcon("logo_images/plus.jpg"));
 		buttonAdd.setBackground(lightBlue);
 		add(buttonAdd);
@@ -39,7 +38,6 @@ public class Toolbar extends JToolBar{
 		
 		AbstractActionBrisanje brisanje = new AbstractActionBrisanje();
 		JButton buttonDelete = new JButton(brisanje);
-		buttonDelete.setToolTipText("Obrisi");
 		buttonDelete.setIcon(new ImageIcon("logo_images/delete.jpg"));
 		buttonDelete.setBackground(lightBlue);
 		add(buttonDelete);
