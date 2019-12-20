@@ -27,6 +27,8 @@ public class StudentJTable extends JTable{
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelStudent());
 		new ButtonColumnStudent(this, 12);
+		//sort
+		this.setAutoCreateRowSorter(true);
 		
 	}
 	@Override
