@@ -60,7 +60,7 @@ public class Toolbar extends JToolBar{
 		add(Box.createHorizontalGlue());
 		//add(Box.createHorizontalStrut(900));
 		
-		textSearch=new JTextField();
+		textSearch=new JTextField(15);
 		textSearch.setMaximumSize(textSearch.getPreferredSize());
 		textSearch.setFont(new Font("TimesRoman", Font.PLAIN, 18));
 		textSearch.setMaximumSize(new Dimension(8160,80));
