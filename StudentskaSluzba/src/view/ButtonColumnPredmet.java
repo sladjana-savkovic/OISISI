@@ -15,7 +15,8 @@ import javax.swing.table.*;
 public class ButtonColumnPredmet extends AbstractCellEditor
 	implements TableCellRenderer, TableCellEditor, MouseListener{
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -32506745170624766L;
+
 	public static int selectedRow=-1;
 	
 	// dugme koje se iscrtava
@@ -56,13 +57,13 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
 		// Drugom dugmetu se prosledjuje klik misa
-		return new SPPTablePanel(this.editorButton, 50, 50);
+		return new SPPTablePanel(this.editorButton, 0, 0);
 	}
 
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 			int row, int column) {
-		return new SPPTablePanel(this.renderButton, 50, 50);
+		return new SPPTablePanel(this.renderButton, 0, 0);
 	}
 	@Override
 	public Object getCellEditorValue() {
