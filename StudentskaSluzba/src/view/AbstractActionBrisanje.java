@@ -50,7 +50,7 @@ public class AbstractActionBrisanje extends AbstractAction{
 				ProfesorController.getInstance().obrisiProfesora(ButtonColumnProfesor.selectedRow);
 				//System.out.println(BazaProfesora.getInstance());
 				MyTab.azurirajPrikaz();
-				BazaProfesora.getInstance().writeProfesoriIn("data_files/profesori_pom.dat");
+				//BazaProfesora.getInstance().writeProfesoriIn("data_files/profesori_pom.dat");
 			}
 			//Implementacija
 		} else if ((TabbedPane.activeTab == 2) && (ButtonColumnPredmet.selectedRow != -1)) {
@@ -61,7 +61,7 @@ public class AbstractActionBrisanje extends AbstractAction{
 				PredmetController.getInstance().obrisiPredmet(ButtonColumnPredmet.selectedRow);
 				//System.out.println(BazaPredmeta.getInstance());
 				MyTab.azurirajPrikaz();
-				BazaPredmeta.getInstance().writePredmetiIn("data_files/predmeti_pom.dat");
+				//BazaPredmeta.getInstance().writePredmetiIn("data_files/predmeti_pom.dat");
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Izaberite neki red u tabeli!","Greška",JOptionPane.ERROR_MESSAGE);

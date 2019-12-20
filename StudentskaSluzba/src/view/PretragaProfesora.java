@@ -122,6 +122,6 @@ public class PretragaProfesora {
 		}
 	}
 	public void ResetPretrage() {
-		BazaProfesora.getInstance().readProfesoriFrom("data_files/profesori_pom.dat");
+		//BazaProfesora.getInstance().readProfesoriFrom("data_files/profesori_pom.dat");
 	}
 }
