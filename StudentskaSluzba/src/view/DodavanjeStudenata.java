@@ -10,7 +10,12 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Locale;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -40,15 +45,19 @@ import model.Student.statusStudenta;
 public class DodavanjeStudenata extends JDialog{
 	private JLabel ime;
 	private JLabel prezime;
+	//datum rodjenja
 	private JLabel datum;
 	private JLabel adresa;
 	private JLabel telefon;
 	private JLabel indeks;
+	private JLabel email;
+	private JLabel prosjek;
 	private JLabel godina;
+	private JLabel datumUpisa;
 	private JComboBox godinaCM;
 	private JRadioButton budzet;
 	private JRadioButton samofin;
-	private JTextField txtIme,txtPrezime,txtDatum,txtAdresa,txtTelefon,txtIndeks;
+	private JTextField txtIme,txtPrezime,txtDatum,txtAdresa,txtTelefon,txtIndeks,txtEmail,txtProsjek,txtUpis;
 	
 	public DodavanjeStudenata(JFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
@@ -141,11 +150,50 @@ public class DodavanjeStudenata extends JDialog{
 
 			panelIndeks.add(indeks);
 			panelIndeks.add(txtIndeks);
-
+			
+			//polje za unos email-a
+			JPanel panelEmail = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			
+			email = new JLabel("Email*");
+			email.setPreferredSize(dim);
+			txtEmail = new JTextField();
+			txtEmail.setPreferredSize(dim);
+			txtEmail.setName("txtEmail");
+			
+			panelEmail.add(email);
+			panelEmail.add(txtEmail);
+			
+			//polje za unos prosjeka
+			JPanel panelProsjek = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			
+			prosjek = new JLabel("Prosje\u010dna ocjena*");
+			prosjek.setPreferredSize(dim);
+			txtProsjek = new JTextField();
+			txtProsjek.setPreferredSize(dim);
+			txtProsjek.setName("txtProsjek");
+			
+			panelProsjek.add(prosjek);
+			panelProsjek.add(txtProsjek);
+			
+			//polje za unos datuma upisa na faks
+			JPanel panelUpis = new JPanel(new FlowLayout(FlowLayout.LEFT));
+			
+			datumUpisa = new JLabel("Datum upisa*");
+			datumUpisa.setPreferredSize(dim);
+			txtUpis = new JTextField();
+			txtUpis.setPreferredSize(dim);
+			txtUpis.setName("txtUpis");
+			
+			DateFormat dateFormat = new SimpleDateFormat("MM.dd.yyyy", Locale.US);
+			Calendar todaysDate = Calendar.getInstance();
+			txtUpis.setText(dateFormat.format(todaysDate.getTime()));
+			
+			panelUpis.add(datumUpisa);
+			panelUpis.add(txtUpis);
 			
 			//polje za odabir godine studija
 			JPanel panelGodina = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			ComboBoxModel godinaStudija = new DefaultComboBoxModel(new String[] {"I (prva)", "II (druga)", "III (treca)", "IV (cetvrta)"}); 
+			ComboBoxModel godinaStudija = new DefaultComboBoxModel(new String[] {"I (prva)", "II (druga)", "III (tre\u0107a)", "IV (cetvrta)"}); 
 			godina = new JLabel();
 			godina.setText("Trenutna godina studija*");
 			godina.setPreferredSize(dim);
@@ -174,6 +222,9 @@ public class DodavanjeStudenata extends JDialog{
 			panelCenter.add(panelAdresa);
 			panelCenter.add(panelTelefon);
 			panelCenter.add(panelIndeks);
+			panelCenter.add(panelEmail);
+			panelCenter.add(panelProsjek);
+			panelCenter.add(panelUpis);
 			panelCenter.add(panelGodina);
 			panelCenter.add(panelFin);
 			
@@ -186,7 +237,7 @@ public class DodavanjeStudenata extends JDialog{
 			BoxLayout box = new BoxLayout(panelBottom, BoxLayout.X_AXIS);
 			panelBottom.setLayout(box);
 			
-			JButton potvrdi = new JButton("Potvrda");
+			JButton potvrdi = new JButton("Potvrditi");
 			potvrdi.setPreferredSize(new Dimension(100, 30));
 			potvrdi.addActionListener(new ActionListener() {
 				
@@ -233,8 +284,41 @@ public class DodavanjeStudenata extends JDialog{
 						txtIndeks.requestFocus();
 						return;
 					}
+					String emStr = txtEmail.getText();
+					if(emStr.equals("")) {
+						JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Morate unijeti e-mail studenta!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+						txtEmail.requestFocus();
+						return;
+					}
+					
+					String proStr = txtProsjek.getText();
+					if(proStr.equals("")) {
+						JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Morate unijeti prosje\\u010dnu ocjenu studenta!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+						txtProsjek.requestFocus();
+						return;
+					}
+					char c = txtProsjek.getText().charAt(0);
+					if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
+							&& c != '9' && c!='.') {
+						JOptionPane.showMessageDialog(null, "Dozvoljen je unos samo brojeva za prosjek studenta u fromatu 0.0!");
+						txtProsjek.setText("");
+						txtProsjek.requestFocus();
+						return;
+
+					}
+					
 					statusStudenta statusStr;
 					String godStr = (String)godinaCM.getSelectedItem();
+					int god;
+					if(godStr.contains("prva")) {
+						god=1;
+					}else if(godStr.contains("druga")) {
+						god=2;
+					}else if(godStr.contains("tre\\u0107a")) {
+						god=3;
+					}else {
+						god=4;
+					}
 					
 					if(budzet.isSelected()) {
 						statusStr=statusStudenta.B;	
@@ -242,25 +326,31 @@ public class DodavanjeStudenata extends JDialog{
 						statusStr = statusStudenta.S;
 					}
 					
-					ArrayList<String> predmeti = new ArrayList<String>();
-			Student t = new Student(imeStr,przStr,datStr,adrStr,telStr,"",indStr,"",godStr,0.0,statusStr,predmeti);
+					double pros=Double.parseDouble(txtProsjek.getText());
+					String emStr1 = txtEmail.getText();
+					String upisStr = txtUpis.getText();
 					
-			boolean unijet = StudentController.getInstance().dodajStudenta(t);
-			if(unijet) {
-				JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Uspje\u0161no ste unijeli studenta!");
+					ArrayList<String> predmeti = new ArrayList<String>();
+			Student t = new Student(imeStr,przStr,datStr,adrStr,telStr,emStr1,indStr,upisStr,god,pros,statusStr,predmeti);
+					
+			boolean unijet1 = StudentController.getInstance().dodajStudenta(t);
+			if(unijet1==true) {
+				JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Uspje\u0161no ste dodali studenta!");
 				txtIme.setText("");
 				txtPrezime.setText("");
 				txtDatum.setText("");
 				txtAdresa.setText("");
 				txtTelefon.setText("");
 				txtIndeks.setText("");
-			}else {
-				JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Neuspje\u0161no dodavanje studenta!");
+				txtEmail.setText("");
+				txtProsjek.setText("");
+			}else{
+				JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Neuspje\u0161no dodavanje studenta, provjerite da li postoji student sa tim brojem indeksa!");
 			}
 				}
 			});
 			
-			JButton odustani = new JButton("Odustanak");
+			JButton odustani = new JButton("Odustati");
 			odustani.setPreferredSize(new Dimension(100, 30));
 			odustani.addActionListener(new ActionListener() {
 				
