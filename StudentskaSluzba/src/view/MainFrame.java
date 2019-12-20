@@ -13,10 +13,8 @@ import javax.swing.*;
  */
 public class MainFrame extends JFrame{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 5562711743760452740L;
+	
 	private static MainFrame instance = null;
 
 	public static MainFrame getInstance() {
@@ -36,7 +34,7 @@ public class MainFrame extends JFrame{
 		 //Postavljamo akciju pri zatvaranju prozora
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		//Podesavanje naslova
-		setTitle("Studentska sluzba");	
+		setTitle("Studentska slu\u017eba");	
 		//Podesavanje boje pozadine
 		Color lightBlue= new Color(221,245,250);
 		getContentPane().setBackground(lightBlue);
