@@ -24,7 +24,7 @@ public class AbstractActionDodavanje extends AbstractAction{
 	private static final long serialVersionUID = 8602721840638190765L;
 
 	public AbstractActionDodavanje() {
-		putValue(SHORT_DESCRIPTION, "Dodavanje");
+		putValue(SHORT_DESCRIPTION, "Dodaj");
 		putValue(MNEMONIC_KEY, KeyEvent.VK_D);
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_D,ActionEvent.CTRL_MASK));
 	}
@@ -36,10 +36,6 @@ public class AbstractActionDodavanje extends AbstractAction{
 
 			DodavanjeStudenata dod0 = new DodavanjeStudenata(null, "Dodavanje studenta", true);
 			dod0.setVisible(true);
-			MyTab.azurirajPrikaz();
-
-				
-
 
 		}else if(TabbedPane.activeTab == 1) {
 			//to do
@@ -47,7 +43,6 @@ public class AbstractActionDodavanje extends AbstractAction{
 		}else if(TabbedPane.activeTab == 2) {
 			DodavanjePredmeta dod1 = new DodavanjePredmeta(null, "Dodavanje predmeta", true);
 			dod1.setVisible(true);
-			MyTab.azurirajPrikaz();
 		}
 		
 	}

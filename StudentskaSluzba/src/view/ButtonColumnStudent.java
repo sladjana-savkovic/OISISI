@@ -95,13 +95,13 @@ public class ButtonColumnStudent extends AbstractCellEditor implements TableCell
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
 		// TODO Auto-generated method stub
-		return new SPPTablePanel(this.editorButton, 50, 50);
+		return new SPPTablePanel(this.editorButton, 0, 0);
 	}
 
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 			int row, int column) {
-		return new SPPTablePanel(this.renderButton, 50, 50);
+		return new SPPTablePanel(this.renderButton, 0, 0);
 	}
 
 }

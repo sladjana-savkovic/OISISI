@@ -5,6 +5,7 @@ package controller;
 
 import model.BazaStudenata;
 import model.Student;
+import view.MyTab;
 
 /**
  * @author Dragana Carapic
@@ -29,12 +30,14 @@ public class StudentController {
 		}
     	Student student = BazaStudenata.getInstance().getStudentIndex(rowSelectedIndex);
     	BazaStudenata.getInstance().obrisiStudenta(student.getBrojIndeka());
+    	MyTab.azurirajPrikaz();
     	
 	}
 	public boolean dodajStudenta(Student t) {
 		if(!(BazaStudenata.getInstance().dodajStudenta(t))) {
 			return false;
 		}
+    	MyTab.azurirajPrikaz();
 		return true;
 	}
 	
