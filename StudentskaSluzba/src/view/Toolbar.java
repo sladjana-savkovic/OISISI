@@ -24,7 +24,8 @@ public class Toolbar extends JToolBar{
 		Color lightBlue= new Color(160,215,255);
 		//Color darkBlue= new Color(0,200,200);
 		
-		JButton buttonAdd = new JButton();
+		AbstractActionDodavanje dodaj = new AbstractActionDodavanje();
+		JButton buttonAdd = new JButton(dodaj);
 		buttonAdd.setToolTipText("Dodaj");
 		buttonAdd.setIcon(new ImageIcon("logo_images/plus.jpg"));
 		buttonAdd.setBackground(lightBlue);

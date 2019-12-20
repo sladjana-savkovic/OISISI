@@ -168,12 +168,12 @@ public class DodavanjePredmeta extends JDialog{
 							
 					boolean unesen = PredmetController.getInstance().dodajPredmet(p);
 					if(unesen) {
-						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Uspje\u0161no ste unijeli studenta!");
+						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Uspje\u0161no ste dodali predmet!");
 						txtSifraPredmeta.setText("");
 						txtNazivPredmeta.setText("");
 						txtPredmetniProfesor.setText("");
 					}else {
-						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Neuspje\u0161no dodavanje studenta!");
+						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Neuspje\u0161no dodavanje predmeta!");
 					}
 						}
 					});
