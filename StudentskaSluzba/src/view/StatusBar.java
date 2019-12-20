@@ -27,7 +27,6 @@ public class StatusBar extends JPanel{
     	
     	this.add(naslov, BorderLayout.WEST);
         this.add(datum, BorderLayout.EAST);
-    	
         
         Timer t = new javax.swing.Timer(1000, new ActionListener() {
         	
