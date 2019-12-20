@@ -33,9 +33,13 @@ public class AbstractActionDodavanje extends AbstractAction{
 	public void actionPerformed(ActionEvent e) {
 		if (TabbedPane.activeTab == 0) {
 			
+
 			DodavanjeStudenata dod0 = new DodavanjeStudenata(null, "Dodavanje studenta", true);
 			dod0.setVisible(true);
 			MyTab.azurirajPrikaz();
+
+				
+
 
 		}else if(TabbedPane.activeTab == 1) {
 			//to do

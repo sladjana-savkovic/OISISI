@@ -16,8 +16,7 @@ import javax.swing.JPanel;
  */
 public class SPPTablePanel extends JPanel{
 	
-	private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = -1573673965793467387L;
 	private JPanel leftPanel = new JPanel();
 	//private Component c;
 	private JPanel rightPanel = new JPanel();

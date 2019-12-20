@@ -12,7 +12,8 @@ import javax.swing.*;
  */
 public class MyTab extends JPanel{
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 6362644799363305766L;
+	
 	private String tabName;
 	static private StudentJTable tabelaStudenata = new StudentJTable();
 	static private ProfesorJTable tabelaProfesora = new ProfesorJTable();
