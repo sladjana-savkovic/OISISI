@@ -31,10 +31,14 @@ public class AbstractActionPretrazi extends AbstractAction{
 		else if(TabbedPane.activeTab == 1) {
 			new PretragaProfesora(Toolbar.textSearch.getText());
 			MyTab.azurirajPrikaz();
+			Toolbar.textSearch.setText("");
+			Toolbar.textSearch.requestFocus();
 		}
 		else if(TabbedPane.activeTab == 2) {
 			new PretragaPredmeta(Toolbar.textSearch.getText());
 			MyTab.azurirajPrikaz();
+			Toolbar.textSearch.setText("");
+			Toolbar.textSearch.requestFocus();
 		}
 	}
 }

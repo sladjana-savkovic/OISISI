@@ -7,6 +7,7 @@ import model.BazaPredmeta;
 import model.BazaStudenata;
 import model.Predmet;
 import model.Student;
+import view.MyTab;
 
 /**
  * @author Sladjana Savkovic
@@ -31,12 +32,15 @@ public class PredmetController {
 		}
     	// izmena modela
     	Predmet predmet = BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex);
-    	BazaPredmeta.getInstance().obrisiPredmet(predmet.getSifra());		
+    	BazaPredmeta.getInstance().obrisiPredmet(predmet.getSifra());	
+    	// azuriranje prikaza
+    	MyTab.azurirajPrikaz();
     }
 	public boolean dodajPredmet(Predmet p) {
 		if(!(BazaPredmeta.getInstance().dodajPredmet(p))) {
 			return false;
 		}
+		MyTab.azurirajPrikaz();
 		return true;
 	}
 }

@@ -56,7 +56,7 @@ public class ButtonColumnProfesor extends AbstractCellEditor
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
 		// Drugom dugmetu se prosledjuje klik misa
-		return new SPPTablePanel(this.editorButton, 50, 50);
+		return new SPPTablePanel(this.editorButton, 0, 0);
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class ButtonColumnProfesor extends AbstractCellEditor
 			int row, int column) {
 		// U ovom primeru, sva dugmad ce imati isti ispis,
 		// za promenu ispisa mozemo koristi vrednost parametra value
-		return new SPPTablePanel(this.renderButton, 50, 50);
+		return new SPPTablePanel(this.renderButton, 0, 0);
 	}
 	@Override
 	public Object getCellEditorValue() {
