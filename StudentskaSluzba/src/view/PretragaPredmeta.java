@@ -98,5 +98,6 @@ public class PretragaPredmeta {
 	public void ResetPretrage() {
 
 		//BazaPredmeta.getInstance().readPredmetiFrom("data_files/predmeti_pom.dat");
+
 	}
 }
