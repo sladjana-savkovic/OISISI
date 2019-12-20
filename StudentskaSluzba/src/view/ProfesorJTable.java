@@ -24,6 +24,8 @@ public class ProfesorJTable extends JTable{
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelProfesor());
 		new ButtonColumnProfesor(this, 11);
+		//sort
+		this.setAutoCreateRowSorter(true);
 	}
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
@@ -32,7 +34,8 @@ public class ProfesorJTable extends JTable{
 		// selektovani red ce imati drugaciju boju od ostalih
 		if (isRowSelected(row)) {
 			c.setBackground(lightBlue);
-			ButtonColumnProfesor.selectedRow=getSelectedRow();
+			//Postavljanje indeksa selektovanog reda u tabeli, nezavisno od sortiranja
+			ButtonColumnProfesor.selectedRow=this.getRowSorter().convertRowIndexToModel(getSelectedRow());
 		} else {
 			c.setBackground(Color.WHITE);
 		}
