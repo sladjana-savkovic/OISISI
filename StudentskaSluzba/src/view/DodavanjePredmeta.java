@@ -173,7 +173,7 @@ public class DodavanjePredmeta extends JDialog{
 						txtNazivPredmeta.setText("");
 						txtPredmetniProfesor.setText("");
 					}else {
-						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Neuspje\u0161no dodavanje predmeta!");
+						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Neuspje\u0161no dodavanje predmeta, provjerite da li postoji predmet sa tom \u0161ifrom!");
 					}
 						}
 					});
@@ -185,7 +185,7 @@ public class DodavanjePredmeta extends JDialog{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					Object[] options = {"Da","Ne"};
-					int res = JOptionPane.showOptionDialog(DodavanjePredmeta.this, "Da li ste sigurni da \u017delite da odustanete?", "Upozorenje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+					int res = JOptionPane.showOptionDialog(DodavanjePredmeta.this, "Da li ste sigurni da \u017eelite da odustanete?", "Upozorenje", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 					if(res == JOptionPane.YES_OPTION) {
 						dispose();
 					}
