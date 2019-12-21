@@ -22,6 +22,8 @@ public class PredmetJTable extends JTable{
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		this.setModel(new AbstractTableModelPredmet());
 		new ButtonColumnPredmet(this, 6);
+		//sort
+		this.setAutoCreateRowSorter(true);
 	}
 	
 	@Override
@@ -31,7 +33,8 @@ public class PredmetJTable extends JTable{
 		// selektovani red ce imati drugaciju boju od ostalih
 		if (isRowSelected(row)) {
 			c.setBackground(lightBlue);
-			ButtonColumnPredmet.selectedRow=getSelectedRow();
+			//Postavljanje indeksa selektovanog reda u tabeli, nezavisno od sortiranja
+			ButtonColumnPredmet.selectedRow=this.getRowSorter().convertRowIndexToModel(getSelectedRow());
 		} else {
 			c.setBackground(Color.WHITE);
 		}
