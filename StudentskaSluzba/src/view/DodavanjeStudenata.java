@@ -110,7 +110,7 @@ public class DodavanjeStudenata extends JDialog{
 			datum.setPreferredSize(dim);
 			txtDatum = new JTextField();
 			txtDatum.setPreferredSize(dim);
-			txtDatum.setName("txtPrezime");
+			txtDatum.setName("txtDatum");
 			
 			panelDatum.add(datum);
 			panelDatum.add(txtDatum);
@@ -193,7 +193,7 @@ public class DodavanjeStudenata extends JDialog{
 			
 			//polje za odabir godine studija
 			JPanel panelGodina = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			ComboBoxModel godinaStudija = new DefaultComboBoxModel(new String[] {"I (prva)", "II (druga)", "III (tre\u0107a)", "IV (cetvrta)"}); 
+			ComboBoxModel godinaStudija = new DefaultComboBoxModel(new String[] {"I (prva)", "II (druga)", "III (tre\u0107a)", "IV (\u010detvrta)"}); 
 			godina = new JLabel();
 			godina.setText("Trenutna godina studija*");
 			godina.setPreferredSize(dim);
@@ -297,14 +297,15 @@ public class DodavanjeStudenata extends JDialog{
 						txtProsjek.requestFocus();
 						return;
 					}
-					char c = txtProsjek.getText().charAt(0);
+					for(int i=0; i<txtProsjek.getText().length(); i++) {
+					char c = txtProsjek.getText().charAt(i);
 					if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
 							&& c != '9' && c!='.') {
 						JOptionPane.showMessageDialog(null, "Dozvoljen je unos samo brojeva za prosjek studenta u fromatu 0.0!");
 						txtProsjek.setText("");
 						txtProsjek.requestFocus();
 						return;
-
+					}
 					}
 					
 					statusStudenta statusStr;
@@ -327,11 +328,9 @@ public class DodavanjeStudenata extends JDialog{
 					}
 					
 					double pros=Double.parseDouble(txtProsjek.getText());
-					String emStr1 = txtEmail.getText();
 					String upisStr = txtUpis.getText();
-					
 					ArrayList<String> predmeti = new ArrayList<String>();
-			Student t = new Student(imeStr,przStr,datStr,adrStr,telStr,emStr1,indStr,upisStr,god,pros,statusStr,predmeti);
+			Student t = new Student(imeStr,przStr,datStr,adrStr,telStr,emStr,indStr,upisStr,god,pros,statusStr,predmeti);
 					
 			boolean unijet1 = StudentController.getInstance().dodajStudenta(t);
 			if(unijet1==true) {
