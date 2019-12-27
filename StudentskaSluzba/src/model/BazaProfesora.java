@@ -161,4 +161,25 @@ public class BazaProfesora implements Serializable{
 		return "BazaProfesora [profesori=" + profesori + "]";
 	}
 	
+	public Profesor getProfesor(String licnaKartaProfesora) {
+		for(Profesor p : profesori) {
+			if(p.getBrLicneKarte().equals(licnaKartaProfesora)) {
+				return p;
+			}
+		}
+		return null;
+	}
+	public void obrisiPredmet(String licnaKartaProfesora,int indeksPredmetaListe) {
+		Profesor p = getProfesor(licnaKartaProfesora);
+		if(p != null) {
+			p.getSpisakPredmeta().remove(indeksPredmetaListe);
+		}else {
+			return;
+		}
+	}
+	public ArrayList<String> spisakPredmetaProfesora(int index){
+		ArrayList<String> spisakPredmeta = getProfesorIndex(index).getSpisakPredmeta();
+		return spisakPredmeta;
+	}
+	
 }
