@@ -38,7 +38,8 @@ public class AbstractActionDodavanje extends AbstractAction{
 			dod0.setVisible(true);
 
 		}else if(TabbedPane.activeTab == 1) {
-			//to do
+			DodavanjeProfesora dod2 = new DodavanjeProfesora(null, "Dodavanje profesora", true);
+			dod2.setVisible(true);
 
 		}else if(TabbedPane.activeTab == 2) {
 			DodavanjePredmeta dod1 = new DodavanjePredmeta(null, "Dodavanje predmeta", true);
