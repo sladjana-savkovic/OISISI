@@ -9,23 +9,22 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 
-import model.BazaPredmeta;
-
+import controller.PredmetController;
 
 /**
  * @author Sladjana Savkovic
  *
  */
 public class SpisakStudenata extends JDialog{
-	
-	private static final long serialVersionUID = 1L;
+
+	private static final long serialVersionUID = 5273652697018074107L;
 	
 	private JList<String> list = null;
 	private JButton bObrisi = new JButton("Obriši");
 	private JButton bNazad = new JButton("Nazad");
 	private JPanel pnlList = new JPanel();
 	private JPanel pnlObrisiNazad = new JPanel();
-	private Color darkerBlue= new Color(0,200,200);
+	DefaultListModel<String> listModel = new DefaultListModel<String>();
 	
 	public SpisakStudenata(Frame parent,String title,boolean modal,int row) {
 		
@@ -39,7 +38,6 @@ public class SpisakStudenata extends JDialog{
 		addComponentJDialog(row);
 		
 	}
-	@SuppressWarnings("unchecked")
 	public void addComponentJDialog(int row) {
 					
 		FlowLayout pnlObrisiNazadLayout = new FlowLayout(FlowLayout.RIGHT);
@@ -48,9 +46,9 @@ public class SpisakStudenata extends JDialog{
 		
 		pnlObrisiNazad.add(bObrisi);
 		pnlObrisiNazad.add(bNazad);
-				
-		list = new JList<String>(new MyListBoxModel(row));
-		list.setCellRenderer(new MyListRenderer());
+			
+		list = new JList<String>(listModel);		
+		dodajStudenteNaListu(row);
 		
 		JScrollPane scp = new JScrollPane(list);
 		
@@ -70,67 +68,26 @@ public class SpisakStudenata extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				//Treba da brise element liste
+				if(list.getSelectedIndex() == -1) {
+					JOptionPane.showMessageDialog(null, "Izaberite neki red u listi!","Greška",JOptionPane.ERROR_MESSAGE);
+				}else {
+					obrisiStudenta();
+				}
 			}
 		});
 	}
+	public void dodajStudenteNaListu(int row) {
+		ArrayList<String> studenti = PredmetController.getInstance().studentiNaPredmetu(row);
+		for(int i=0;i<studenti.size();i++)
+			listModel.add(i, studenti.get(i));
+	}
+	public void obrisiStudenta() {
+		int selectedIndex = list.getSelectedIndex();
+		
+		PredmetController.getInstance().obrisiStudentaSaPredmeta(ButtonColumnPredmet.selectedRow,selectedIndex);
+		if(selectedIndex != -1) {
+			listModel.remove(selectedIndex);
+		}
+	}
 	
-	@SuppressWarnings("rawtypes")
-	private class MyListBoxModel extends AbstractListModel {
-		
-		private static final long serialVersionUID = 1L;
-		private ArrayList<String> studenti;
-
-		MyListBoxModel(int row) {
-			studenti = new ArrayList<String>();
-			ucitajStudente(row);
-		}
-		private void ucitajStudente(int row) {
-			for(int i=0;i<BazaPredmeta.getInstance().getPredmetIndex(row).getBrojStudenata();i++) {
-				studenti.add(new String(BazaPredmeta.getInstance().getPredmetIndex(row).getSpisakStudenata().get(i)));
-			}
-		}
-		@Override
-		public Object getElementAt(int index) {
-			return studenti.get(index);
-		}
-
-		@Override
-		public int getSize() {
-			return studenti.size();
-		}
-	}
-	@SuppressWarnings("rawtypes")
-	private class MyListRenderer extends JLabel implements ListCellRenderer {
-
-		
-		private static final long serialVersionUID = 1L;
-
-		public MyListRenderer() {
-			setOpaque(true);
-			setVerticalAlignment(CENTER);
-		}
-
-		@Override
-		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-
-			String string = (String) value;
-			if ( string == null )
-				string = (String) list.getModel().getElementAt(0);
-			
-			setText(string);
-
-			if ( isSelected ) {
-				setBackground(darkerBlue);
-				setForeground(list.getSelectionForeground());
-			}
-			else {
-				setBackground(list.getBackground());
-				setForeground(list.getForeground());
-			}
-
-			return this;
-		}
-	}
 }
