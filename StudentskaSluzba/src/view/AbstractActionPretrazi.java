@@ -20,7 +20,6 @@ public class AbstractActionPretrazi extends AbstractAction{
 	public AbstractActionPretrazi() {
 		putValue(SHORT_DESCRIPTION, "Pretraži");
 		putValue(MNEMONIC_KEY, KeyEvent.VK_T);
-		//BazaProfesora.getInstance().writeProfesoriIn("data_files/profesori_pom.dat");
 	}
 
 	@Override
@@ -29,14 +28,22 @@ public class AbstractActionPretrazi extends AbstractAction{
 			//Implementacija
 		}
 		else if(TabbedPane.activeTab == 1) {
-			new PretragaProfesora(Toolbar.textSearch.getText());
-			MyTab.azurirajPrikaz();
+			String text=Toolbar.textSearch.getText();
+			if (text.length() == 0) {
+                 ProfesorJTable.sorter.setRowFilter(null);
+            } else {
+           	  new PretragaProfesora(text, ProfesorJTable.sorter);
+            }
 			Toolbar.textSearch.setText("");
 			Toolbar.textSearch.requestFocus();
 		}
 		else if(TabbedPane.activeTab == 2) {
-			new PretragaPredmeta(Toolbar.textSearch.getText());
-			MyTab.azurirajPrikaz();
+			String text=Toolbar.textSearch.getText();
+			if (text.length() == 0) {
+                 PredmetJTable.sorter.setRowFilter(null);
+            }else {
+           	  new PretragaPredmeta(text, PredmetJTable.sorter);
+            }
 			Toolbar.textSearch.setText("");
 			Toolbar.textSearch.requestFocus();
 		}
