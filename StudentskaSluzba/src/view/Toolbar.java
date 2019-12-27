@@ -17,6 +17,7 @@ public class Toolbar extends JToolBar{
 	static public JButton buttonAddProfessor = new JButton();;
 	static public JButton buttonAddStudent = new JButton();
 	static public JTextField textSearch;
+	static public JButton buttonSearch;
 
 	public Toolbar() {
 		// u konstruktor natklase, JToolbar prosledjujemo orijentaciju toolbar-a
@@ -65,7 +66,7 @@ public class Toolbar extends JToolBar{
 		add(textSearch);
 		
 		AbstractActionPretrazi pretrazi = new AbstractActionPretrazi();
-		JButton buttonSearch = new JButton(pretrazi);
+		buttonSearch = new JButton(pretrazi);
 		buttonSearch.setToolTipText("Pretraži");
 		buttonSearch.setIcon(new ImageIcon("logo_images/search.jpg"));
 		buttonSearch.setBackground(lightBlue);
