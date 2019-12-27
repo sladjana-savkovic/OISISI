@@ -3,10 +3,10 @@
  */
 package controller;
 
+import java.util.ArrayList;
+
 import model.BazaPredmeta;
-import model.BazaStudenata;
 import model.Predmet;
-import model.Student;
 import view.MyTab;
 
 /**
@@ -42,5 +42,21 @@ public class PredmetController {
 		}
 		MyTab.azurirajPrikaz();
 		return true;
+	}
+	public void obrisiStudentaSaPredmeta(int tableSelectedIndex,int listSelectedIndex) {
+		Predmet predmet = BazaPredmeta.getInstance().getPredmetIndex(tableSelectedIndex);
+		if(listSelectedIndex != -1) {	//Ako se klikne na dugme Prikazi, neki red u tabeli ce sigurno biti selektovan
+			BazaPredmeta.getInstance().obrisiStudenta(predmet.getSifra(), listSelectedIndex);
+		}else {
+			return;
+		}
+	}
+	public ArrayList<String> studentiNaPredmetu(int row){
+		ArrayList<String> studenti = new ArrayList<String>();
+		if(BazaPredmeta.getInstance().spisakStudenataNaPredmetu(row) != null) {
+			studenti = BazaPredmeta.getInstance().spisakStudenataNaPredmetu(row);
+			return studenti;
+		}
+		return null;
 	}
 }
