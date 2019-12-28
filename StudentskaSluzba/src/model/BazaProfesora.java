@@ -181,5 +181,23 @@ public class BazaProfesora implements Serializable{
 		ArrayList<String> spisakPredmeta = getProfesorIndex(index).getSpisakPredmeta();
 		return spisakPredmeta;
 	}
-	
+	public void izmjeniProfesora(Profesor profesor, Profesor t) {
+		for(Profesor p : profesori) {
+			
+			if(profesor.getBrLicneKarte().equals(p.getBrLicneKarte())) {
+				if(!(t.getBrLicneKarte().equals(p.getBrLicneKarte()))) {
+					p.setBrLicneKarte(t.getBrLicneKarte());
+				}
+				p.setIme(t.getIme());
+				p.setPrezime(t.getPrezime());
+				p.setDatumRodjenja(t.getDatumRodjenja());
+				p.setAdresaStanovanja(t.getAdresaStanovanja());
+				p.setTelefon(t.getTelefon());
+				p.setEmail(t.getEmail());
+				p.setAdresaKancelarije(t.getAdresaKancelarije());
+				p.setTitula(t.getTitula());
+				p.setZvanje(t.getZvanje());
+			}
+		}
+	}
 }
