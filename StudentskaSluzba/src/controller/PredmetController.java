@@ -59,4 +59,33 @@ public class PredmetController {
 		}
 		return null;
 	}
+	public Predmet vratiSelektovanPredmet(int rowSelectedIndex) {
+		Predmet p =null;
+		if(rowSelectedIndex<0) {
+			return p;
+		}
+		p = BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex);
+		return p;
+	}
+	
+	//izmjena
+	public boolean izmjeniPredmet(int rowSelectedIndex, Predmet predmet, Predmet t) {
+		if(rowSelectedIndex < 0) {
+			return false;
+		}
+		if(predmet.getSifra().equals(t.getSifra())) {
+			BazaPredmeta.getInstance().izmjeniPredmet(predmet, t);
+			MyTab.azurirajPrikaz();
+			return true;
+		}else {
+			 //nova metosa koja provjerava da li postoji st sa tim br indeksa ako postoji(vrati true) ret, a ako ne opet pozovi izmjenu
+			if(BazaPredmeta.getInstance().getPredmet(t.getSifra()) != null){
+				return false;
+			}else {
+				BazaPredmeta.getInstance().izmjeniPredmet(predmet, t);
+				MyTab.azurirajPrikaz();
+				return true;
+			}
+		}
+	}
 }
