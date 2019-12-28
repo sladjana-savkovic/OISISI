@@ -7,6 +7,7 @@ import java.awt.Component;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
+import controller.ProfesorController;
 
 /**
  * @author Sladjana Savkovic
@@ -47,7 +48,10 @@ public class ButtonColumnProfesor extends AbstractCellEditor
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			fireEditingStopped();
-			new SpisakPredmeta(null,"Spisak predmeta",true,selectedRow).setVisible(true);
+			if(ProfesorController.getInstance().predmetiProfesora(selectedRow).size() == 0)
+				JOptionPane.showMessageDialog(null, "Lista predmeta je prazna!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+			else
+				new SpisakPredmeta(null,"Spisak predmeta",true,selectedRow).setVisible(true);
 		}
 		});
 
