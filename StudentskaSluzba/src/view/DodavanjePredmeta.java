@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import javax.swing.*;
 
@@ -22,8 +23,7 @@ public class DodavanjePredmeta extends JDialog{
 	private static final long serialVersionUID = -4761031862006107617L;
 	private JLabel sifraPredmeta,nazivPredmeta,semestar,godinaStudija,predmetniProfesor;
 	private JTextField txtSifraPredmeta,txtNazivPredmeta,txtPredmetniProfesor;
-	private JComboBox CBgodina,CBsemestar;
-	//private Color darkerBlue= new Color(0,200,200);
+	private JComboBox<String> CBgodina,CBsemestar;
 	
 	public DodavanjePredmeta(JFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
@@ -82,24 +82,24 @@ public class DodavanjePredmeta extends JDialog{
 			
 			//polje za odabir godine na kojoj se predmet slusa
 			JPanel pnlGodinaStudija = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			ComboBoxModel cmbGodinaStudija = new DefaultComboBoxModel(new String[] {"I (prva)", "II (druga)", "III (tre\u0107a)", "IV (\u010detvrta)"}); 
+			ComboBoxModel<String> cmbGodinaStudija = new DefaultComboBoxModel<String>(new String[] {"I (prva)", "II (druga)", "III (tre\u0107a)", "IV (\u010detvrta)"}); 
 			godinaStudija = new JLabel();
 			godinaStudija.setText("Godina*");
 			godinaStudija.setPreferredSize(dim);
 			
-			CBgodina = new JComboBox();
+			CBgodina = new JComboBox<String>();
 			pnlGodinaStudija.add(godinaStudija);
 			pnlGodinaStudija.add(CBgodina);
 			CBgodina.setModel(cmbGodinaStudija);
 			
 			//polje za odabir semestra u kojem se predmet slusa
 			JPanel pnlSemestar = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			ComboBoxModel cmbSemestar = new DefaultComboBoxModel(new String[] {"1", "2", "3", "4","5","6","7","8"}); 
+			ComboBoxModel<String> cmbSemestar = new DefaultComboBoxModel<String>(new String[] {"1", "2", "3", "4","5","6","7","8"}); 
 			semestar = new JLabel();
 			semestar.setText("Semestar*");
 			semestar.setPreferredSize(dim);
 			
-			CBsemestar = new JComboBox();
+			CBsemestar = new JComboBox<String>();
 			pnlSemestar.add(semestar);
 			pnlSemestar.add(CBsemestar);
 			CBsemestar.setModel(cmbSemestar);
@@ -145,6 +145,22 @@ public class DodavanjePredmeta extends JDialog{
 						txtPredmetniProfesor.requestFocus();
 						return;
 					}
+					//samo unos slova i brojeva je dozvoljen za naziv predmeta
+					Pattern pattern1 = Pattern.compile("[a-zA-Z0-9]+");
+					if(!(pattern1.matcher(naziv)).matches()) {
+						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Dozvoljen je unos samo slova i brojeva za naziv predmeta!",
+								"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+						txtNazivPredmeta.requestFocus();
+						return;
+					}
+					Pattern pattern2 = Pattern.compile("^\\p{Alpha}+$", Pattern.UNICODE_CHARACTER_CLASS);
+					if(!(pattern2.matcher(profesor)).matches()) {
+						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Dozvoljen je unos samo slova za profesora!",
+								"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+						txtPredmetniProfesor.requestFocus();
+						return;
+					}
+					
 					String god = (String)CBgodina.getSelectedItem();
 					int godina;
 					if(god.contains("prva"))
