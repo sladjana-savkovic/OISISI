@@ -34,7 +34,7 @@ public class BazaStudenata implements Serializable{
 	//private ArrayList<String> predmeti1;
 	//private ArrayList<String> predmeti2;
 	
-	public BazaStudenata() {
+	private BazaStudenata() {
 		readStudenti();
 		//initStudent();
 		//writeStudenti();
@@ -150,12 +150,56 @@ public class BazaStudenata implements Serializable{
 		}
 		return false;
 	}
+	
+	
+	public void izmjeniStudenta(Student student, Student t) {
+		for(Student s : studenti) {
+			
+				if(student.getBrojIndeka().equals(s.getBrojIndeka())) {
+					if(!(t.getBrojIndeka().equals(s.getBrojIndeka()))) {
+						s.setBrojIndeka(t.getBrojIndeka());
+					}
+				s.setIme(t.getIme());
+				s.setPrezime(t.getPrezime());
+				s.setDatumRodjenja(t.getDatumRodjenja());
+				s.setAdresaStanovanja(t.getAdresaStanovanja());
+				s.setBrojTelefona(t.getBrojTelefona());
+				s.setEmailAdresa(t.getEmailAdresa());
+				s.setDatumUpisa(t.getDatumUpisa());
+				s.setTrenutnaGodinaStudija(t.getTrenutnaGodinaStudija());
+				s.setProsjecnaOcjena(t.getProsjecnaOcjena());
+				s.setStatus(t.getStatus()); 
+				}
+		}
+	}
+	
+	public Student getStudent(String indeks) {
+		for(Student s : studenti) {
+			if(s.getBrojIndeka().equals(indeks)) {
+				return s;
+			}
+		}
+		return null;
+	}
+	
+	public void obrisiPredmet(String indeksStudenta, int indeksPredmetaListe) {
+		Student s = getStudent(indeksStudenta);
+			if(s != null) {
+				s.getSpisakPredmeta().remove(indeksPredmetaListe);
+			}else {
+				return;
+			}
+	}
 
 	@Override
 	public String toString() {
 		return "BazaStudenata [studenti=" + studenti + "]";
 	}
 
+	public ArrayList<String> spisakPredmetaStudenata(int index){
+		ArrayList<String> spisak = getStudentIndex(index).getSpisakPredmeta();
+		return spisak;
+	}
 
 	
 }
