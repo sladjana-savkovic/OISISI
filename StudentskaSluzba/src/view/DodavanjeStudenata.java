@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.regex.Pattern;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -228,8 +229,8 @@ public class DodavanjeStudenata extends JDialog{
 			panelCenter.add(panelGodina);
 			panelCenter.add(panelFin);
 			
-			panelCenter.add(Box.createVerticalStrut(50));
-			panelCenter.add(Box.createGlue());
+		//	panelCenter.add(Box.createVerticalStrut(50));
+			//panelCenter.add(Box.createGlue());
 			add(panelCenter, BorderLayout.CENTER);
 			
 			//potvrda uniejtog sadrzaja ili odustanak
@@ -297,18 +298,45 @@ public class DodavanjeStudenata extends JDialog{
 						txtProsjek.requestFocus();
 						return;
 					}
-					for(int i=0; i<txtProsjek.getText().length(); i++) {
-					char c = txtProsjek.getText().charAt(i);
-					if (c != '0' && c != '1' && c != '2' && c != '3' && c != '4' && c != '5' && c != '6' && c != '7' && c != '8'
-							&& c != '9' && c!='.') {
-						JOptionPane.showMessageDialog(null, "Dozvoljen je unos samo brojeva za prosjek studenta u fromatu 0.0!");
-						txtProsjek.setText("");
-						txtProsjek.requestFocus();
+					//samo unos slova dozvonjen
+					Pattern pattern1 = Pattern.compile("^\\p{Alpha}+$", Pattern.UNICODE_CHARACTER_CLASS);
+					if(!(pattern1.matcher(imeStr)).matches()) {
+						JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je unos samo slova za ime!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+						txtIme.requestFocus();
 						return;
 					}
+					
+					if(!(pattern1.matcher(przStr)).matches()) {
+						JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je unos samo slova za prezime!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+						txtPrezime.requestFocus();
+						return;
+					}
+					//+ i brojevi za telefon
+					Pattern pattern2 = Pattern.compile("\\+[0-9]+");
+					if(!(pattern2.matcher(telStr)).matches()) {
+						JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je unos samo brojeva telefona u formatu +381!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+						txtTelefon.requestFocus();
+						return;
 					}
 					
-					statusStudenta statusStr;
+					//slova i brojevi za indeks
+					Pattern pattern3 = Pattern.compile("[a-zA-Z0-9]+/[0-9]+");
+					if(!(pattern3.matcher(indStr)).matches()) {
+						JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je unos samo brojeva i slova za indeks u formaru YYxx/zzzz!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+						txtIndeks.requestFocus();
+						return;
+					}
+				
+					
+					Pattern pattern4 = Pattern.compile("[0-9]+.[0-9]+");
+					if(!(pattern4.matcher(proStr)).matches()) {
+					JOptionPane.showMessageDialog(null, "Dozvoljen je unos samo brojeva za prosjek studenta u fromatu 0.0!");
+					txtProsjek.setText("");
+					txtProsjek.requestFocus();
+					return;
+					}
+					
+
 					String godStr = (String)godinaCM.getSelectedItem();
 					int god;
 					if(godStr.contains("prva")) {
@@ -321,6 +349,7 @@ public class DodavanjeStudenata extends JDialog{
 						god=4;
 					}
 					
+					statusStudenta statusStr;
 					if(budzet.isSelected()) {
 						statusStr=statusStudenta.B;	
 					}else {
@@ -343,6 +372,7 @@ public class DodavanjeStudenata extends JDialog{
 				txtIndeks.setText("");
 				txtEmail.setText("");
 				txtProsjek.setText("");
+				dispose();
 			}else{
 				JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Neuspje\u0161no dodavanje studenta, provjerite da li postoji student sa tim brojem indeksa!");
 			}
