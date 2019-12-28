@@ -5,10 +5,10 @@ package view;
 
 import java.awt.Color;
 import java.awt.Component;
-
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableRowSorter;
 
 /**
  * @author Sladjana Savkovic
@@ -17,15 +17,19 @@ import javax.swing.table.TableCellRenderer;
 public class ProfesorJTable extends JTable{
 	
 	private static final long serialVersionUID = -557460832554227306L;
+	public static TableRowSorter<AbstractTableModelProfesor> sorter;
 	
 	public ProfesorJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		AbstractTableModelProfesor model = new AbstractTableModelProfesor();
 		this.setModel(new AbstractTableModelProfesor());
 		new ButtonColumnProfesor(this, 11);
 		//sort
-		this.setAutoCreateRowSorter(true);
+		sorter = new TableRowSorter<AbstractTableModelProfesor>(model);
+		this.setRowSorter(sorter);
+		
 	}
 	@Override
 	public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {

@@ -11,11 +11,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 import controller.PredmetController;
-import controller.StudentController;
 import model.Predmet;
-import model.Student;
-import model.Student.statusStudenta;
-
 
 /**
  * @author Sladjana Savkovic
@@ -172,6 +168,7 @@ public class DodavanjePredmeta extends JDialog{
 						txtSifraPredmeta.setText("");
 						txtNazivPredmeta.setText("");
 						txtPredmetniProfesor.setText("");
+						dispose();
 					}else {
 						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Neuspje\u0161no dodavanje predmeta, provjerite da li postoji predmet sa tom \u0161ifrom!");
 					}

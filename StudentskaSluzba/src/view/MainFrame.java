@@ -24,7 +24,7 @@ public class MainFrame extends JFrame{
 		return instance;
 	}
 	
-	public MainFrame() {
+	private MainFrame() {
 		Toolkit kit=Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
 		// Podesavamo dimenzije prozora na 3/4 duzine i sirine monitora
@@ -32,7 +32,9 @@ public class MainFrame extends JFrame{
 		//postavljamo JFrame na centar ekrana
 		setLocationRelativeTo(null);
 		 //Postavljamo akciju pri zatvaranju prozora
-		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		//dodavanje listener-a na akciju zatvaranja
+		addWindowListener(new MyWindowListener());
 		//Podesavanje naslova
 		setTitle("Studentska slu\u017eba");	
 		//Podesavanje boje pozadine

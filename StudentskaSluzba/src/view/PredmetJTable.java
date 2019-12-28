@@ -15,15 +15,19 @@ import javax.swing.table.*;
 public class PredmetJTable extends JTable{
 
 	private static final long serialVersionUID = -9142591266690440511L;
-
+	public static TableRowSorter<AbstractTableModelPredmet> sorter;
+	
 	public PredmetJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		this.setModel(new AbstractTableModelPredmet());
+		AbstractTableModelPredmet model = new AbstractTableModelPredmet();
+		this.setModel(model);
 		new ButtonColumnPredmet(this, 6);
 		//sort
-		this.setAutoCreateRowSorter(true);
+		sorter = new TableRowSorter<AbstractTableModelPredmet>(model);
+		this.setRowSorter(sorter);
+		
 	}
 	
 	@Override

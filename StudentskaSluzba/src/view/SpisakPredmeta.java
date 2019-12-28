@@ -7,9 +7,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
-import model.BazaProfesora;
-
-
+import controller.ProfesorController;
 
 /**
  * @author Sladjana Savkovic
@@ -24,7 +22,7 @@ public class SpisakPredmeta extends JDialog{
 	private JButton bNazad = new JButton("Nazad");
 	private JPanel pnlList = new JPanel();
 	private JPanel pnlObrisiNazad = new JPanel();
-	private Color darkerBlue= new Color(0,200,200);
+	DefaultListModel<String> listModel = new DefaultListModel<String>();
 	
 	public SpisakPredmeta(Frame parent,String title,boolean modal,int row) {
 		
@@ -47,8 +45,8 @@ public class SpisakPredmeta extends JDialog{
 		pnlObrisiNazad.add(bObrisi);
 		pnlObrisiNazad.add(bNazad);
 				
-		list = new JList<String>(new MyListBoxModel(row));
-		list.setCellRenderer(new MyListRenderer());
+		list = new JList<String>(listModel);
+		dodajPredmeteNaListu(row);
 		
 		JScrollPane scp = new JScrollPane(list);
 		
@@ -68,65 +66,27 @@ public class SpisakPredmeta extends JDialog{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				//Treba da brise element liste
+				if(list.getSelectedIndex() == -1) {
+					JOptionPane.showMessageDialog(null, "Izaberite neki red u listi!","Greška",JOptionPane.ERROR_MESSAGE);
+				}else {
+					obrisiPredmet();
+				}
 			}
 		});
 	}
-	
-	private class MyListBoxModel extends AbstractListModel {
-	
-		private static final long serialVersionUID = 1L;
-		private ArrayList<String> predmeti;
-	
-		MyListBoxModel(int row) {
-			predmeti = new ArrayList<String>();
-			ucitajPredmete(row);
-		}
-		private void ucitajPredmete(int row) {
-			for(int i=0;i<BazaProfesora.getInstance().getProfesorIndex(row).getBrojPredmeta();i++) {
-				predmeti.add(new String(BazaProfesora.getInstance().getProfesorIndex(row).getSpisakPredmeta().get(i)));
-			}
-		}
-		@Override
-		public Object getElementAt(int index) {
-			return predmeti.get(index);
-		}
-	
-		@Override
-		public int getSize() {
-			return predmeti.size();
+	private void dodajPredmeteNaListu(int row) {
+		ArrayList<String> predmeti = ProfesorController.getInstance().predmetiProfesora(row);
+		for(int i=0;i<predmeti.size();i++)
+			listModel.add(i, predmeti.get(i));
+		
+	}
+	public void obrisiPredmet() {
+		int selectedIndex = list.getSelectedIndex();
+		
+		ProfesorController.getInstance().obrisiPredmetProfesora(ButtonColumnProfesor.selectedRow, selectedIndex);
+		if(selectedIndex != -1) {
+			listModel.remove(selectedIndex);
 		}
 	}
-	private class MyListRenderer extends JLabel implements ListCellRenderer {
-
 	
-		private static final long serialVersionUID = 1L;
-	
-		public MyListRenderer() {
-			setOpaque(true);
-			setVerticalAlignment(CENTER);
-		}
-	
-		@Override
-		public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-	
-			String string = (String) value;
-			if ( string == null )
-				string = (String) list.getModel().getElementAt(0);
-			
-			setText(string);
-	
-			if ( isSelected ) {
-				setBackground(darkerBlue);
-				setForeground(list.getSelectionForeground());
-			}
-			else {
-				setBackground(list.getBackground());
-				setForeground(list.getForeground());
-			}
-	
-			return this;
-		}
-	}
 }

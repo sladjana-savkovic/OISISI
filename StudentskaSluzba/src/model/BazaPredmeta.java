@@ -29,7 +29,7 @@ public class BazaPredmeta implements Serializable{
 	//private ArrayList<String> studenti1;
 	
 	
-	public BazaPredmeta() {
+	private BazaPredmeta() {  
 		readPredmeti();
 		//initPredmete();
 		//writePredmeti();
@@ -159,5 +159,27 @@ public class BazaPredmeta implements Serializable{
 	@Override
 	public String toString() {
 		return "BazaPredmeta [predmeti=" + predmeti + "]";
+	}
+	
+	public Predmet getPredmet(String sifraPredmeta) {
+		for(Predmet p : predmeti) {
+			if(p.getSifra().equals(sifraPredmeta)) {
+				return p;
+			}
+		}
+		return null;
+	}
+	
+	public void obrisiStudenta(String sifraPredmeta,int indeksStudentaListe) {
+		Predmet p = getPredmet(sifraPredmeta);
+		if(p != null) {
+			p.getSpisakStudenata().remove(indeksStudentaListe);
+		}else {
+			return;
+		}
+	}
+	public ArrayList<String> spisakStudenataNaPredmetu(int index){
+		ArrayList<String> spisakStudenata = getPredmetIndex(index).getSpisakStudenata();
+		return spisakStudenata;
 	}
 }

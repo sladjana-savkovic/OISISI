@@ -16,7 +16,7 @@ public class AbstractTableModelProfesor extends AbstractTableModel{
 	private static final long serialVersionUID = 5892700218335673357L;
 	
 	private String[] columnNames = {"Ime","Prezime","Datum ro\u0111enja","Adresa stanovanja","Kontakt telefon","E-mail adresa",
-			"Adresa kancelarije","Broj lične karte","Titula","Zvanje","Broj predmeta","Predmeti"};
+			"Adresa kancelarije","Broj li\u010dne karte","Titula","Zvanje","Broj predmeta","Predmeti"};
 	
 	public AbstractTableModelProfesor() {}
 
