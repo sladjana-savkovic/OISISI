@@ -9,6 +9,9 @@ import java.awt.Component;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableRowSorter;
+
+import com.sun.imageio.plugins.png.RowFilter;
 
 /**
  * @author Dragana Carapic
@@ -20,15 +23,20 @@ public class StudentJTable extends JTable{
 	 * 
 	 */
 	private static final long serialVersionUID = -729251922543511523L;
+	public static TableRowSorter<AbstractTableModelStudent> sorter;
 	
 	public StudentJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+		AbstractTableModelStudent model = new AbstractTableModelStudent();
 		this.setModel(new AbstractTableModelStudent());
 		new ButtonColumnStudent(this, 12);
-		//sort
-		this.setAutoCreateRowSorter(true);
+
+		//this.setAutoCreateRowSorter(true);
+		sorter = new TableRowSorter<AbstractTableModelStudent>(model);
+		this.setRowSorter(sorter);
 		
 	}
 	@Override
