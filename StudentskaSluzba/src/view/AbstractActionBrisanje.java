@@ -14,8 +14,6 @@ import javax.swing.KeyStroke;
 import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
-import model.BazaPredmeta;
-import model.BazaProfesora;
 
 /**
  * @author Sladjana Savkovic
@@ -47,14 +45,11 @@ public class AbstractActionBrisanje extends AbstractAction{
 			if(input1 == JOptionPane.NO_OPTION) {
 				ProfesorController.getInstance().obrisiProfesora(ButtonColumnProfesor.selectedRow);
 			}
-			//Implementacija
 		} else if ((TabbedPane.activeTab == 2) && (ButtonColumnPredmet.selectedRow != -1)) {
 			int input2 = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete predmet?","Brisanje predmeta",
 					JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,icon,options,options[1]);
 			if(input2 == JOptionPane.NO_OPTION) {
-				//System.out.println(BazaPredmeta.getInstance());
 				PredmetController.getInstance().obrisiPredmet(ButtonColumnPredmet.selectedRow);
-				//System.out.println(BazaPredmeta.getInstance());
 			}
 		} else if((ButtonColumnStudent.selectedRow == -1) || (ButtonColumnProfesor.selectedRow == -1) || (ButtonColumnProfesor.selectedRow == -1)){
 			JOptionPane.showMessageDialog(null, "Izaberite neki red u tabeli!","Greška",JOptionPane.ERROR_MESSAGE);

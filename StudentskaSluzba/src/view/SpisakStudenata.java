@@ -8,7 +8,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
-
 import controller.PredmetController;
 
 /**
@@ -34,12 +33,11 @@ public class SpisakStudenata extends JDialog{
 		Image img=kit.getImage("logo_images/ftn.png");
 		setIconImage(img);		
 		setLocationRelativeTo(parent);
-		
+
 		addComponentJDialog(row);
-		
 	}
 	public void addComponentJDialog(int row) {
-					
+							
 		FlowLayout pnlObrisiNazadLayout = new FlowLayout(FlowLayout.RIGHT);
 		getContentPane().add(pnlObrisiNazad,BorderLayout.SOUTH);
 		pnlObrisiNazad.setLayout(pnlObrisiNazadLayout);
@@ -74,6 +72,7 @@ public class SpisakStudenata extends JDialog{
 					obrisiStudenta();
 				}
 			}
+			
 		});
 	}
 	public void dodajStudenteNaListu(int row) {
