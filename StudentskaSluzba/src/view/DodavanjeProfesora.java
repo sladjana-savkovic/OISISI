@@ -11,6 +11,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -262,6 +263,27 @@ public class DodavanjeProfesora extends JDialog{
 						txtBrKar.requestFocus();
 						return;
 					}	
+					
+					//samo unos slova dozvonjen
+					Pattern pattern1 = Pattern.compile("^\\p{Alpha}+$", Pattern.UNICODE_CHARACTER_CLASS);
+					if(!(pattern1.matcher(imeStr)).matches()) {
+						JOptionPane.showMessageDialog(DodavanjeProfesora.this, "Dozvoljen je unos samo slova za ime!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+						txtIme.requestFocus();
+						return;
+					}
+					
+					if(!(pattern1.matcher(przStr)).matches()) {
+						JOptionPane.showMessageDialog(DodavanjeProfesora.this, "Dozvoljen je unos samo slova za prezime!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+						txtPrezime.requestFocus();
+						return;
+					}
+					
+					Pattern pattern2 = Pattern.compile("[0-9]{3}[a-z]{2}[0-9]{3}");
+					if(!(pattern2.matcher(bkStr)).matches()) {
+						JOptionPane.showMessageDialog(DodavanjeProfesora.this, "Dozvoljen je samo unos licne katre u formatu YYYxxYYY!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+						txtBrKar.requestFocus();
+						return;
+					}
 				
 				
 				String titulaStr = (String)titulaCM.getSelectedItem();
@@ -289,6 +311,7 @@ public class DodavanjeProfesora extends JDialog{
 					txtEmail.setText("");
 					txtAdrKan.setText("");
 					txtBrKar.setText("");
+					dispose();
 				}else{
 					JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Neuspje\u0161no dodavanje profesora, provjerite da li postoji profesor sa istim brojem li\u010dne karte!");
 				}*/
