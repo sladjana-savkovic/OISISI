@@ -31,7 +31,8 @@ public class Toolbar extends JToolBar{
 		buttonAdd.setBackground(lightBlue);
 		add(buttonAdd);
 		
-		JButton buttonModify = new JButton();
+		AbstractActionIzmjena izmjena = new AbstractActionIzmjena();
+		JButton buttonModify = new JButton(izmjena);
 		buttonModify.setToolTipText("Izmijeni");
 		buttonModify.setIcon(new ImageIcon("logo_images/pencil.jpg"));
 		buttonModify.setBackground(lightBlue);
