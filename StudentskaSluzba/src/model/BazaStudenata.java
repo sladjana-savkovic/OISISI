@@ -11,8 +11,6 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import model.Student.statusStudenta;
-
 /**
  * @author Dragana Carapic
  *
