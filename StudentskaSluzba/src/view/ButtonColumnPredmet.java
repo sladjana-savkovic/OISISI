@@ -8,6 +8,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.table.*;
 
+import controller.PredmetController;
+
 /**
  * @author Sladjana Savkovic
  *
@@ -47,7 +49,10 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			fireEditingStopped();
-			new SpisakStudenata(null,"Spisak studenata",true,selectedRow).setVisible(true);
+			if(PredmetController.getInstance().studentiNaPredmetu(selectedRow).size() == 0)
+				JOptionPane.showMessageDialog(null, "Lista studenata je prazna!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+			else
+				new SpisakStudenata(null,"Spisak studenata",true,selectedRow).setVisible(true);
 		}
 		});
 
