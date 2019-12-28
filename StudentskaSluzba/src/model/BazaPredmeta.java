@@ -182,4 +182,18 @@ public class BazaPredmeta implements Serializable{
 		ArrayList<String> spisakStudenata = getPredmetIndex(index).getSpisakStudenata();
 		return spisakStudenata;
 	}
+	public void izmjeniPredmet(Predmet predmet, Predmet t) {
+		for(Predmet p : predmeti) {
+			
+			if(predmet.getSifra().equals(p.getSifra())) {
+				if(!(t.getSifra().equals(p.getSifra()))) {
+					p.setSifra(t.getSifra());
+				}
+				p.setNaziv(t.getNaziv());
+				p.setPredmetniProfesor(t.getPredmetniProfesor());
+				p.setSemestar(t.getSemestar());
+				p.setGodinaStudija(t.getGodinaStudija());
+			}
+		}
+	}
 }
