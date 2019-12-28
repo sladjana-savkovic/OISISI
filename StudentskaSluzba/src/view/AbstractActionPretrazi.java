@@ -25,7 +25,14 @@ public class AbstractActionPretrazi extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(TabbedPane.activeTab == 0) {
-			//Implementacija
+			String text=Toolbar.textSearch.getText();
+			if (text.length() == 0) {
+                 StudentJTable.sorter.setRowFilter(null);
+            } else {
+           	  new PretragaStudenata(text, StudentJTable.sorter);
+            }
+			Toolbar.textSearch.setText("");
+			Toolbar.textSearch.requestFocus();
 		}
 		else if(TabbedPane.activeTab == 1) {
 			String text=Toolbar.textSearch.getText();
