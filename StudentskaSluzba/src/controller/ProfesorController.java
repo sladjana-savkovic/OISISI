@@ -52,4 +52,34 @@ private static ProfesorController instance = null;
 		}
 		return null;
 	}
+	
+	public Profesor vratiSelektovanogProfesora(int rowSelectedIndex) {
+		Profesor p =null;
+		if(rowSelectedIndex<0) {
+			return p;
+		}
+		p = BazaProfesora.getInstance().getProfesorIndex(rowSelectedIndex);
+		return p;
+	}
+	
+	//izmjena
+	public boolean izmjeniProfesora(int rowSelectedIndex, Profesor profesor, Profesor t) {
+		if(rowSelectedIndex < 0) {
+			return false;
+		}
+		if(profesor.getBrLicneKarte().equals(t.getBrLicneKarte())) {
+			BazaProfesora.getInstance().izmjeniProfesora(profesor, t);
+			MyTab.azurirajPrikaz();
+			return true;
+		}else {
+			 //nova metosa koja provjerava da li postoji st sa tim br indeksa ako postoji(vrati true) ret, a ako ne opet pozovi izmjenu
+			if(BazaProfesora.getInstance().getProfesor(t.getBrLicneKarte()) != null){
+				return false;
+			}else {
+				BazaProfesora.getInstance().izmjeniProfesora(profesor, t);
+				MyTab.azurirajPrikaz();
+				return true;
+			}
+		}
+	}
 }
