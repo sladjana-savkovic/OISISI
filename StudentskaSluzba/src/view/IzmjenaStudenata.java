@@ -355,7 +355,7 @@ public class IzmjenaStudenata extends JDialog{
 						return;
 					}
 				
-					
+					//prosjek brojevi i tacka
 					Pattern pattern4 = Pattern.compile("[0-9]+.[0-9]+");
 					if(!(pattern4.matcher(proStr)).matches()) {
 					JOptionPane.showMessageDialog(null, "Dozvoljen je unos samo brojeva za prosjek studenta u fromatu 0.0!");
