@@ -6,6 +6,7 @@ package view;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import com.sun.glass.events.KeyEvent;
@@ -29,15 +30,18 @@ public class AbstractActionIzmjena extends AbstractAction{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if(TabbedPane.activeTab == 0) {
+		if(TabbedPane.activeTab == 0 && ButtonColumnStudent.selectedRow != -1) {
 			IzmjenaStudenata i1 = new IzmjenaStudenata(null, "Izmjena studenta", true);
 			i1.setVisible(true);
 			
-		}else if(TabbedPane.activeTab == 1) {
-			//to do
+		}else if(TabbedPane.activeTab == 1 && ButtonColumnProfesor.selectedRow != -1) {
+			IzmjenaProfesora i2 = new IzmjenaProfesora(null, "Izmjena profesora", true);
+			i2.setVisible(true);
 			
 		}else if(TabbedPane.activeTab == 2){
 			//to do
+		}else if(ButtonColumnStudent.selectedRow == -1 || ButtonColumnProfesor.selectedRow == -1 || ButtonColumnPredmet.selectedRow == -1) {
+			JOptionPane.showMessageDialog(null, "Izaberite neki red u tabeli!","Greška",JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
