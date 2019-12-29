@@ -25,8 +25,12 @@ public class BazaPredmeta implements Serializable{
 	
 	//samo da ubacim neke podatke za pocetak
 	private ArrayList<Predmet> predmeti;
-	//private ArrayList<String> studenti;
-	//private ArrayList<String> studenti1;
+	/*private ArrayList<String> studenti1;
+	private ArrayList<String> studenti2;
+	private ArrayList<String> studenti3;
+	private ArrayList<String> studenti4;
+	private ArrayList<String> studenti5;
+	private ArrayList<String> studenti6;*/
 	
 	
 	private BazaPredmeta() {  
@@ -36,20 +40,36 @@ public class BazaPredmeta implements Serializable{
 	}
 	/*public void initPredmete() {
 		this.predmeti = new ArrayList<Predmet>();
-		this.studenti = new ArrayList<String>();
 		this.studenti1= new ArrayList<String>();
-		studenti.add("RA1/2017");
-		studenti.add("RA78/2015");
-		studenti.add("RA25/2016");
-		studenti1.add("PSI14/2017");
-		studenti1.add("E3154/2015");
-		studenti1.add("MEH215/2016");
-		predmeti.add(new Predmet("E2123","Matematička analiza 1", "Nebojša Ralević", 1, 1, studenti));
-		predmeti.add(new Predmet("E2485", "Arhitektura računara", "Miroslav Hajduković", 2, 1, studenti));
-		predmeti.add(new Predmet("E2458", "Fizika", "Ljuba Budinski", 2, 1, studenti1));
-		predmeti.add(new Predmet("E1042", "Mehanika", "Ljuba Budinski", 1, 1, studenti1));
-		predmeti.add(new Predmet("MA750", "Algebra", "Nebojša Ralević", 1, 1, studenti1));
-		predmeti.add(new Predmet("II802", "Operativni sistemi", "Miroslav Hajduković", 2, 2, studenti1));
+		this.studenti2= new ArrayList<String>();
+		this.studenti3= new ArrayList<String>();
+		this.studenti4= new ArrayList<String>();
+		this.studenti5= new ArrayList<String>();
+		this.studenti6= new ArrayList<String>();
+		studenti1.add("RA1/2017");
+		studenti1.add("RA78/2015");
+		studenti1.add("RA25/2016");
+		studenti2.add("PSI14/2017");
+		studenti2.add("E3154/2015");
+		studenti2.add("MEH215/2016");
+		studenti3.add("RA1/2017");
+		studenti3.add("RA78/2015");
+		studenti3.add("RA25/2016");
+		studenti4.add("PSI14/2017");
+		studenti4.add("E3154/2015");
+		studenti4.add("MEH215/2016");
+		studenti5.add("PSI14/2017");
+		studenti5.add("E3154/2015");
+		studenti5.add("MEH215/2016");
+		studenti6.add("RA1/2017");
+		studenti6.add("RA78/2015");
+		studenti6.add("RA25/2016");
+		predmeti.add(new Predmet("E2123","Matematička analiza 1", "Nebojša Ralević", 1, 1, studenti1));
+		predmeti.add(new Predmet("E2485", "Arhitektura računara", "Miroslav Hajduković", 2, 1, studenti2));
+		predmeti.add(new Predmet("E2458", "Fizika", "Ljuba Budinski", 2, 1, studenti3));
+		predmeti.add(new Predmet("E1042", "Mehanika", "Ljuba Budinski", 1, 1, studenti4));
+		predmeti.add(new Predmet("MA750", "Algebra", "Nebojša Ralević", 1, 1, studenti5));
+		predmeti.add(new Predmet("II802", "Operativni sistemi", "Miroslav Hajduković", 2, 2, studenti6));
 		
 	}*/
 	public ArrayList<Predmet> getPredmeti() {
