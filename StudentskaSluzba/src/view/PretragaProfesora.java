@@ -45,11 +45,11 @@ public class PretragaProfesora {
 		else {
 			for(int i=0;i<rezultatPretrage;i++) {
 				if(!ime.equals(""))
-					sorter.setRowFilter(RowFilter.regexFilter(ime));
+					sorter.setRowFilter(RowFilter.regexFilter(ime,0));
 				else if(!prezime.equals(""))
-					sorter.setRowFilter(RowFilter.regexFilter(prezime));
+					sorter.setRowFilter(RowFilter.regexFilter(prezime,1));
 				else if(!datumRodjenja.equals(""))
-					sorter.setRowFilter(RowFilter.regexFilter(datumRodjenja));
+					sorter.setRowFilter(RowFilter.regexFilter(datumRodjenja,2));
 				else if(!adresaStanovanje.equals(""))
 					sorter.setRowFilter(RowFilter.regexFilter(adresaStanovanje,3));
 				else if(!telefon.equals(""))
