@@ -38,9 +38,10 @@ public class PredmetJTable extends JTable{
 		if (isRowSelected(row)) {
 			c.setBackground(lightBlue);
 			//Postavljanje indeksa selektovanog reda u tabeli, nezavisno od sortiranja
-			ButtonColumnPredmet.selectedRow=this.getRowSorter().convertRowIndexToModel(getSelectedRow());
+			ButtonColumnPredmet.selectedRow=sorter.convertRowIndexToModel(getSelectedRow());
 		} else {
 			c.setBackground(Color.WHITE);
+			ButtonColumnPredmet.selectedRow = -1;
 		}
 		return c;
 	}
