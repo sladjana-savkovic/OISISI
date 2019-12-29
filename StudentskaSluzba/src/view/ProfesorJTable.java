@@ -39,9 +39,10 @@ public class ProfesorJTable extends JTable{
 		if (isRowSelected(row)) {
 			c.setBackground(lightBlue);
 			//Postavljanje indeksa selektovanog reda u tabeli, nezavisno od sortiranja
-			ButtonColumnProfesor.selectedRow=this.getRowSorter().convertRowIndexToModel(getSelectedRow());
+			ButtonColumnProfesor.selectedRow=sorter.convertRowIndexToModel(getSelectedRow());
 		} else {
 			c.setBackground(Color.WHITE);
+			ButtonColumnProfesor.selectedRow=-1;
 		}
 		return c;
 	}
