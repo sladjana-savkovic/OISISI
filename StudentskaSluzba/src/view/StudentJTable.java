@@ -45,9 +45,10 @@ public class StudentJTable extends JTable{
 		Component c = super.prepareRenderer(renderer, row, column);
 		if (isRowSelected(row)) {
 			c.setBackground(lightBlue);
-			ButtonColumnStudent.selectedRow=this.getRowSorter().convertRowIndexToModel(getSelectedRow());
+			ButtonColumnStudent.selectedRow=sorter.convertRowIndexToModel(getSelectedRow());
 		} else {
 			c.setBackground(Color.WHITE);
+			ButtonColumnStudent.selectedRow = -1;
 		}
 		return c;
 	}
