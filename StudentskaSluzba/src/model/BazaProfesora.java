@@ -161,6 +161,16 @@ public class BazaProfesora implements Serializable{
 			}
 		}
 	}
+	public boolean dodajProfesora(Profesor p) {
+		for(Profesor pr : profesori) {
+			if(!(pr.getBrLicneKarte().equals(p.getBrLicneKarte()))) {
+				profesori.add(p);
+				return true;
+			}
+			break;
+		}
+		return false;
+	}
 	@Override
 	public String toString() {
 		return "BazaProfesora [profesori=" + profesori + "]";
