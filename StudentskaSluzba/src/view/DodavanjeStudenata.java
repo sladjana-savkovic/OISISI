@@ -10,7 +10,6 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,7 +22,6 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -35,7 +33,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import controller.StudentController;
-import model.Predmet;
 import model.Student;
 import model.Student.statusStudenta;
 
@@ -44,6 +41,9 @@ import model.Student.statusStudenta;
  *
  */
 public class DodavanjeStudenata extends JDialog{
+	
+	private static final long serialVersionUID = -3387410154192921629L;
+	
 	private JLabel ime;
 	private JLabel prezime;
 	//datum rodjenja
@@ -229,8 +229,8 @@ public class DodavanjeStudenata extends JDialog{
 			panelCenter.add(panelGodina);
 			panelCenter.add(panelFin);
 			
-		//	panelCenter.add(Box.createVerticalStrut(50));
-			//panelCenter.add(Box.createGlue());
+			panelCenter.add(Box.createVerticalStrut(50));
+			panelCenter.add(Box.createGlue());
 			add(panelCenter, BorderLayout.CENTER);
 			
 			//potvrda uniejtog sadrzaja ili odustanak
