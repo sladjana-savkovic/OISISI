@@ -28,6 +28,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import controller.ProfesorController;
 import controller.StudentController;
 import model.Profesor;
 
@@ -265,7 +266,7 @@ public class DodavanjeProfesora extends JDialog{
 					}	
 					
 					//samo unos slova dozvonjen
-					Pattern pattern1 = Pattern.compile("^\\p{Alpha}+$", Pattern.UNICODE_CHARACTER_CLASS);
+					Pattern pattern1 = Pattern.compile("[a-zA-Z \\u0160-\\u0161-\\u0106-\\u0107-\\u017d-\\u017e-\\u010c-\\u010d-\\u0110-\\u0111-\\u0020]*", Pattern.UNICODE_CHARACTER_CLASS);
 					if(!(pattern1.matcher(imeStr)).matches()) {
 						JOptionPane.showMessageDialog(DodavanjeProfesora.this, "Dozvoljen je unos samo slova za ime!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
 						txtIme.requestFocus();
@@ -300,7 +301,7 @@ public class DodavanjeProfesora extends JDialog{
 				ArrayList<String> predmeti = new ArrayList<String>();
 				Profesor p = new Profesor(imeStr,przStr,datStr,stanStr,telStr,emStr,adrStr,bkStr,titulaStr,zvanjeStr,predmeti);
 				
-				/*boolean unijet1 = ProfesorController.getInstance().dodajProfesora(p);
+				boolean unijet1 =ProfesorController.getInstance().dodajProfesora(p);
 				if(unijet1==true) {
 					JOptionPane.showMessageDialog(DodavanjeProfesora.this, "Uspje\u0161no ste dodali profesora!");
 					txtIme.setText("");
@@ -313,8 +314,8 @@ public class DodavanjeProfesora extends JDialog{
 					txtBrKar.setText("");
 					dispose();
 				}else{
-					JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Neuspje\u0161no dodavanje profesora, provjerite da li postoji profesor sa istim brojem li\u010dne karte!");
-				}*/
+					JOptionPane.showMessageDialog(DodavanjeProfesora.this, "Neuspje\u0161no dodavanje profesora, provjerite da li postoji profesor sa istim brojem li\u010dne karte!");
+				}
 			}
 			});
 			
