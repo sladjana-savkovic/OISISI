@@ -210,8 +210,8 @@ public class IzmjenaProfesora extends JDialog{
 			panelCenter.add(Box.createGlue());
 			add(panelCenter, BorderLayout.CENTER);
 			
-			/* to do
-			Profesor p = ProfesorController.vratiSelektovanogProfesora(ButtonColumnProfesor.selectedRow);
+			
+			Profesor p = ProfesorController.getInstance().vratiSelektovanogProfesora(ButtonColumnProfesor.selectedRow);
 			txtIme.setText(p.getIme());
 			txtPrezime.setText(p.getPrezime());
 			txtDatum.setText(p.getDatumRodjenja());
@@ -234,7 +234,7 @@ public class IzmjenaProfesora extends JDialog{
 			redovan.setSelected(false);
 			vanredan.setSelected(true);
 			}
-			*/
+			
 			
 			JPanel panelBottom = new JPanel();
 			BoxLayout box = new BoxLayout(panelBottom, BoxLayout.X_AXIS);
@@ -327,10 +327,10 @@ public class IzmjenaProfesora extends JDialog{
 					String stanStr=txtAdresa.getText();
 					
 					ArrayList<String> predmeti = new ArrayList<String>();
-					Profesor p = new Profesor(imeStr,przStr,datStr,stanStr,telStr,emStr,adrStr,bkStr,titulaStr,zvanjeStr,predmeti);
+					Profesor r = new Profesor(imeStr,przStr,datStr,stanStr,telStr,emStr,adrStr,bkStr,titulaStr,zvanjeStr,predmeti);
 				
-					/* to do
-					boolean izmjenjen = ProfesorController.getInstance().izmijeniProfesora(ButtonColumnProfesor.selectedRow, t, p);
+					
+					boolean izmjenjen = ProfesorController.getInstance().izmjeniProfesora(ButtonColumnProfesor.selectedRow, p, r);
 					if(izmjenjen==true){
 					JOptionPane.showMessageDialog(IzmjenaProfesora.this, "Uspje\u0161no ste izmijenili profesora!");
 						dispose();
@@ -339,7 +339,7 @@ public class IzmjenaProfesora extends JDialog{
 					txtBrKar.setText("");
 					txtBrKar.requestFocus();
 					}
-					*/
+					
 				}
 			});
 			
