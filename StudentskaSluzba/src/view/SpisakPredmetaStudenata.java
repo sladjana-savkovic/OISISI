@@ -96,7 +96,7 @@ public class SpisakPredmetaStudenata extends JDialog{
 				if(list.getSelectedIndex() == -1) {
 					JOptionPane.showMessageDialog(null, "Izaberite neki red u listi!","Greška",JOptionPane.ERROR_MESSAGE);
 				}else {
-					// obrisiPredmet();
+					obrisiPredmet();
 				}
 				
 			}
@@ -113,7 +113,7 @@ public class SpisakPredmetaStudenata extends JDialog{
 	public void obrisiPredmet() {
 		int selectedIndex = list.getSelectedIndex();
 		
-		StudentController.getInstance().obrisiPredmetStudenta(ButtonColumnPredmet.selectedRow, selectedIndex);
+		StudentController.getInstance().obrisiPredmetStudenta(ButtonColumnStudent.selectedRow, selectedIndex);
 		if(selectedIndex != -1) {
 			listModel.remove(selectedIndex);
 		}
