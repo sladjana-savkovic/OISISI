@@ -39,7 +39,9 @@ public class AbstractActionIzmjena extends AbstractAction{
 			i2.setVisible(true);
 			
 		}else if(TabbedPane.activeTab == 2){
-			//to do
+			IzmjenaPredmeta i3 = new IzmjenaPredmeta(null, "Izmjena predmeta", true);
+			i3.setVisible(true);
+			
 		}else if(ButtonColumnStudent.selectedRow == -1 || ButtonColumnProfesor.selectedRow == -1 || ButtonColumnPredmet.selectedRow == -1) {
 			JOptionPane.showMessageDialog(null, "Izaberite neki red u tabeli!","Greška",JOptionPane.ERROR_MESSAGE);
 		}
