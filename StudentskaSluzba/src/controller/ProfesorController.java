@@ -36,6 +36,13 @@ private static ProfesorController instance = null;
 		// azuriranje prikaza
     	MyTab.azurirajPrikaz();
     }
+	public boolean dodajProfesora(Profesor p) {
+		if(!(BazaProfesora.getInstance().dodajProfesora(p))) {
+			return false;
+		}
+		MyTab.azurirajPrikaz();
+		return true;
+	}
 	public void obrisiPredmetProfesora(int tableSelectedIndex,int listSelectedIndex) {
 		Profesor profesor = BazaProfesora.getInstance().getProfesorIndex(tableSelectedIndex);
 		if(listSelectedIndex != -1) {	//Ako se klikne na dugme Prikazi, neki red u tabeli ce sigurno biti selektovan
