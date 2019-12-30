@@ -11,9 +11,12 @@ import java.awt.event.MouseListener;
 
 import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
+
+import controller.StudentController;
 
 /**
  * @author Dragana Carapic
@@ -46,8 +49,11 @@ public class ButtonColumnStudent extends AbstractCellEditor implements TableCell
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				fireEditingStopped();
-				new SpisakStudenata(null, "Spisak predmeta studenta",true, selectedRow).setVisible(true);
-				
+				if(StudentController.getInstance().predmetiStudenata(selectedRow).size() == 0) {
+					JOptionPane.showMessageDialog(null, "Lista predmeta je prazna!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+				}else {
+				new SpisakPredmetaStudenata(null, "Spisak predmeta studenta",true, selectedRow).setVisible(true);
+				}
 			}
 		});
 		
