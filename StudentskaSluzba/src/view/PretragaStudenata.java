@@ -20,6 +20,7 @@ public class PretragaStudenata {
 	String emailAdresa;
 	String brojIndeksa; 
 	String datumUpisa;
+	String status;
 	
 	public PretragaStudenata(String pretraga, TableRowSorter<AbstractTableModelStudent> sorter) {
 		ime="";
@@ -30,6 +31,7 @@ public class PretragaStudenata {
 		emailAdresa="";
 		brojIndeksa="";
 		datumUpisa="";
+		status="";
 		
 		int rezPretrage = pretrazi(pretraga);
 		
@@ -38,11 +40,11 @@ public class PretragaStudenata {
 		}else {
 			for(int i=0; i<rezPretrage; i++) {
 				if(!ime.equals("")) {
-					sorter.setRowFilter(RowFilter.regexFilter(ime));
+					sorter.setRowFilter(RowFilter.regexFilter(ime, 0));
 				}else if(!prezime.equals("")) {
-					sorter.setRowFilter(RowFilter.regexFilter(prezime));
+					sorter.setRowFilter(RowFilter.regexFilter(prezime, 1));
 				}else if(!datumRodjenja.equals("")) {
-					sorter.setRowFilter(RowFilter.regexFilter(datumRodjenja));
+					sorter.setRowFilter(RowFilter.regexFilter(datumRodjenja, 2));
 				}else if(!adresaStanovanja.equals("")) {
 					sorter.setRowFilter(RowFilter.regexFilter(adresaStanovanja, 3));
 				}else if(!brojTelefona.equals("")) {
@@ -53,6 +55,8 @@ public class PretragaStudenata {
 					sorter.setRowFilter(RowFilter.regexFilter(brojIndeksa, 6));
 				}else if(!datumUpisa.equals("")) {
 					sorter.setRowFilter(RowFilter.regexFilter(datumUpisa, 7));
+				}else if(!status.equals("")) {
+					sorter.setRowFilter(RowFilter.regexFilter(status, 10));
 				}
 			}
 		}
@@ -91,6 +95,9 @@ public class PretragaStudenata {
 				brojac++;
 			}else if(pom[0].toUpperCase().equals("DATUM UPISA") && (pom.length > 1)) {
 				datumUpisa=pom[1];
+				brojac++;
+			}else if(pom[0].toUpperCase().equals("STATUS") && (pom.length > 1)) {
+				status = pom[1];
 				brojac++;
 			}
 		}
