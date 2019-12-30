@@ -38,7 +38,7 @@ public class AbstractActionIzmjena extends AbstractAction{
 			IzmjenaProfesora i2 = new IzmjenaProfesora(null, "Izmjena profesora", true);
 			i2.setVisible(true);
 			
-		}else if(TabbedPane.activeTab == 2){
+		}else if(TabbedPane.activeTab == 2 && ButtonColumnPredmet.selectedRow != -1){
 			IzmjenaPredmeta i3 = new IzmjenaPredmeta(null, "Izmjena predmeta", true);
 			i3.setVisible(true);
 			
