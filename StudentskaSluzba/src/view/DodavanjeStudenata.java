@@ -299,7 +299,8 @@ public class DodavanjeStudenata extends JDialog{
 						return;
 					}
 					//samo unos slova dozvonjen
-					Pattern pattern1 = Pattern.compile("^\\p{Alpha}+$", Pattern.UNICODE_CHARACTER_CLASS);
+					//Pattern pattern1 = Pattern.compile("^\\p{Alpha}+$", Pattern.UNICODE_CHARACTER_CLASS);
+					Pattern pattern1 = Pattern.compile("[a-zA-Z\\s]+", Pattern.UNICODE_CHARACTER_CLASS);
 					if(!(pattern1.matcher(imeStr)).matches()) {
 						JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je unos samo slova za ime!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
 						txtIme.requestFocus();
