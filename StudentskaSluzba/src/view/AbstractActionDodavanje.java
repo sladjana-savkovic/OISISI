@@ -6,8 +6,6 @@ package view;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 import com.sun.glass.events.KeyEvent;
