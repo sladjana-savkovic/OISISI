@@ -25,7 +25,7 @@ public class AbstractActionDodNaPredmet extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		if(TabbedPane.activeTab==2 && ButtonColumnPredmet.selectedRow!=-2) {
+		if(ButtonColumnPredmet.selectedRow!=-1) {
 			DodavanjeStudentaNaPredmet d = new DodavanjeStudentaNaPredmet(null, "Predmet-dodavanje studenta", true);
 			d.setVisible(true);
 		}else  if(ButtonColumnPredmet.selectedRow==-1) {
