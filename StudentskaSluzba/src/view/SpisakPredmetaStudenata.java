@@ -4,8 +4,6 @@
 package view;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
@@ -14,21 +12,16 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.AbstractListModel;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.ListCellRenderer;
-
 import controller.StudentController;
-import model.BazaStudenata;
+
 
 /**
  * @author Dragana Carapic
@@ -46,7 +39,6 @@ public class SpisakPredmetaStudenata extends JDialog{
 	private JButton bNazad = new JButton("Nazad");
 	private JPanel pnlList = new JPanel();
 	private JPanel pnlObrisiNazad = new JPanel();
-	private Color darkerBlue= new Color(0,200,200);
 	DefaultListModel<String> listModel = new DefaultListModel<String>();
 	
 	public SpisakPredmetaStudenata(Frame parent,String title,boolean modal,int row) {
