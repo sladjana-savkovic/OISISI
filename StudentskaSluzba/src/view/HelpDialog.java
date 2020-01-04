@@ -11,20 +11,21 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
+
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 
 /**
  * @author Dragana Carapic
  *
  */
 public class HelpDialog extends JDialog{
+	
+	private static final long serialVersionUID = -3632735653801850558L;
+	
 	private JLabel text;
 	private JLabel text1;
 	
