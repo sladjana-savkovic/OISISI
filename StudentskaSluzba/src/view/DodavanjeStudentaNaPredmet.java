@@ -10,17 +10,22 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.regex.Pattern;
+
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+
+import controller.PredmetController;
+import model.BazaPredmeta;
+import model.BazaStudenata;
+import model.Predmet;
 
 /**
  * @author Dragana Carapic
@@ -34,7 +39,7 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 	private static final long serialVersionUID = -6032232686414917989L;
 	
 	private JLabel indeks;
-	private JTextField txtIndeks;
+	private JComboBox<String> indeksCM;
 	
 	
 	public DodavanjeStudentaNaPredmet(JFrame parent, String title, boolean modal) {
@@ -57,17 +62,35 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 			panelCenter.add(Box.createGlue());
 			
 			Dimension dim = new Dimension(160, 25);
-			Dimension d = new Dimension(210,25);
 			JPanel panelInd = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			
 			indeks = new JLabel("Indeks studenta*");
 			indeks.setPreferredSize(dim);
-			txtIndeks = new JTextField();
-			txtIndeks.setPreferredSize(d);
-			txtIndeks.setName("txtIndeks");
+			
+			//inizijalizujem na maksimalan broj
+			String[] a = new String[BazaStudenata.getInstance().getStudenti().size()];
+			
+			int j=0;
+			Predmet p = PredmetController.getInstance().vratiSelektovanPredmet(ButtonColumnPredmet.selectedRow);
+			for(int i=0; i<BazaStudenata.getInstance().getStudenti().size(); i++) {
+				if(p.getGodinaStudija()==BazaStudenata.getInstance().getStudenti().get(i).getTrenutnaGodinaStudija()) {
+					if(!(BazaPredmeta.getInstance().spisakStudenataNaPredmetu(ButtonColumnPredmet.selectedRow).contains(BazaStudenata.getInstance().getStudenti().get(i).getBrojIndeka()))) {
+					a[j]=BazaStudenata.getInstance().getStudenti().get(i).getBrojIndeka();
+					j++;
+					}
+				}
+			}
+			
+			//izbacivanje praznih stringova iz niza
+			String[] b = new String[j];
+			for(int y=0; y<j; y++) {
+				b[y]=a[y];
+			}
+			
+			indeksCM = new JComboBox<String>(b);
 			
 			panelInd.add(indeks);
-			panelInd.add(txtIndeks);
+			panelInd.add(indeksCM);
 			
 			panelCenter.add(panelInd);
 			
@@ -85,20 +108,6 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					String indStr = txtIndeks.getText();
-					if(indStr.equals("")) {
-						JOptionPane.showMessageDialog(DodavanjeStudentaNaPredmet.this, "Morate unijeti broj indeksa studenta!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
-						txtIndeks.requestFocus();
-						return;
-					}
-					
-					Pattern pattern = Pattern.compile("[a-zA-Z0-9]+/[0-9]+");
-					if(!(pattern.matcher(indStr)).matches()) {
-						JOptionPane.showMessageDialog(DodavanjeStudentaNaPredmet.this, "Dozvoljen je unos samo brojeva i slova za indeks u formaru YYxx/zzzz!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
-						txtIndeks.requestFocus();
-						return;
-					}
-					
 				}
 			});
 			
@@ -129,15 +138,6 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-	}
-	
-	//metoda koja vraca godinu upisa studenta
-	public String godinaStudija() {
-		String god = txtIndeks.getText();
-		String a[]=new String[5];
-		a=god.split("/");
-		
-		return a[1];
 	}
 
 }
