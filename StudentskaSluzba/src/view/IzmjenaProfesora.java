@@ -16,8 +16,6 @@ import java.util.regex.Pattern;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -49,7 +47,7 @@ public class IzmjenaProfesora extends JDialog{
 	private JLabel adresaKan;
 	private JLabel brLicKar;
 	private JLabel titula;
-	private JComboBox titulaCM;
+	private JComboBox<String> titulaCM;
 	private JRadioButton redovan;
 	private JRadioButton vanredan;
 	private JTextField txtIme,txtPrezime,txtDatum,txtAdresa,txtTelefon,txtAdrKan,txtEmail,txtBrKar;
@@ -172,15 +170,14 @@ public class IzmjenaProfesora extends JDialog{
 			
 			//combo box za zvanje
 			JPanel panelTitula = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			ComboBoxModel titulaProf = new DefaultComboBoxModel(new String[] {"doktor", "docent"}); 
+			String[] a = new String[] {"doktor", "docent"}; 
 			titula = new JLabel();
 			titula.setText("Titula profesora*");
 			titula.setPreferredSize(dim);
 			
-			titulaCM = new JComboBox();
+			titulaCM = new JComboBox<String>(a);
 			panelTitula.add(titula);
 			panelTitula.add(titulaCM);
-			titulaCM.setModel(titulaProf);
 			
 			//dugmici za izbor zvanja
 			JPanel panelZvanje= new JPanel(new FlowLayout(FlowLayout.LEFT));
