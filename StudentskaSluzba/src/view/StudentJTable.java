@@ -11,8 +11,6 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 
-import com.sun.imageio.plugins.png.RowFilter;
-
 /**
  * @author Dragana Carapic
  *
