@@ -4,13 +4,8 @@
 package view;
 
 import java.awt.event.ActionEvent;
-
 import javax.swing.AbstractAction;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
-
 import com.sun.glass.events.KeyEvent;
 
 /**
@@ -18,6 +13,8 @@ import com.sun.glass.events.KeyEvent;
  *
  */
 public class AbstractActionZatvaranje extends AbstractAction{
+
+	private static final long serialVersionUID = 1675939898889578775L;
 
 	public AbstractActionZatvaranje() {
 		putValue(SHORT_DESCRIPTION, "Zatvaranje");
