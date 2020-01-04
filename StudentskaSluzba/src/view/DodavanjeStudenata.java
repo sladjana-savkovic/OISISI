@@ -20,8 +20,6 @@ import java.util.regex.Pattern;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -55,7 +53,7 @@ public class DodavanjeStudenata extends JDialog{
 	private JLabel prosjek;
 	private JLabel godina;
 	private JLabel datumUpisa;
-	private JComboBox godinaCM;
+	private JComboBox<String> godinaCM;
 	private JRadioButton budzet;
 	private JRadioButton samofin;
 	private JTextField txtIme,txtPrezime,txtDatum,txtAdresa,txtTelefon,txtIndeks,txtEmail,txtProsjek,txtUpis;
@@ -194,16 +192,16 @@ public class DodavanjeStudenata extends JDialog{
 			
 			//polje za odabir godine studija
 			JPanel panelGodina = new JPanel(new FlowLayout(FlowLayout.LEFT));
-			ComboBoxModel godinaStudija = new DefaultComboBoxModel(new String[] {"I (prva)", "II (druga)", "III (tre\u0107a)", "IV (\u010detvrta)"}); 
+			String[] a = new String[] {"I (prva)", "II (druga)", "III (tre\u0107a)", "IV (\u010detvrta)"};
+			//ComboBoxModel godinaStudija = new DefaultComboBoxModel(new String[] {"I (prva)", "II (druga)", "III (tre\u0107a)", "IV (\u010detvrta)"}); 
 			godina = new JLabel();
 			godina.setText("Trenutna godina studija*");
 			godina.setPreferredSize(dim);
 			
-			godinaCM = new JComboBox();
+			godinaCM = new JComboBox<String>(a);
 			panelGodina.add(godina);
 			panelGodina.add(godinaCM);
-			godinaCM.setModel(godinaStudija);
-			
+		
 			//dugmici za izbor nacina finansiranja
 			JPanel panelFin = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			budzet = new JRadioButton("Budzet");
