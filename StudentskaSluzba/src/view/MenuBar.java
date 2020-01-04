@@ -28,6 +28,7 @@ public class MenuBar extends JMenuBar{
 		AbstractActionBrisanje ab = new AbstractActionBrisanje();
 		AbstractActionIzmjena ai = new AbstractActionIzmjena();
 		AbstractActionHelp ah = new AbstractActionHelp();
+		AbstractActionAbout aa = new AbstractActionAbout();
 		
 		JMenu mnew = new JMenu("Dodaj");
 		mnew.setFont(new Font( "ForMenu", Font.PLAIN|Font.CENTER_BASELINE, 15 ));
@@ -78,6 +79,7 @@ public class MenuBar extends JMenuBar{
 		help.addSeparator();
 		
 		mihelp.addActionListener(ah);
+		miabout.addActionListener(aa);
 		
 		add(mnew);
 		mnew.setVisible(true);
