@@ -219,6 +219,26 @@ public class BazaPredmeta implements Serializable{
 	public void profesorNaPredmet(String licnaKarta,int index) {
 		Predmet predmet = getPredmetIndex(index);
 		Profesor profesor = BazaProfesora.getInstance().getProfesor(licnaKarta);
+		
+		//Pronalazim broj licne karte profesora koji je nekad predavao predmet, ako takav postoji
+		String stariProfesor="";
+		for(int i=0;i<BazaProfesora.getInstance().getProfesori().size();i++)
+			if(predmet.getPredmetniProfesor().contains(BazaProfesora.getInstance().getProfesori().get(i).getIme()) && 
+			   predmet.getPredmetniProfesor().contains(BazaProfesora.getInstance().getProfesori().get(i).getPrezime()))
+			   		stariProfesor =  BazaProfesora.getInstance().getProfesori().get(i).getBrLicneKarte();
+				
+		//Ako smo nasli profesora, brisem iz njegove liste predmeta, onaj predmet koji je nekad predavao
+		if(!stariProfesor.equals("")) {
+			for(int i=0;i<BazaProfesora.getInstance().getProfesor(stariProfesor).getSpisakPredmeta().size();i++)
+				if(BazaProfesora.getInstance().getProfesor(stariProfesor).getSpisakPredmeta().get(i).equals(predmet.getSifra())) {
+					BazaProfesora.getInstance().getProfesor(stariProfesor).getSpisakPredmeta().remove(i);
+					break;
+				}
+		}
+		
 		predmet.setPredmetniProfesor(profesor.getIme()+" "+profesor.getPrezime());
+		
+		//Novom profesoru dodajem predmet u listu njegovih predmeta
+		BazaProfesora.getInstance().getProfesor(licnaKarta).getSpisakPredmeta().add(predmet.getSifra());
 	}
 }
