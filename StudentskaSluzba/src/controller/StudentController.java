@@ -94,4 +94,12 @@ public class StudentController {
 			return null;
 	}
 	
+	public ArrayList<Student> sviStudenti(){
+		return BazaStudenata.getInstance().getStudenti();
+	}
+	
+	public ArrayList<String> predmetiStudenataPoIndeksu(String indeks){
+		return BazaStudenata.getInstance().spisakPredmetaPoIndeksu(indeks);
+	}
+	
 }

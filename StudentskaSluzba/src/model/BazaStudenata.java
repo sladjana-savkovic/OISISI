@@ -217,5 +217,14 @@ public class BazaStudenata implements Serializable{
 		return spisak;
 	}
 
+	public ArrayList<String> spisakPredmetaPoIndeksu(String indeks){
+		ArrayList<String> spisak=null;
+		for(int i=0; i<getStudenti().size(); i++) {
+		if(getStudenti().get(i).getBrojIndeka().equals(indeks)) {
+			spisak = getStudenti().get(i).getSpisakPredmeta();
+		}
+		}
+		return spisak;
+	}
 	
 }
