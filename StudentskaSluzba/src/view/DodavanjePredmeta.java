@@ -140,11 +140,7 @@ public class DodavanjePredmeta extends JDialog{
 					}
 					
 					String profesor = txtPredmetniProfesor.getText();
-					/*if(profesor.equals("")) {
-						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Morate unijeti predmetnog profesora!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
-						txtPredmetniProfesor.requestFocus();
-						return;
-					}*/
+					
 					//samo unos slova i brojeva je dozvoljen za naziv predmeta
 					Pattern pattern1 = Pattern.compile("[a-zA-Z0-9]+");
 					if(!(pattern1.matcher(naziv)).matches()) {
