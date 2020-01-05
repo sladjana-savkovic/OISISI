@@ -47,6 +47,7 @@ public class TabbedPane extends JTabbedPane{
 			public void ancestorAdded(AncestorEvent event) {
 				Toolbar.buttonAddProfessor.setVisible(false);
 				Toolbar.buttonAddStudent.setVisible(false);
+				Toolbar.buttonDeleteProfessor.setVisible(false);
 				activeTab=0;
 			}
 		});
@@ -72,6 +73,7 @@ public class TabbedPane extends JTabbedPane{
 			public void ancestorAdded(AncestorEvent arg0) {
 				Toolbar.buttonAddProfessor.setVisible(false);
 				Toolbar.buttonAddStudent.setVisible(false);
+				Toolbar.buttonDeleteProfessor.setVisible(false);
 				activeTab=1;
 			}
 		});
@@ -96,6 +98,7 @@ public class TabbedPane extends JTabbedPane{
 			public void ancestorAdded(AncestorEvent event) {
 				Toolbar.buttonAddProfessor.setVisible(true);
 				Toolbar.buttonAddStudent.setVisible(true);
+				Toolbar.buttonDeleteProfessor.setVisible(true);
 				activeTab=2;
 				
 			}
