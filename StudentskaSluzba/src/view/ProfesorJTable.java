@@ -18,6 +18,14 @@ public class ProfesorJTable extends JTable{
 	
 	private static final long serialVersionUID = -557460832554227306L;
 	public static TableRowSorter<AbstractTableModelProfesor> sorter;
+	//private static ProfesorJTable instance = null;
+	
+	/*public static ProfesorJTable getInstance() {
+		if (instance == null) {
+			instance = new ProfesorJTable();
+		}
+		return instance;
+	}*/
 	
 	public ProfesorJTable() {
 		this.setRowSelectionAllowed(true);
@@ -42,7 +50,8 @@ public class ProfesorJTable extends JTable{
 			ButtonColumnProfesor.selectedRow=sorter.convertRowIndexToModel(getSelectedRow());
 		} else {
 			c.setBackground(Color.WHITE);
-			ButtonColumnProfesor.selectedRow=-1;
+			ButtonColumnStudent.selectedRow=-1;
+			ButtonColumnPredmet.selectedRow=-1;
 		}
 		return c;
 	}
