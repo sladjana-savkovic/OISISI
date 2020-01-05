@@ -22,6 +22,7 @@ public class Toolbar extends JToolBar{
 	static public JButton buttonAddStudent;
 	static public JTextField textSearch;
 	static public JButton buttonSearch;
+	static public JButton buttonDeleteProfessor;
 
 	public Toolbar() {
 		
@@ -34,6 +35,7 @@ public class Toolbar extends JToolBar{
 		setButtonDelete();
 		setButtonAddStudent();
 		setButtonAddProfessor();
+		setButtonDeleteProfessor();
 		
 		//Dodaje horizontalni razmak izmedju dugmica sa lijeve i desne strane
 		add(Box.createHorizontalGlue());
@@ -70,16 +72,13 @@ public class Toolbar extends JToolBar{
 		buttonAddStudent.setIcon(new ImageIcon("logo_images/add_student.jpg"));
 		buttonAddStudent.setBackground(lightBlue);
 		add(buttonAddStudent);
-		//Toolbar.buttonAddStudent.setVisible(false);
 	}
 	private void setButtonAddProfessor() {
 		AbstractActionDodavanjeProfesora dodavanjeProfesora = new AbstractActionDodavanjeProfesora();
 		buttonAddProfessor = new JButton(dodavanjeProfesora);
-		//buttonAddProfessor.setToolTipText("Dodaj profesora");
 		buttonAddProfessor.setIcon(new ImageIcon("logo_images/add_professor.jpg"));
 		buttonAddProfessor.setBackground(lightBlue);
 		add(buttonAddProfessor);
-		//Toolbar.buttonAddProfessor.setVisible(false);
 	}
 	private void setTextSearch() {
 		textSearch=new JTextField(15);
@@ -96,5 +95,12 @@ public class Toolbar extends JToolBar{
 		buttonSearch.setBackground(lightBlue);
 		add(buttonSearch);
 		buttonSearch.setVisible(true);
+	}
+	private void setButtonDeleteProfessor() {
+		AbstractActionBrisanjeProfesora brisanjeProfesora = new AbstractActionBrisanjeProfesora();
+		buttonDeleteProfessor = new JButton(brisanjeProfesora);
+		buttonDeleteProfessor.setIcon(new ImageIcon("logo_images/delete_professor.jpg"));
+		buttonDeleteProfessor.setBackground(lightBlue);
+		add(buttonDeleteProfessor);
 	}
 }
