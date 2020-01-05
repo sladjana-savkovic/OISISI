@@ -7,6 +7,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
+
+import controller.PredmetController;
 import controller.ProfesorController;
 
 /**
@@ -82,11 +84,14 @@ public class SpisakPredmeta extends JDialog{
 	}
 	public void obrisiPredmet() {
 		int selectedIndex = list.getSelectedIndex();
+		String selectedItem = list.getSelectedValue();
 		
 		ProfesorController.getInstance().obrisiPredmetProfesora(ButtonColumnProfesor.selectedRow, selectedIndex);
-		if(selectedIndex != -1) {
+		PredmetController.getInstance().uklanjanjeProfesoraSaPredmeta(selectedItem);
+		listModel.remove(selectedIndex);
+		/*if(selectedIndex != -1) {
 			listModel.remove(selectedIndex);
-		}
+		}*/
 	}
 	
 }
