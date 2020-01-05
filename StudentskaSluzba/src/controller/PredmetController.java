@@ -6,7 +6,9 @@ package controller;
 import java.util.ArrayList;
 
 import model.BazaPredmeta;
+import model.BazaProfesora;
 import model.Predmet;
+import model.Profesor;
 import view.MyTab;
 
 /**
@@ -47,6 +49,7 @@ public class PredmetController {
 		Predmet predmet = BazaPredmeta.getInstance().getPredmetIndex(tableSelectedIndex);
 		if(listSelectedIndex != -1) {	//Ako se klikne na dugme Prikazi, neki red u tabeli ce sigurno biti selektovan
 			BazaPredmeta.getInstance().obrisiStudenta(predmet.getSifra(), listSelectedIndex);
+			MyTab.azurirajPrikaz(); //novo
 		}else {
 			return;
 		}
@@ -103,4 +106,31 @@ public class PredmetController {
 		BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex).setPredmetniProfesor("");
 		MyTab.azurirajPrikaz();
 	}
+	public void uklanjanjeProfesoraSaPredmeta(String sifraPredmeta) {
+		
+		BazaPredmeta.getInstance().getPredmet(sifraPredmeta).setPredmetniProfesor("");
+		MyTab.azurirajPrikaz();
+	}
+	public void uklanjanjeProfesoraSaSvakogPredmeta(int rowSelectedIndex) {
+		
+		Profesor p = BazaProfesora.getInstance().getProfesorIndex(rowSelectedIndex);
+		
+		//Nakon brisanja profesora, predmeti na kojima je on predavao sada nemaju profesora
+		/*for(int i=0; i<BazaPredmeta.getInstance().getPredmeti().size(); i++)
+			if(BazaPredmeta.getInstance().getPredmeti().get(i).getPredmetniProfesor().contains(p.getIme()) &&
+			   BazaPredmeta.getInstance().getPredmeti().get(i).getPredmetniProfesor().contains(p.getPrezime())) {
+					BazaPredmeta.getInstance().getPredmeti().get(i).setPredmetniProfesor("");
+			}*/  //POGRESNO
+		
+		for(int i=0; i<p.getSpisakPredmeta().size(); i++)
+			for(int j=0; j<BazaPredmeta.getInstance().getPredmeti().size(); j++) {
+				if(BazaPredmeta.getInstance().getPredmeti().get(j).getSifra().equals(p.getSpisakPredmeta().get(i))) {
+					BazaPredmeta.getInstance().getPredmeti().get(j).setPredmetniProfesor("");
+					break;
+				}
+		}
+	}
+	/*public boolean provjeriVelicinuListe() {
+		return BazaPredmeta.getInstance().getPredmeti().isEmpty();
+	}*/
 }
