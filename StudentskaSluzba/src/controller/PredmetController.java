@@ -88,4 +88,12 @@ public class PredmetController {
 			}
 		}
 	}
+	//dodavanje ili izmjena profesora na predmetu
+	public void dodajProfesoraNaPredmet(String licnaKarta,int rowSelectedIndex) {
+		if(rowSelectedIndex < 0){
+			return;
+		}
+		BazaPredmeta.getInstance().profesorNaPredmet(licnaKarta, rowSelectedIndex);	
+		MyTab.azurirajPrikaz();
+	}
 }
