@@ -5,6 +5,7 @@ package controller;
 
 import java.util.ArrayList;
 
+import model.BazaPredmeta;
 import model.BazaProfesora;
 import model.Profesor;
 import view.MyTab;
@@ -30,7 +31,6 @@ private static ProfesorController instance = null;
     	if (rowSelectedIndex < 0) {
 			return;
 		}
-    	// izmena modela
     	Profesor profesor = BazaProfesora.getInstance().getProfesorIndex(rowSelectedIndex);
     	BazaProfesora.getInstance().obrisiProfesora(profesor.getBrLicneKarte());
 		// azuriranje prikaza
@@ -63,7 +63,7 @@ private static ProfesorController instance = null;
 	public Profesor vratiSelektovanogProfesora(int rowSelectedIndex) {
 		Profesor p =null;
 		if(rowSelectedIndex<0) {
-			return p;
+			return null;
 		}
 		p = BazaProfesora.getInstance().getProfesorIndex(rowSelectedIndex);
 		return p;
@@ -88,5 +88,51 @@ private static ProfesorController instance = null;
 				return true;
 			}
 		}
+	}
+	//metoda za prikaz licnih karti svih profesora u combo box-u
+	public String[] getLicneKarte(int rowSelectedIndex){
+		if(rowSelectedIndex == -1)
+			return null;
+		
+		String[] licneKarte = new String[BazaProfesora.getInstance().getProfesori().size()];
+		
+		//ime i prezime profesora
+		String predmetniProfesor = BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex).getPredmetniProfesor();
+		String licnaPredmetnogProfesora = "";
+		boolean flag=true;
+		
+		if(!predmetniProfesor.equals("")){
+			for(int i=0; i<BazaProfesora.getInstance().getProfesori().size(); i++)
+				if(predmetniProfesor.contains(BazaProfesora.getInstance().getProfesori().get(i).getIme()) && 
+						predmetniProfesor.contains(BazaProfesora.getInstance().getProfesori().get(i).getPrezime()))
+							licnaPredmetnogProfesora = BazaProfesora.getInstance().getProfesori().get(i).getBrLicneKarte();
+		}
+		
+		if(licnaPredmetnogProfesora.equals("")) {
+			flag=false;
+			for(int i=0; i<licneKarte.length; i++) {
+				licneKarte[i] = BazaProfesora.getInstance().getProfesori().get(i).getBrLicneKarte();
+			}
+		}else {
+			for(int i=0; i<licneKarte.length; i++) {
+				if(!BazaProfesora.getInstance().getProfesori().get(i).getBrLicneKarte().equals(licnaPredmetnogProfesora))
+					licneKarte[i] = BazaProfesora.getInstance().getProfesori().get(i).getBrLicneKarte();
+			}
+		}
+		
+		//Uklanjanje praznih polja iz stringa
+		if(flag) {
+			String[] rezultat = new String[licneKarte.length-1];
+			int j=0;
+			for(int i=0; i<licneKarte.length; i++) {
+				if(licneKarte[i] != null) {
+					rezultat[j++] = licneKarte[i];
+				}
+			}
+			return rezultat;
+		}else {
+			return licneKarte;
+		}
+		
 	}
 }
