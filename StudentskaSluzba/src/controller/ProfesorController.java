@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import model.BazaPredmeta;
 import model.BazaProfesora;
+import model.Predmet;
 import model.Profesor;
 import view.MyTab;
 
@@ -47,6 +48,7 @@ private static ProfesorController instance = null;
 		Profesor profesor = BazaProfesora.getInstance().getProfesorIndex(tableSelectedIndex);
 		if(listSelectedIndex != -1) {	//Ako se klikne na dugme Prikazi, neki red u tabeli ce sigurno biti selektovan
 			BazaProfesora.getInstance().obrisiPredmet(profesor.getBrLicneKarte(),listSelectedIndex);
+			MyTab.azurirajPrikaz(); //novo
 		}else {
 			return;
 		}
@@ -91,8 +93,6 @@ private static ProfesorController instance = null;
 	}
 	//metoda za prikaz licnih karti svih profesora u combo box-u
 	public String[] getLicneKarte(int rowSelectedIndex){
-		if(rowSelectedIndex == -1)
-			return null;
 		
 		String[] licneKarte = new String[BazaProfesora.getInstance().getProfesori().size()];
 		
@@ -132,7 +132,32 @@ private static ProfesorController instance = null;
 			return rezultat;
 		}else {
 			return licneKarte;
+		}	
+	}
+	/*public boolean provjeriVelicinuListe() {
+		return BazaProfesora.getInstance().getProfesori().isEmpty();
+	}*/
+	
+	public void uklanjanjePredmetaIzListe(int rowSelectedIndex) {
+		//rowSelectedIndex predstavlja selektovan red predmeta u tabeli
+		
+		Predmet p = BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex);
+		//Da li obrisali predmet pomocu napisane metode, treba mi informacija o indeksu profesora kojem brisem predmet i o indeksu predmeta
+		//profesora u listi predmeta
+		
+		int indeksProfesora = -1;
+		int indeksPredmeta = -1;
+		
+		for(int i=0; i<BazaProfesora.getInstance().getProfesori().size(); i++) {
+			for(int j=0; j<BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().size(); j++)
+				if(BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().get(j).equals(p.getSifra())) {
+					indeksProfesora = i;
+					indeksPredmeta = j;
+					break;
+				}
 		}
 		
+		if((indeksProfesora != -1) && (indeksPredmeta != -1))
+			obrisiPredmetProfesora(indeksProfesora, indeksPredmeta);
 	}
 }
