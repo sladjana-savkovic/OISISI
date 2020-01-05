@@ -42,6 +42,8 @@ public class Toolbar extends JToolBar{
 		
 		setTextSearch();
 		setButtonSearch();
+		
+		this.setFloatable(false);
 	}
 	private void setButtonAdd() {
 		AbstractActionDodavanje dodaj = new AbstractActionDodavanje();
