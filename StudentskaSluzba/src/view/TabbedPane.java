@@ -17,25 +17,30 @@ public class TabbedPane extends JTabbedPane{
 	
 	private static final long serialVersionUID = 8320287704098046391L;
 	public static int activeTab=0;
+	Color darkerBlue;
 
 	public TabbedPane() {
 		setFont( new Font( "Dialog", Font.BOLD|Font.ITALIC, 20 ) );
-		Color darkerBlue= new Color(0,200,200);
+		darkerBlue= new Color(0,200,200);
 		setBackground(darkerBlue);
 		
+		setFirstTab();
+		setSecondTab();
+		setThirdTab(); 
+		
+	}
+	private void setFirstTab() {
 		MyTab firstTab=new MyTab("Studenti");
 		firstTab.addAncestorListener(new AncestorListener() {
 			
 			@Override
 			public void ancestorRemoved(AncestorEvent event) {
-				// TODO Auto-generated method stub
-				
+				// TODO Auto-generated method stub	
 			}
 			
 			@Override
 			public void ancestorMoved(AncestorEvent event) {
 				// TODO Auto-generated method stub
-				
 			}
 			
 			@Override
@@ -43,21 +48,26 @@ public class TabbedPane extends JTabbedPane{
 				Toolbar.buttonAddProfessor.setVisible(false);
 				Toolbar.buttonAddStudent.setVisible(false);
 				activeTab=0;
-				
 			}
 		});
+		
 		this.addTab("Studenti", firstTab);
 		this.setMnemonicAt(0, KeyEvent.VK_S);
-		
+	}
+	private void setSecondTab() {
 		MyTab secondTab=new MyTab("Profesori");
 		secondTab.addAncestorListener(new AncestorListener() {
+			
 			@Override
 			public void ancestorRemoved(AncestorEvent arg0) {
+				// TODO Auto-generated method stub	
 			}
+			
 			@Override
 			public void ancestorMoved(AncestorEvent arg0) {
 				// TODO Auto-generated method stub
 			}
+			
 			@Override
 			public void ancestorAdded(AncestorEvent arg0) {
 				Toolbar.buttonAddProfessor.setVisible(false);
@@ -67,15 +77,20 @@ public class TabbedPane extends JTabbedPane{
 		});
 		this.addTab("Profesori", secondTab);
 		this.setMnemonicAt(1, KeyEvent.VK_P);
-		
+	}
+	private void setThirdTab() {
 		MyTab thirdTab=new MyTab("Predmeti");
 		thirdTab.addAncestorListener(new AncestorListener() {
+			
 			@Override
 			public void ancestorRemoved(AncestorEvent event) {
+				// TODO Auto-generated method stub
 			}
 			
 			@Override
-			public void ancestorMoved(AncestorEvent event) {}
+			public void ancestorMoved(AncestorEvent event) {
+				// TODO Auto-generated method stub
+			}
 		
 			@Override
 			public void ancestorAdded(AncestorEvent event) {
@@ -87,6 +102,5 @@ public class TabbedPane extends JTabbedPane{
 		});
 		this.addTab("Predmeti", thirdTab);
 		this.setMnemonicAt(2, KeyEvent.VK_R);
-		
 	}
 }
