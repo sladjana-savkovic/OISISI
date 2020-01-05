@@ -216,4 +216,9 @@ public class BazaPredmeta implements Serializable{
 			}
 		}
 	}
+	public void profesorNaPredmet(String licnaKarta,int index) {
+		Predmet predmet = getPredmetIndex(index);
+		Profesor profesor = BazaProfesora.getInstance().getProfesor(licnaKarta);
+		predmet.setPredmetniProfesor(profesor.getIme()+" "+profesor.getPrezime());
+	}
 }
