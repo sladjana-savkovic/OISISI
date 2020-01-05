@@ -14,58 +14,81 @@ public class Toolbar extends JToolBar{
 	
 	private static final long serialVersionUID = 748775439327687207L;
 	
-	static public JButton buttonAddProfessor = new JButton();;
-	static public JButton buttonAddStudent = new JButton();
+	Color lightBlue;
+	JButton buttonAdd;
+	JButton buttonModify;
+	JButton buttonDelete;
+	static public JButton buttonAddProfessor;
+	static public JButton buttonAddStudent;
 	static public JTextField textSearch;
 	static public JButton buttonSearch;
 
 	public Toolbar() {
+		
 		// u konstruktor natklase, JToolbar prosledjujemo orijentaciju toolbar-a
 		super(SwingConstants.HORIZONTAL);
-		Color lightBlue= new Color(160,215,255);
-		//Color darkBlue= new Color(0,200,200);
+		lightBlue= new Color(160,215,255);
 		
+		setButtonAdd();
+		setButtonModify();
+		setButtonDelete();
+		setButtonAddStudent();
+		setButtonAddProfessor();
+		
+		//Dodaje horizontalni razmak izmedju dugmica sa lijeve i desne strane
+		add(Box.createHorizontalGlue());
+		
+		setTextSearch();
+		setButtonSearch();
+	}
+	private void setButtonAdd() {
 		AbstractActionDodavanje dodaj = new AbstractActionDodavanje();
-		JButton buttonAdd = new JButton(dodaj);
+		buttonAdd = new JButton(dodaj);
 		buttonAdd.setIcon(new ImageIcon("logo_images/plus.jpg"));
 		buttonAdd.setBackground(lightBlue);
 		add(buttonAdd);
-		
+	}
+	private void setButtonModify() {
 		AbstractActionIzmjena izmjena = new AbstractActionIzmjena();
-		JButton buttonModify = new JButton(izmjena);
+		buttonModify = new JButton(izmjena);
 		buttonModify.setToolTipText("Izmijeni");
 		buttonModify.setIcon(new ImageIcon("logo_images/pencil.jpg"));
 		buttonModify.setBackground(lightBlue);
 		add(buttonModify);
-		
+	}
+	private void setButtonDelete() {
 		AbstractActionBrisanje brisanje = new AbstractActionBrisanje();
-		JButton buttonDelete = new JButton(brisanje);
+		buttonDelete = new JButton(brisanje);
 		buttonDelete.setIcon(new ImageIcon("logo_images/delete.jpg"));
 		buttonDelete.setBackground(lightBlue);
 		add(buttonDelete);
-		
+	}
+	private void setButtonAddStudent() {
+		AbstractActionDodNaPredmet dodavanjeStudenta = new AbstractActionDodNaPredmet();
+		buttonAddStudent = new JButton(dodavanjeStudenta);
 		buttonAddStudent.setToolTipText("Dodaj studenta");
 		buttonAddStudent.setIcon(new ImageIcon("logo_images/add_student.jpg"));
 		buttonAddStudent.setBackground(lightBlue);
 		add(buttonAddStudent);
-		buttonAddStudent.setVisible(true);
-		
-		buttonAddProfessor.setToolTipText("Dodaj profesora");
+		//Toolbar.buttonAddStudent.setVisible(false);
+	}
+	private void setButtonAddProfessor() {
+		AbstractActionDodavanjeProfesora dodavanjeProfesora = new AbstractActionDodavanjeProfesora();
+		buttonAddProfessor = new JButton(dodavanjeProfesora);
+		//buttonAddProfessor.setToolTipText("Dodaj profesora");
 		buttonAddProfessor.setIcon(new ImageIcon("logo_images/add_professor.jpg"));
 		buttonAddProfessor.setBackground(lightBlue);
 		add(buttonAddProfessor);
-		buttonAddProfessor.setVisible(true);
-		
-		//Dodaje horizontalni razmak izmedju dugmica sa lijeve i desne strane
-		add(Box.createHorizontalGlue());
-		//add(Box.createHorizontalStrut(900));
-		
+		//Toolbar.buttonAddProfessor.setVisible(false);
+	}
+	private void setTextSearch() {
 		textSearch=new JTextField(15);
 		textSearch.setMaximumSize(textSearch.getPreferredSize());
 		textSearch.setFont(new Font("TimesRoman", Font.PLAIN, 18));
 		textSearch.setMaximumSize(new Dimension(8160,80));
 		add(textSearch);
-		
+	}
+	private void setButtonSearch() {
 		AbstractActionPretrazi pretrazi = new AbstractActionPretrazi();
 		buttonSearch = new JButton(pretrazi);
 		buttonSearch.setToolTipText("Pretraži");
