@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controller.PredmetController;
-import model.BazaPredmeta;
+import controller.StudentController;
 import model.BazaStudenata;
 import model.Predmet;
 
@@ -72,10 +72,10 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 			
 			int j=0;
 			Predmet p = PredmetController.getInstance().vratiSelektovanPredmet(ButtonColumnPredmet.selectedRow);
-			for(int i=0; i<BazaStudenata.getInstance().getStudenti().size(); i++) {
-				if(p.getGodinaStudija()==BazaStudenata.getInstance().getStudenti().get(i).getTrenutnaGodinaStudija()) {
-					if(!(BazaPredmeta.getInstance().spisakStudenataNaPredmetu(ButtonColumnPredmet.selectedRow).contains(BazaStudenata.getInstance().getStudenti().get(i).getBrojIndeka()))) {
-					a[j]=BazaStudenata.getInstance().getStudenti().get(i).getBrojIndeka();
+			for(int i=0; i<StudentController.getInstance().sviStudenti().size(); i++) {
+				if(p.getGodinaStudija()!=StudentController.getInstance().sviStudenti().get(i).getTrenutnaGodinaStudija()) {
+					if(!(PredmetController.getInstance().studentiNaPredmetu(ButtonColumnPredmet.selectedRow).contains(StudentController.getInstance().sviStudenti().get(i).getBrojIndeka()))) {
+					a[j]=StudentController.getInstance().sviStudenti().get(i).getBrojIndeka();
 					j++;
 					}
 				}
@@ -108,6 +108,13 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 				
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					Predmet p = PredmetController.getInstance().vratiSelektovanPredmet(ButtonColumnPredmet.selectedRow);
+					String indStr = (String)indeksCM.getSelectedItem();
+					PredmetController.getInstance().studentiNaPredmetu(ButtonColumnPredmet.selectedRow).add(indStr);
+					StudentController.getInstance().predmetiStudenataPoIndeksu(indStr).add(p.getSifra());
+					MyTab.azurirajPrikaz();
+					JOptionPane.showMessageDialog(DodavanjeStudentaNaPredmet.this, "Uspje\u0161no ste dodali studenta na predmet!");
+					dispose();
 				}
 			});
 			
