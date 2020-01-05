@@ -50,8 +50,8 @@ public class ProfesorJTable extends JTable{
 			ButtonColumnProfesor.selectedRow=sorter.convertRowIndexToModel(getSelectedRow());
 		} else {
 			c.setBackground(Color.WHITE);
-			ButtonColumnStudent.selectedRow=-1;
-			ButtonColumnPredmet.selectedRow=-1;
+			/*ButtonColumnStudent.selectedRow=-1;
+			ButtonColumnPredmet.selectedRow=-1;*/
 		}
 		return c;
 	}
