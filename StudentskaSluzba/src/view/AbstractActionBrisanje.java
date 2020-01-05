@@ -38,7 +38,12 @@ public class AbstractActionBrisanje extends AbstractAction{
 			int input0 = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete studenta?","Brisanje studenta",
 					JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,icon,options,options[1]);
 			if(input0 == JOptionPane.NO_OPTION) {
+				//brisanje studenta iz tabele
 				StudentController.getInstance().obrisiStudent(ButtonColumnStudent.selectedRow);
+				
+				ButtonColumnStudent.selectedRow = -1;
+				ButtonColumnProfesor.selectedRow = -1;
+				ButtonColumnPredmet.selectedRow = -1;
 			}
 		} else if ((TabbedPane.activeTab == 1) && (ButtonColumnProfesor.selectedRow != -1)) {
 			int input1 = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete profesora?","Brisanje profesora",
