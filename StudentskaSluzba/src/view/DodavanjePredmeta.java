@@ -71,7 +71,7 @@ public class DodavanjePredmeta extends JDialog{
 			//polje za predmetnog profesora
 			JPanel pnlPredmetniProfesor = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			
-			predmetniProfesor = new JLabel("Predmetni profesor*");
+			predmetniProfesor = new JLabel("Predmetni profesor");
 			predmetniProfesor.setPreferredSize(dim);
 			txtPredmetniProfesor = new JTextField();
 			txtPredmetniProfesor.setPreferredSize(dim);
@@ -140,11 +140,11 @@ public class DodavanjePredmeta extends JDialog{
 					}
 					
 					String profesor = txtPredmetniProfesor.getText();
-					if(profesor.equals("")) {
+					/*if(profesor.equals("")) {
 						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Morate unijeti predmetnog profesora!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
 						txtPredmetniProfesor.requestFocus();
 						return;
-					}
+					}*/
 					//samo unos slova i brojeva je dozvoljen za naziv predmeta
 					Pattern pattern1 = Pattern.compile("[a-zA-Z0-9]+");
 					if(!(pattern1.matcher(naziv)).matches()) {
@@ -153,13 +153,16 @@ public class DodavanjePredmeta extends JDialog{
 						txtNazivPredmeta.requestFocus();
 						return;
 					}
-					Pattern pattern2 = Pattern.compile("^\\p{Alpha}+$", Pattern.UNICODE_CHARACTER_CLASS);
-					if(!(pattern2.matcher(profesor)).matches()) {
-						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Dozvoljen je unos samo slova za profesora!",
-								"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
-						txtPredmetniProfesor.requestFocus();
-						return;
-					}
+					
+					if(!profesor.equals("")) {
+						Pattern pattern2 = Pattern.compile("^\\p{Alpha}+$", Pattern.UNICODE_CHARACTER_CLASS);
+						if(!(pattern2.matcher(profesor)).matches()) {
+							JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Dozvoljen je unos samo slova za profesora!",
+									"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+							txtPredmetniProfesor.requestFocus();
+							return;
+						}
+					} 
 					
 					String god = (String)CBgodina.getSelectedItem();
 					int godina;
