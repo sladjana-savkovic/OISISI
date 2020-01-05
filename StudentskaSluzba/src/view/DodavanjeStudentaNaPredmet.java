@@ -73,7 +73,7 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 			int j=0;
 			Predmet p = PredmetController.getInstance().vratiSelektovanPredmet(ButtonColumnPredmet.selectedRow);
 			for(int i=0; i<StudentController.getInstance().sviStudenti().size(); i++) {
-				if(p.getGodinaStudija()!=StudentController.getInstance().sviStudenti().get(i).getTrenutnaGodinaStudija()) {
+				if(p.getGodinaStudija()==StudentController.getInstance().sviStudenti().get(i).getTrenutnaGodinaStudija()) {
 					if(!(PredmetController.getInstance().studentiNaPredmetu(ButtonColumnPredmet.selectedRow).contains(StudentController.getInstance().sviStudenti().get(i).getBrojIndeka()))) {
 					a[j]=StudentController.getInstance().sviStudenti().get(i).getBrojIndeka();
 					j++;
@@ -110,11 +110,15 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 				public void actionPerformed(ActionEvent e) {
 					Predmet p = PredmetController.getInstance().vratiSelektovanPredmet(ButtonColumnPredmet.selectedRow);
 					String indStr = (String)indeksCM.getSelectedItem();
+					if(b.length!=0) {
 					PredmetController.getInstance().studentiNaPredmetu(ButtonColumnPredmet.selectedRow).add(indStr);
 					StudentController.getInstance().predmetiStudenataPoIndeksu(indStr).add(p.getSifra());
 					MyTab.azurirajPrikaz();
 					JOptionPane.showMessageDialog(DodavanjeStudentaNaPredmet.this, "Uspje\u0161no ste dodali studenta na predmet!");
 					dispose();
+					}else {
+						JOptionPane.showMessageDialog(DodavanjeStudentaNaPredmet.this, "Nije moguce dodati studenta na predmet!");
+					}
 				}
 			});
 			
