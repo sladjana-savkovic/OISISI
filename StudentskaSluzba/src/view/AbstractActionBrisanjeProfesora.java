@@ -11,6 +11,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import controller.PredmetController;
+import controller.ProfesorController;
+import model.BazaPredmeta;
+import model.Predmet;
 
 /**
  * @author Sladjana Savkovic
@@ -34,6 +37,9 @@ public class AbstractActionBrisanjeProfesora extends AbstractAction{
 			int input1 = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete profesora sa predmeta?","Brisanje profesora sa predmeta",
 					JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,icon,options,options[1]);
 			if(input1 == JOptionPane.NO_OPTION) {
+				//Brisanje predmeta sa spiska predmeta za odredjenog profesora
+				ProfesorController.getInstance().uklanjanjePredmetaIzListe(ButtonColumnPredmet.selectedRow);
+				//Brisanje profesora sa predmeta
 				PredmetController.getInstance().obrisiProfesoraSaPredmeta(ButtonColumnPredmet.selectedRow);
 			}
 		}else {
