@@ -17,6 +17,7 @@ public class MyTab extends JPanel{
 	private String tabName;
 	static private StudentJTable tabelaStudenata = new StudentJTable();
 	static private ProfesorJTable tabelaProfesora = new ProfesorJTable();
+	//static private ProfesorJTable tabelaProfesora = ProfesorJTable.getInstance();
 	static private PredmetJTable tabelaPredmeta = new PredmetJTable();
 	
 	static public AbstractTableModelProfesor modelProfesor = (AbstractTableModelProfesor) tabelaProfesora.getModel();
@@ -30,19 +31,12 @@ public class MyTab extends JPanel{
 	}
 	public void createTable() {
 		if(tabName.equals("Studenti")) {
-			/*basicPanel.add(new JLabel("Test " + this.tabName));
-			this.add(basicPanel, BorderLayout.NORTH);*/
-			
-			//StudentJTable tabelaStudenata = new StudentJTable();
-
 			JScrollPane scrollPane = new JScrollPane(tabelaStudenata);
 			add(scrollPane, BorderLayout.CENTER);
 			
 			setVisible(true);
 		}
 		else if(tabName.equals("Profesori")) {
-			//ProfesorJTable tabelaProfesora = new ProfesorJTable();
-
 			JScrollPane scrollPane = new JScrollPane(tabelaProfesora);
 			add(scrollPane, BorderLayout.CENTER);
 			
@@ -51,14 +45,12 @@ public class MyTab extends JPanel{
 			setVisible(true);
 		}
 		else {			
-			//PredmetJTable tabelaPredmeta = new PredmetJTable();
-
 			JScrollPane scrollPane = new JScrollPane(tabelaPredmeta);
 			add(scrollPane, BorderLayout.CENTER);
 			
 			azurirajPrikaz();
 			
-			setVisible(true);
+			setVisible(true);			
 		}
 	}
 	static public void azurirajPrikaz() {
