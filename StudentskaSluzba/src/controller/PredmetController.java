@@ -96,4 +96,11 @@ public class PredmetController {
 		BazaPredmeta.getInstance().profesorNaPredmet(licnaKarta, rowSelectedIndex);	
 		MyTab.azurirajPrikaz();
 	}
+	public void obrisiProfesoraSaPredmeta(int rowSelectedIndex) {
+		if(rowSelectedIndex < 0){
+			return;
+		}
+		BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex).setPredmetniProfesor("");
+		MyTab.azurirajPrikaz();
+	}
 }
