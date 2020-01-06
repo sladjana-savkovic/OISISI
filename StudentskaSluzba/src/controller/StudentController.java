@@ -105,24 +105,13 @@ public class StudentController {
 		MyTab.azurirajPrikaz();
 	}
 	
-	public void uklanjanjePredmetaIzListe(int row) {
-		
+	public void uklanjanjePredmetaIzListe(int row, String indeks) {
 		Predmet p = BazaPredmeta.getInstance().getPredmetIndex(row);
 		
-		int indeksStudent=-1;
-		int indeksPredmet=-1;
-		
 		for(int i=0; i<BazaStudenata.getInstance().getStudenti().size(); i++) {
-			for(int j=0; j<BazaStudenata.getInstance().getStudenti().get(i).getSpisakPredmeta().size(); j++)
-				if(BazaStudenata.getInstance().getStudenti().get(i).getSpisakPredmeta().get(j).equals(p.getSifra())) {
-					indeksStudent=i;
-					indeksPredmet=j;
-					break;
-				}
-		}
-		
-		if(indeksStudent!=-1 && indeksPredmet!=-1) {
-			obrisiPredmetStudenta(indeksStudent, indeksPredmet);
+			if(BazaStudenata.getInstance().getStudenti().get(i).getBrojIndeka().equals(indeks)) {
+				BazaStudenata.getInstance().getStudenti().get(i).getSpisakPredmeta().remove(p.getSifra());
+			}
 		}
 		
 	}
