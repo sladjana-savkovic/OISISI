@@ -20,6 +20,8 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import controller.PredmetController;
 import controller.StudentController;
 
 
@@ -104,10 +106,12 @@ public class SpisakPredmetaStudenata extends JDialog{
 	
 	public void obrisiPredmet() {
 		int selectedIndex = list.getSelectedIndex();
+		String selectedItem = list.getSelectedValue();
 		
 		StudentController.getInstance().obrisiPredmetStudenta(ButtonColumnStudent.selectedRow, selectedIndex);
-		if(selectedIndex != -1) {
-			listModel.remove(selectedIndex);
-		}
+		PredmetController.getInstance().uklanjanjeStudentaIzListe(ButtonColumnStudent.selectedRow, selectedItem);
+		
+		listModel.remove(selectedIndex);
+
 	}
 }
