@@ -387,8 +387,11 @@ public class IzmjenaStudenata extends JDialog{
 					Student r = new Student(imeStr,przStr,datStr,adrStr,telStr,emStr,indStr,upisStr,god,pros,statusStr,predmeti);
 					
 					boolean izmjenjen = StudentController.getInstance().izmjeniStudenta(ButtonColumnStudent.selectedRow, t, r);
-					if(izmjenjen==true) {
+					if(izmjenjen) {
 						JOptionPane.showMessageDialog(IzmjenaStudenata.this, "Uspje\u0161no ste izmijenili studenta!");
+						ButtonColumnStudent.selectedRow = -1;
+						ButtonColumnPredmet.selectedRow = -1;
+						ButtonColumnProfesor.selectedRow = -1;
 						dispose();
 					}else{
 						JOptionPane.showMessageDialog(IzmjenaStudenata.this, "Neuspje\u0161na izmjena! Takav broj indeksa ve\u0107 postoji!");
