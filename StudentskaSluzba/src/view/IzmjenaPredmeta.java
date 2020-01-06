@@ -245,7 +245,7 @@ public class IzmjenaPredmeta extends JDialog{
 				String profesor = txtPredmetniProfesor.getText();
 				
 				//Samo unos unicode karaktera, razmaka i brojeva je dozvoljen za naziv predmeta
-				Pattern pattern1 = Pattern.compile("[a-zA-Z0-9\\u0160-\\u0161-\\u0106-\\u0107-\\u017d-\\u017e-\\u010c-\\u010d-\\u0110-\\u0111-\\u0020]+");
+				Pattern pattern1 = Pattern.compile("[a-zA-Z0-9 \\u0160\\u0161\\u0106\\u0107\\u017d\\u017e\\u010c\\u010d\\u0110\\u0111\\u0020]+");
 				if(!(pattern1.matcher(naziv)).matches()) {
 					JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Dozvoljen je unos samo slova i brojeva za naziv predmeta!",
 							"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
@@ -254,7 +254,7 @@ public class IzmjenaPredmeta extends JDialog{
 				}
 				//Samo unos unicode karaktera i razmaka za ime profesora je dozvoljen, ako je  profesor unesen
 				if(!profesor.equals("")) {
-					Pattern pattern2 = Pattern.compile("[a-zA-Z\\u0160-\\u0161-\\u0106-\\u0107-\\u017d-\\u017e-\\u010c-\\u010d-\\u0110-\\u0111-\\u0020]+",
+					Pattern pattern2 = Pattern.compile("[a-zA-Z \\u0160\\u0161\\u0106\\u0107\\u017d\\u017e\\u010c\\u010d\\u0110\\u0111\\u0020]+",
 							Pattern.UNICODE_CHARACTER_CLASS);
 					if(!(pattern2.matcher(profesor)).matches()) {
 						JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Dozvoljen je unos samo slova za profesora!",
