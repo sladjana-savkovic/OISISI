@@ -66,7 +66,6 @@ public class PretragaProfesora {
 					sorter.setRowFilter(RowFilter.regexFilter(zvanje,9));
 			}
 		}
-		
 	}
 	public int pretrazi(String pretraga) {
 		int brojac = 0;

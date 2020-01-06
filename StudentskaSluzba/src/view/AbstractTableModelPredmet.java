@@ -41,27 +41,28 @@ public class AbstractTableModelPredmet extends AbstractTableModel{
 	}
 
 	// da bismo mogli prikazati dugme
-		@Override
-		public Class<?> getColumnClass(int columnIndex) {
-			switch (columnIndex) {
-			case 0:
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-				return JButton.class;
-			default:
-				return null;
-			}
+	@Override
+	public Class<?> getColumnClass(int columnIndex) {
+		switch (columnIndex) {
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+		case 6:
+			return JButton.class;
+		default:
+			return null;
 		}
-		@Override
-		public String getColumnName(int col) {
-			return columnNames[col];
-		}
-		@Override
-		public boolean isCellEditable(int rowIndex, int columnIndex) {
-			return columnIndex == 6;
-		}
+	}
+	@Override
+	public String getColumnName(int col) {
+		return columnNames[col];
+	}
+	
+	@Override
+	public boolean isCellEditable(int rowIndex, int columnIndex) {
+		return columnIndex == 6;
+	}
 }

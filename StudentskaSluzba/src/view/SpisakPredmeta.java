@@ -48,6 +48,7 @@ public class SpisakPredmeta extends JDialog{
 		pnlObrisiNazad.add(bNazad);
 				
 		list = new JList<String>(listModel);
+		//Poziva se metoda za dodavanje predmeta na spisak(listu) predmeta nekog profesora
 		dodajPredmeteNaListu(row);
 		
 		JScrollPane scp = new JScrollPane(list);
@@ -80,18 +81,16 @@ public class SpisakPredmeta extends JDialog{
 		ArrayList<String> predmeti = ProfesorController.getInstance().predmetiProfesora(row);
 		for(int i=0;i<predmeti.size();i++)
 			listModel.add(i, predmeti.get(i));
-		
 	}
 	public void obrisiPredmet() {
 		int selectedIndex = list.getSelectedIndex();
 		String selectedItem = list.getSelectedValue();
 		
+		//Predmet se brise sa liste predmeta nekog profesora
 		ProfesorController.getInstance().obrisiPredmetProfesora(ButtonColumnProfesor.selectedRow, selectedIndex);
+		//Obrisan predmet ostaje bez profesora dok korisnik ne dodijeli nekog novog profesora
 		PredmetController.getInstance().uklanjanjeProfesoraSaPredmeta(selectedItem);
+		
 		listModel.remove(selectedIndex);
-		/*if(selectedIndex != -1) {
-			listModel.remove(selectedIndex);
-		}*/
 	}
-	
 }

@@ -28,7 +28,6 @@ public class AbstractActionDodavanjeProfesora extends AbstractAction{
 			d.setVisible(true);
 		}else {
 			JOptionPane.showMessageDialog(null, "Izaberite neki red u tabeli!","Gre\u0161ka",JOptionPane.ERROR_MESSAGE);
-			//System.out.println(ButtonColumnPredmet.selectedRow);
 		}
 	}
 

@@ -12,8 +12,6 @@ import javax.swing.JOptionPane;
 
 import controller.PredmetController;
 import controller.ProfesorController;
-import model.BazaPredmeta;
-import model.Predmet;
 
 /**
  * @author Sladjana Savkovic

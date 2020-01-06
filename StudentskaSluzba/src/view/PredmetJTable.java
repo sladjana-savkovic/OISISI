@@ -17,8 +17,6 @@ public class PredmetJTable extends JTable{
 	private static final long serialVersionUID = -9142591266690440511L;
 	public static TableRowSorter<AbstractTableModelPredmet> sorter;
 	
-	
-	
 	public PredmetJTable() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
@@ -43,8 +41,6 @@ public class PredmetJTable extends JTable{
 			ButtonColumnPredmet.selectedRow=sorter.convertRowIndexToModel(getSelectedRow());
 		} else {
 			c.setBackground(Color.WHITE);
-			/*ButtonColumnStudent.selectedRow=-1;
-			ButtonColumnProfesor.selectedRow=-1;*/
 		}
 		return c;
 	}

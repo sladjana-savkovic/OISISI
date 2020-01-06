@@ -51,8 +51,9 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 			fireEditingStopped();
 			if(PredmetController.getInstance().studentiNaPredmetu(selectedRow).size() == 0)
 				JOptionPane.showMessageDialog(null, "Lista studenata je prazna!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
-			else
+			else {
 				new SpisakStudenata(null,"Spisak studenata",true,selectedRow).setVisible(true);
+			}
 		}
 		});
 
@@ -61,7 +62,6 @@ public class ButtonColumnPredmet extends AbstractCellEditor
 
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-		// Drugom dugmetu se prosledjuje klik misa
 		return new SPPTablePanel(this.editorButton, 0, 0);
 	}
 

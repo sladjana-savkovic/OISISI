@@ -16,8 +16,7 @@ import controller.ProfesorController;
 public class ButtonColumnProfesor extends AbstractCellEditor
 	implements TableCellRenderer, TableCellEditor, MouseListener{
 	
-	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -5228511344153181343L;
 	public static int selectedRow=-1;
 	
 	// dugme koje se iscrtava
@@ -44,7 +43,7 @@ public class ButtonColumnProfesor extends AbstractCellEditor
 		this.editorButton = new JButton("Prikaži");
 
 		this.editorButton.addActionListener(new ActionListener() {
-		// mozemo odavde pozvati nas kontroler da se nesto smisleno odradi
+			
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			fireEditingStopped();
@@ -59,20 +58,16 @@ public class ButtonColumnProfesor extends AbstractCellEditor
 	}
 	@Override
 	public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-		// Drugom dugmetu se prosledjuje klik misa
 		return new SPPTablePanel(this.editorButton, 0, 0);
 	}
 
 	@Override
 	public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 			int row, int column) {
-		// U ovom primeru, sva dugmad ce imati isti ispis,
-		// za promenu ispisa mozemo koristi vrednost parametra value
 		return new SPPTablePanel(this.renderButton, 0, 0);
 	}
 	@Override
 	public Object getCellEditorValue() {
-		// u sustini ne radimo nikakvu izmenu, pa nam ova vrednosti nije preterano bitna
 		return null;
 	}
 

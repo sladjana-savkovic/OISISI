@@ -45,7 +45,8 @@ public class SpisakStudenata extends JDialog{
 		pnlObrisiNazad.add(bObrisi);
 		pnlObrisiNazad.add(bNazad);
 			
-		list = new JList<String>(listModel);		
+		list = new JList<String>(listModel);	
+		//Poziva se metoda za dodavanje studenata na spisak(listu) studenata koji slusaju neki predmet
 		dodajStudenteNaListu(row);
 		
 		JScrollPane scp = new JScrollPane(list);
@@ -83,10 +84,12 @@ public class SpisakStudenata extends JDialog{
 	public void obrisiStudenta() {
 		int selectedIndex = list.getSelectedIndex();
 		
+		//Student se brise sa liste studenata nekog predmeta
 		PredmetController.getInstance().obrisiStudentaSaPredmeta(ButtonColumnPredmet.selectedRow,selectedIndex);
-		if(selectedIndex != -1) {
-			listModel.remove(selectedIndex);
-		}
+		//Obrisan student ne slusa vise predmet sa kojeg je uklonjen
+		//implementacija
+		
+		listModel.remove(selectedIndex);
+		
 	}
-	
 }

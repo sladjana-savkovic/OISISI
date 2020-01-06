@@ -17,7 +17,6 @@ public class MyTab extends JPanel{
 	private String tabName;
 	static private StudentJTable tabelaStudenata = new StudentJTable();
 	static private ProfesorJTable tabelaProfesora = new ProfesorJTable();
-	//static private ProfesorJTable tabelaProfesora = ProfesorJTable.getInstance();
 	static private PredmetJTable tabelaPredmeta = new PredmetJTable();
 	
 	static public AbstractTableModelProfesor modelProfesor = (AbstractTableModelProfesor) tabelaProfesora.getModel();
@@ -34,6 +33,7 @@ public class MyTab extends JPanel{
 			JScrollPane scrollPane = new JScrollPane(tabelaStudenata);
 			add(scrollPane, BorderLayout.CENTER);
 			
+			azurirajPrikaz();
 			setVisible(true);
 		}
 		else if(tabName.equals("Profesori")) {
@@ -41,7 +41,6 @@ public class MyTab extends JPanel{
 			add(scrollPane, BorderLayout.CENTER);
 			
 			azurirajPrikaz();
-			
 			setVisible(true);
 		}
 		else {			
@@ -49,15 +48,13 @@ public class MyTab extends JPanel{
 			add(scrollPane, BorderLayout.CENTER);
 			
 			azurirajPrikaz();
-			
 			setVisible(true);			
 		}
 	}
+	//staticka metoda koja ce se pozivati iz klasa koje vrse promjenu podataka u tabelama
 	static public void azurirajPrikaz() {
-		
 		modelStudent.fireTableDataChanged();
 		modelProfesor.fireTableDataChanged();
-		modelPredmet.fireTableDataChanged();
-		
+		modelPredmet.fireTableDataChanged();	
 	}
 }
