@@ -46,7 +46,6 @@ public class StudentJTable extends JTable{
 			ButtonColumnStudent.selectedRow=sorter.convertRowIndexToModel(getSelectedRow());
 		} else {
 			c.setBackground(Color.WHITE);
-			ButtonColumnStudent.selectedRow = -1;
 		}
 		return c;
 	}
