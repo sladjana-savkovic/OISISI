@@ -10,11 +10,19 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
+import model.BazaPredmeta;
+import model.BazaProfesora;
+import model.BazaStudenata;
+
 /**
  * @author Sladjana Savkovic
  *
  */
 public class MyWindowListener implements WindowListener{
+	
+	public MyWindowListener() {
+		
+	}
 
 	@Override
 	public void windowActivated(WindowEvent arg0) {
@@ -36,7 +44,11 @@ public class MyWindowListener implements WindowListener{
 		if (code != JOptionPane.YES_OPTION) {
 			frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		} else {
-			//ovdje ce biti pozvan upis u fajl 
+			//upis u fajl 
+			/*BazaStudenata.getInstance().writeStudenti();
+			BazaPredmeta.getInstance().writePredmeti();
+			BazaProfesora.getInstance().writeProfesori();*/
+			
 			frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		}		
 	}
