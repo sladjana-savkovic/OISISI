@@ -151,4 +151,13 @@ public class PredmetController {
 				}
 		}
 	}
+	public void uklanjanjeStudentaIzListe(int row, String sifraPredmeta) {
+		Student s = BazaStudenata.getInstance().getStudentIndex(row);
+		
+		for(int i=0; i<BazaPredmeta.getInstance().getPredmeti().size(); i++) {
+			if(BazaPredmeta.getInstance().getPredmeti().get(i).getSifra().equals(sifraPredmeta)) {
+				BazaPredmeta.getInstance().getPredmeti().get(i).getSpisakStudenata().remove(s.getBrojIndeka());
+			}
+		}
+	}
 }
