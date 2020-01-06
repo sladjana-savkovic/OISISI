@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import controller.PredmetController;
+import controller.StudentController;
 
 /**
  * @author Sladjana Savkovic
@@ -83,11 +84,12 @@ public class SpisakStudenata extends JDialog{
 	}
 	public void obrisiStudenta() {
 		int selectedIndex = list.getSelectedIndex();
+		String selectedItem = list.getSelectedValue();
 		
 		//Student se brise sa liste studenata nekog predmeta
 		PredmetController.getInstance().obrisiStudentaSaPredmeta(ButtonColumnPredmet.selectedRow,selectedIndex);
 		//Obrisan student ne slusa vise predmet sa kojeg je uklonjen
-		//implementacija
+		StudentController.getInstance().uklanjanjePredmetaIzListe(ButtonColumnPredmet.selectedRow,selectedItem);
 		
 		listModel.remove(selectedIndex);
 		
