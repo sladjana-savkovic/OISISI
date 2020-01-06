@@ -26,6 +26,7 @@ import controller.PredmetController;
 import controller.StudentController;
 import model.BazaStudenata;
 import model.Predmet;
+import model.Student.statusStudenta;
 
 /**
  * @author Dragana Carapic
@@ -111,9 +112,12 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 					Predmet p = PredmetController.getInstance().vratiSelektovanPredmet(ButtonColumnPredmet.selectedRow);
 					String indStr = (String)indeksCM.getSelectedItem();
 					if(b.length!=0) {
-					PredmetController.getInstance().studentiNaPredmetu(ButtonColumnPredmet.selectedRow).add(indStr);
-					StudentController.getInstance().predmetiStudenataPoIndeksu(indStr).add(p.getSifra());
-					MyTab.azurirajPrikaz();
+					//moje staro rjesenje
+					//PredmetController.getInstance().studentiNaPredmetu(ButtonColumnPredmet.selectedRow).add(indStr);
+					//otkomentarisi posle dodavanje metode u predmet kontroler
+					//PredmetController.getInstance().dodajStudentaPredmetu(indStr,ButtonColumnPredmet.selectedRow);
+					StudentController.getInstance().dodajPredmetStudentu(indStr, p.getSifra());
+		
 					JOptionPane.showMessageDialog(DodavanjeStudentaNaPredmet.this, "Uspje\u0161no ste dodali studenta na predmet!");
 					dispose();
 					}else {
