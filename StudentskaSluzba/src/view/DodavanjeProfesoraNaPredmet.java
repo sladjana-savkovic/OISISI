@@ -70,6 +70,11 @@ public class DodavanjeProfesoraNaPredmet extends JDialog{
 				public void actionPerformed(ActionEvent e) {
 					String izabranaLicna = (String) licnaCM.getSelectedItem();
 					PredmetController.getInstance().dodajProfesoraNaPredmet(izabranaLicna, ButtonColumnPredmet.selectedRow);
+					
+					ButtonColumnStudent.selectedRow = -1;
+					ButtonColumnProfesor.selectedRow = -1;
+					ButtonColumnPredmet.selectedRow = -1;
+					
 					dispose();
 				}
 			});

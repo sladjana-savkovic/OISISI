@@ -39,6 +39,10 @@ public class AbstractActionBrisanjeProfesora extends AbstractAction{
 				ProfesorController.getInstance().uklanjanjePredmetaIzListe(ButtonColumnPredmet.selectedRow);
 				//Brisanje profesora sa predmeta
 				PredmetController.getInstance().obrisiProfesoraSaPredmeta(ButtonColumnPredmet.selectedRow);
+				
+				ButtonColumnStudent.selectedRow = -1;
+				ButtonColumnProfesor.selectedRow = -1;
+				ButtonColumnPredmet.selectedRow = -1;
 			}
 		}else {
 			JOptionPane.showMessageDialog(null, "Izaberite neki red u tabeli!","Gre\u0161ka",JOptionPane.ERROR_MESSAGE);

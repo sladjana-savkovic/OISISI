@@ -103,8 +103,7 @@ public class BazaProfesora implements Serializable{
 			return null;
 		}
 	}
-	@SuppressWarnings("unused")
-	private void writeProfesori(){
+	public void writeProfesori(){
 		try {
 			ObjectOutputStream out = new ObjectOutputStream((new FileOutputStream("data_files/profesori.dat")));
 			out.writeObject(profesori);
@@ -127,7 +126,7 @@ public class BazaProfesora implements Serializable{
 			return;
 		}
 	}
-	public void writeProfesoriIn(String f){
+	/*public void writeProfesoriIn(String f){
 		try {
 			ObjectOutputStream out = new ObjectOutputStream((new FileOutputStream(f)));
 			out.writeObject(profesori);
@@ -149,7 +148,7 @@ public class BazaProfesora implements Serializable{
 			e.printStackTrace();
 			return;
 		}
-	}
+	}*/
 	public void obrisiProfesora(String brLicneKarte) {
 		for (Profesor p : profesori) {
 			if (p.getBrLicneKarte().equals(brLicneKarte)) {

@@ -49,21 +49,25 @@ public class BazaPredmeta implements Serializable{
 		studenti1.add("RA1/2017");
 		studenti1.add("RA78/2015");
 		studenti1.add("RA25/2016");
-		studenti2.add("PSI14/2017");
-		studenti2.add("E3154/2015");
-		studenti2.add("MEH215/2016");
+		
+		studenti2.add("RA1/2017");
+		studenti2.add("RA78/2015");
+		studenti2.add("RA25/2016");
+		
 		studenti3.add("RA1/2017");
 		studenti3.add("RA78/2015");
 		studenti3.add("RA25/2016");
+		
 		studenti4.add("PSI14/2017");
 		studenti4.add("E3154/2015");
 		studenti4.add("MEH215/2016");
+		
 		studenti5.add("PSI14/2017");
 		studenti5.add("E3154/2015");
 		studenti5.add("MEH215/2016");
-		studenti6.add("RA1/2017");
-		studenti6.add("RA78/2015");
-		studenti6.add("RA25/2016");
+		
+		studenti6.add("RA44/2017");
+		
 		predmeti.add(new Predmet("E2123","Matematička analiza 1", "Nebojša Ralević", 1, 1, studenti1));
 		predmeti.add(new Predmet("E2485", "Arhitektura računara", "Miroslav Hajduković", 2, 1, studenti2));
 		predmeti.add(new Predmet("E2458", "Fizika", "Ljuba Budinski", 2, 1, studenti3));
@@ -110,8 +114,7 @@ public class BazaPredmeta implements Serializable{
 		}
 	}
 	
-	@SuppressWarnings("unused")
-	private void writePredmeti(){
+	public void writePredmeti(){
 		try {
 			ObjectOutputStream out = new ObjectOutputStream((new FileOutputStream("data_files/predmeti.dat")));
 			out.writeObject(predmeti);
@@ -134,7 +137,7 @@ public class BazaPredmeta implements Serializable{
 			return;
 		}
 	}
-	public void writePredmetiIn(String f){
+	/*public void writePredmetiIn(String f){
 		try {
 			ObjectOutputStream out = new ObjectOutputStream((new FileOutputStream(f)));
 			out.writeObject(predmeti);
@@ -156,7 +159,7 @@ public class BazaPredmeta implements Serializable{
 			e.printStackTrace();
 			return;
 		}
-	}
+	}*/
 	public void obrisiPredmet(String sifPredmeta) {
 		for (Predmet p : predmeti) {
 			if (p.getSifra().equals(sifPredmeta)) {

@@ -7,8 +7,10 @@ import java.util.ArrayList;
 
 import model.BazaPredmeta;
 import model.BazaProfesora;
+import model.BazaStudenata;
 import model.Predmet;
 import model.Profesor;
+import model.Student;
 import view.MyTab;
 
 /**
@@ -116,6 +118,7 @@ public class PredmetController {
 		Profesor p = BazaProfesora.getInstance().getProfesorIndex(rowSelectedIndex);
 		
 		//Nakon brisanja profesora, predmeti na kojima je on predavao sada nemaju profesora
+		
 		/*for(int i=0; i<BazaPredmeta.getInstance().getPredmeti().size(); i++)
 			if(BazaPredmeta.getInstance().getPredmeti().get(i).getPredmetniProfesor().contains(p.getIme()) &&
 			   BazaPredmeta.getInstance().getPredmeti().get(i).getPredmetniProfesor().contains(p.getPrezime())) {
@@ -133,4 +136,19 @@ public class PredmetController {
 	/*public boolean provjeriVelicinuListe() {
 		return BazaPredmeta.getInstance().getPredmeti().isEmpty();
 	}*/
+	public void dodajStudentaPredmetu(String indeks, int row) {
+		studentiNaPredmetu(row).add(indeks);
+	}
+	public void uklanjanjeStudentaSaSvakogPredmeta(int row){
+		
+		//u spisku predmeta studenta se nalaze oni kojima treba ukloniti studenta sa tim brojem indeksa
+		Student s = BazaStudenata.getInstance().getStudentIndex(row);
+		
+		for(int i=0; i<s.getSpisakPredmeta().size(); i++) 
+			for(int j=0; j<BazaPredmeta.getInstance().getPredmeti().size(); j++) {
+				if(BazaPredmeta.getInstance().getPredmeti().get(j).getSifra().equals(s.getSpisakPredmeta().get(i))) {
+					BazaPredmeta.getInstance().getPredmeti().get(j).getSpisakStudenata().remove(s.getBrojIndeka());
+				}
+		}
+	}
 }
