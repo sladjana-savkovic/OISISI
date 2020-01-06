@@ -24,6 +24,7 @@ public class PretragaPredmeta{
 		predmetniProfesor="";
 		
 		int rezultatPretrage = pretrazi(pretraga);
+		//Ako uneseni podaci nisu dobri,tj ne postoji ni jedan naziv polja po kojem bi se pretraga izvrsila
 		if(rezultatPretrage == 0 && !pretraga.equals("")) {
 			JOptionPane.showMessageDialog(null, "Pogresan unos za pretragu!","Greška",JOptionPane.ERROR_MESSAGE);
 		}
@@ -36,11 +37,10 @@ public class PretragaPredmeta{
 				else if(!predmetniProfesor.equals(""))
 					sorter.setRowFilter(RowFilter.regexFilter(predmetniProfesor,4));
 			}
-		}
-				
+		}		
 	}
 	public int pretrazi(String pretraga) {
-		int brojac=0;
+		int brojac=0; //brojac koji cuva informaciju koliko podataka za pretragu je korisnik unio
 		
 		String[] podaci=new String[3];
 		podaci=pretraga.split(";");

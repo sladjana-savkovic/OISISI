@@ -14,6 +14,10 @@ import javax.swing.*;
 public class MainFrame extends JFrame{
 	
 	private static final long serialVersionUID = 5562711743760452740L;
+	private Toolbar toolbar;
+	private TabbedPane tabbedPane;
+	private MenuBar menu;
+	private StatusBar sbar;
 	
 	private static MainFrame instance = null;
 
@@ -53,22 +57,20 @@ public class MainFrame extends JFrame{
 		
 	}
 	public void createToolbar() {
-		Toolbar toolbar = new Toolbar();
-		// dodajem Toolbar u moj Frame, klasa BorderLayout se odnosi na rad sa prostorim rasporedom
-		//Toolbar postavljam na vrh glavne forme
+		toolbar = new Toolbar();
 		add(toolbar, BorderLayout.NORTH);
 	}
 	public void createTabbedPane() {
-		TabbedPane tabbedPane = new TabbedPane();
+		tabbedPane = new TabbedPane();
 		add(tabbedPane,BorderLayout.CENTER);
 	}
 
 	public void createMenuBar() {
-		MenuBar menu = new MenuBar();
+		menu = new MenuBar();
 		this.setJMenuBar(menu);
 	}
 	public void createStatusBar() {
-		StatusBar sbar=new StatusBar();
+		sbar=new StatusBar();
 		add(sbar,BorderLayout.SOUTH);
 	}
 }
