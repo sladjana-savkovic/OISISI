@@ -328,9 +328,12 @@ public class IzmjenaProfesora extends JDialog{
 				
 					
 					boolean izmjenjen = ProfesorController.getInstance().izmjeniProfesora(ButtonColumnProfesor.selectedRow, p, r);
-					if(izmjenjen==true){
+					if(izmjenjen){
 					JOptionPane.showMessageDialog(IzmjenaProfesora.this, "Uspje\u0161no ste izmijenili profesora!");
-						dispose();
+					ButtonColumnStudent.selectedRow=-1;
+					ButtonColumnPredmet.selectedRow=-1;
+					ButtonColumnProfesor.selectedRow=-1;
+					dispose();
 					}else{
 					JOptionPane.showMessageDialog(IzmjenaProfesora.this, "Neuspje\u0161na izmjena! Takav broj li\u010dne karte ve\u0107 postoji!");
 					txtBrKar.setText("");
