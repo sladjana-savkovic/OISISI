@@ -101,12 +101,22 @@ private static ProfesorController instance = null;
 		String licnaPredmetnogProfesora = "";
 		boolean flag=true;
 		
-		if(!predmetniProfesor.equals("")){
+		/*Uzmem sifru predmeta, nadjem profesora koji su svom spisku predmeta ima taj predmet i dobijem njegovu licnu*/
+		
+		String sifraPredmeta = BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex).getSifra();
+		
+		if(!predmetniProfesor.equals("")) {
+			for(int i=0; i<BazaProfesora.getInstance().getProfesori().size(); i++)
+				if(BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().contains(sifraPredmeta))
+					licnaPredmetnogProfesora = BazaProfesora.getInstance().getProfesori().get(i).getBrLicneKarte();
+		}
+				
+		/*if(!predmetniProfesor.equals("")){
 			for(int i=0; i<BazaProfesora.getInstance().getProfesori().size(); i++)
 				if(predmetniProfesor.contains(BazaProfesora.getInstance().getProfesori().get(i).getIme()) && 
 						predmetniProfesor.contains(BazaProfesora.getInstance().getProfesori().get(i).getPrezime()))
 							licnaPredmetnogProfesora = BazaProfesora.getInstance().getProfesori().get(i).getBrLicneKarte();
-		}
+		}*/ //NIJE DOBRO
 		
 		if(licnaPredmetnogProfesora.equals("")) {
 			flag=false;
@@ -134,12 +144,7 @@ private static ProfesorController instance = null;
 			return licneKarte;
 		}	
 	}
-	/*public boolean provjeriVelicinuListe() {
-		return BazaProfesora.getInstance().getProfesori().isEmpty();
-	}*/
-	
 	public void uklanjanjePredmetaIzListe(int rowSelectedIndex) {
-		//rowSelectedIndex predstavlja selektovan red predmeta u tabeli
 		
 		Predmet p = BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex);
 		//Da li obrisali predmet pomocu napisane metode, treba mi informacija o indeksu profesora kojem brisem predmet i o indeksu predmeta
