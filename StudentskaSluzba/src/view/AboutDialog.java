@@ -64,7 +64,7 @@ public class AboutDialog extends JDialog{
 					"20.01.1997. u Banja Luci, BiH, RS."+"\n"+
 					"Osnovnu \u0161kolu je zavr\u0161ila 2011."+"\n"+
 					"u Prnjavoru, nakon \u010dega je upisala"+"\n"+
-					"Gimanziju, ra\u010dunarski smijer isto"+"\n"+
+					"Gimanziju, ra\u010dunarski smjer isto"+"\n"+
 					"u Prnjavoru.Po zavr\u0161etku gimnazije"+"\n"+
 					"Fakultet tehni\u010dkih nauka u Novom"+"\n"+
 					"Sadu je upisala 2017. "
@@ -86,7 +86,7 @@ public class AboutDialog extends JDialog{
 					"13.08.1998. u U\u017eicu, RS."+"\n"+
 					"Osnovnu \u0161kolu je zavr\u0160ila 2012."+"\n"+
 					"u Vi\u0161egradu, nakon \u010dega je upisala"+"\n"+
-					"Gimanziju, op\u0161ti smijer tako\u0111e"+"\n"+
+					"Gimanziju, op\u0161ti smjer tako\u0111e"+"\n"+
 					"u Vi\u0161egradu.Po zavr\u0161etku gimnazije"+"\n"+
 					"Fakultet tehni\u010dkih nauka u Novom"+"\n"+
 					"Sadu je upisala 2017. "
