@@ -160,4 +160,22 @@ public class PredmetController {
 			}
 		}
 	}
+	//Metoda koja ce se pozivati iz klase Izmjena studenta nakon if(izmjenjen)
+	public void izmjenaListeStudenata(String stariIndeksStudenta, String noviIndeksStudenta) {
+		
+		for(int i=0; i<BazaPredmeta.getInstance().getPredmeti().size(); i++)
+			for(int j=0; j<BazaPredmeta.getInstance().getPredmeti().get(i).getSpisakStudenata().size(); j++)
+				if(BazaPredmeta.getInstance().getPredmeti().get(i).getSpisakStudenata().get(j).equals(stariIndeksStudenta)) {
+					BazaPredmeta.getInstance().getPredmeti().get(i).getSpisakStudenata().remove(stariIndeksStudenta);
+					BazaPredmeta.getInstance().getPredmeti().get(i).getSpisakStudenata().add(j, noviIndeksStudenta);
+				}
+	}
+	//Metoda koja ce se pozivati iz klase Izmjena profesora i proslijediti stare podatke profesora i nove podatke profesora
+	public void izmjenaPredmetnogProfesora(Profesor stariPodaci, Profesor noviPodaci) {
+		
+		for(int i=0; i<stariPodaci.getSpisakPredmeta().size(); i++)
+			for(int j=0; j<BazaPredmeta.getInstance().getPredmeti().size(); j++) 
+				if(BazaPredmeta.getInstance().getPredmeti().get(j).getSifra().equals(stariPodaci.getSpisakPredmeta().get(i)))
+					BazaPredmeta.getInstance().getPredmeti().get(j).setPredmetniProfesor(stariPodaci.getIme()+" "+stariPodaci.getPrezime());
+	}
 }
