@@ -137,29 +137,6 @@ public class BazaPredmeta implements Serializable{
 			return;
 		}
 	}
-	/*public void writePredmetiIn(String f){
-		try {
-			ObjectOutputStream out = new ObjectOutputStream((new FileOutputStream(f)));
-			out.writeObject(predmeti);
-		    out.close();
-		} catch (IOException e) {
-		      e.printStackTrace();
-	    }
-	}
-	@SuppressWarnings("unchecked")
-	public void readPredmetiFrom(String f){
-		try {
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(f));
-			predmeti = (ArrayList<Predmet>) in.readObject();
-			in.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
-		} catch(ClassNotFoundException e) {
-			e.printStackTrace();
-			return;
-		}
-	}*/
 	public void obrisiPredmet(String sifPredmeta) {
 		for (Predmet p : predmeti) {
 			if (p.getSifra().equals(sifPredmeta)) {

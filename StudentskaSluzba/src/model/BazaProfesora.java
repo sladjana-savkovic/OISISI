@@ -126,29 +126,6 @@ public class BazaProfesora implements Serializable{
 			return;
 		}
 	}
-	/*public void writeProfesoriIn(String f){
-		try {
-			ObjectOutputStream out = new ObjectOutputStream((new FileOutputStream(f)));
-			out.writeObject(profesori);
-		    out.close();
-		} catch (IOException e) {
-		      e.printStackTrace();
-	    }
-	}
-	@SuppressWarnings("unchecked")
-	public void readProfesoriFrom(String f){
-		try {
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(f));
-			profesori = (ArrayList<Profesor>) in.readObject();
-			in.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-			return;
-		} catch(ClassNotFoundException e) {
-			e.printStackTrace();
-			return;
-		}
-	}*/
 	public void obrisiProfesora(String brLicneKarte) {
 		for (Profesor p : profesori) {
 			if (p.getBrLicneKarte().equals(brLicneKarte)) {
