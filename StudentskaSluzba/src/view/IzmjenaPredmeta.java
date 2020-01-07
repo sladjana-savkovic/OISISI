@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.PredmetController;
+import controller.ProfesorController;
 import model.Predmet;
 
 /**
@@ -280,10 +281,14 @@ public class IzmjenaPredmeta extends JDialog{
 				
 				ArrayList<String> studenti = new ArrayList<String>();
 				Predmet p = new Predmet(sifra,naziv,profesor,semestar,godina,studenti);
+				String staraSifra = t.getSifra();
 						
 				boolean izmjenjen = PredmetController.getInstance().izmjeniPredmet(ButtonColumnPredmet.selectedRow, t, p);
 				if(izmjenjen){
 					JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Uspje\u0161no ste izmijenili predmet!");
+					//nakon izmjene u tabeli, predmet treba da se promijeni i na svim listama na kojima se nalazi
+					ProfesorController.getInstance().izmjenaListePredmeta(staraSifra,p.getSifra());
+					//ovdje ce biti pozvan i student kontroler
 					
 					//Nakon uspjesne izmjene polja vise nisu selektovana
 					ButtonColumnStudent.selectedRow = -1;
