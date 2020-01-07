@@ -20,7 +20,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.JTextArea;
 
 /**
  * @author Dragana Carapic
@@ -31,7 +31,7 @@ public class AboutDialog extends JDialog{
 	private static final long serialVersionUID = 2566945927276159128L;
 
 	private JLabel l1,l2;
-	private JTextField t1,t2;
+	private JTextArea a1, a2;
 	
 	public AboutDialog(JFrame parent, String title, boolean modal) {
 		super(parent,title,modal);
@@ -52,32 +52,51 @@ public class AboutDialog extends JDialog{
 			panelCenter.add(Box.createVerticalStrut(30));
 			panelCenter.add(Box.createGlue());
 			
-			Dimension dim = new Dimension(200, 125);
+			Dimension dim = new Dimension(210, 130);
 			JPanel panel1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			
 			l1 = new JLabel();
 			Icon icon1 = new ImageIcon("logo_images/sladjana.jpg");
 			l1.setIcon(icon1);
-			t1 = new JTextField();
-			t1.setPreferredSize(dim);
-			t1.setText("Sladjana Savkovic");
-			t1.setEditable(false);
+			
+			a1= new JTextArea(
+					"Sla\u0111ana Savkovi\u0107 je ro\u0111ena"+"\n"+
+					"20.01.1997. u Banja Luci, BiH, RS."+"\n"+
+					"Osnovnu \u0161kolu je zavr\u0161ila 2011."+"\n"+
+					"u Prnjavoru, nakon \u010dega je upisala"+"\n"+
+					"Gimanziju, ra\u010dunarski smijer isto"+"\n"+
+					"u Prnjavoru.Po zavr\u0161etku gimnazije"+"\n"+
+					"Fakultet tehni\u010dkih nauka u Novom"+"\n"+
+					"Sadu je upisala 2017. "
+					);
+			a1.setPreferredSize(dim);
+			a1.setBackground(getBackground());
+			a1.setEditable(false);
 			
 			panel1.add(l1);
-			panel1.add(t1);
+			panel1.add(a1);
 			
 			JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			l2 = new JLabel();
 			Icon icon2 = new ImageIcon("logo_images/dragana.jpg");	
 			l2.setIcon(icon2);
-			t2 = new JTextField();
-			t2.setPreferredSize(dim);
-			t2.setText("Dragana Carapic");
-			t2.setEditable(false);
-			
+
+			a2= new JTextArea(
+					"Dragana \u010carapi\u0107 je ro\u0111ena"+"\n"+
+					"13.08.1998. u U\u017eicu, RS."+"\n"+
+					"Osnovnu \u0161kolu je zavr\u0160ila 2012."+"\n"+
+					"u Vi\u0161egradu, nakon \u010dega je upisala"+"\n"+
+					"Gimanziju, op\u0161ti smijer tako\u0111e"+"\n"+
+					"u Vi\u0161egradu.Po zavr\u0161etku gimnazije"+"\n"+
+					"Fakultet tehni\u010dkih nauka u Novom"+"\n"+
+					"Sadu je upisala 2017. "
+					);
+			a2.setPreferredSize(dim);
+			a2.setBackground(getBackground());
+			a2.setEditable(false);
+	
 			panel2.add(l2);
-			panel2.add(t2);
-			
+			panel2.add(a2);
 			
 			panelCenter.add(panel1);
 			panelCenter.add(panel2);
