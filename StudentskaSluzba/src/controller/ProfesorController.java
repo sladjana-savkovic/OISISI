@@ -160,4 +160,14 @@ private static ProfesorController instance = null;
 		if((indeksProfesora != -1) && (indeksPredmeta != -1))
 			obrisiPredmetProfesora(indeksProfesora, indeksPredmeta);
 	}
+	public void izmjenaListePredmeta(String staraSifraPredmeta, String novaSifraPredmeta) {
+		
+		for(int i=0; i<BazaProfesora.getInstance().getProfesori().size(); i++)
+			for(int j=0; j<BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().size(); j++) {
+				if(BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().get(j).equals(staraSifraPredmeta)) {
+					BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().remove(staraSifraPredmeta);
+					BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().add(j, novaSifraPredmeta);
+				}
+			}
+	}
 }
