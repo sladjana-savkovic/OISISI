@@ -281,18 +281,26 @@ public class IzmjenaPredmeta extends JDialog{
 				String sem = (String)CBsemestar	.getSelectedItem();
 				int semestar=Integer.parseInt(sem);
 				
+				if (((godina==1)&&(semestar>2)) || ((godina==2)&&(semestar<3 || semestar>4)) || ((godina==3)&&(semestar<5 || semestar>6)) || ((godina==4)&&(semestar<7))) {
+					JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Izabrali ste pogre\u0161an semestar!",
+							"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+					CBsemestar.requestFocus();
+					return;
+				}
+				
 				ArrayList<String> studenti = new ArrayList<String>();
 				Profesor profesor = ProfesorController.getInstance().getProfesorPrimaryKey(licnaProfesora);
 				Predmet p = new Predmet(sifra,naziv,profesor,semestar,godina,studenti);
 				String staraSifra = t.getSifra();
-						
+				
+				//Poziv metode za izmjenu i rezultat uspjesnosti izmjene koji cuvam u boolean promjenljivoj
 				boolean izmjenjen = PredmetController.getInstance().izmjeniPredmet(ButtonColumnPredmet.selectedRow, t, p);
+				
 				if(izmjenjen){
 					JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Uspje\u0161no ste izmijenili predmet!");
 					//nakon izmjene u tabeli, predmet treba da se promijeni i na svim listama na kojima se nalazi
 					ProfesorController.getInstance().izmjenaListePredmeta(staraSifra,p.getSifra());
 					StudentController.getInstance().izmjenaListePredmeta(staraSifra, p.getSifra());
-					
 					
 					//Nakon uspjesne izmjene polja vise nisu selektovana
 					ButtonColumnStudent.selectedRow = -1;
