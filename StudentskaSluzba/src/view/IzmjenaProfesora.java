@@ -50,16 +50,16 @@ public class IzmjenaProfesora extends JDialog{
 	
 	public IzmjenaProfesora(JFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
-		initProf();
+		initProf(parent);
 	}
 	
-	public void initProf() {
+	public void initProf(JFrame parent) {
 		try {
 			Toolkit kit=Toolkit.getDefaultToolkit();
 			setSize(400,400);
 			Image img=kit.getImage("logo_images/ftn.png");
 			setIconImage(img);
-			setLocationRelativeTo(null);
+			setLocationRelativeTo(parent);
 			
 			createPanelCenter();
 		
@@ -360,6 +360,13 @@ public class IzmjenaProfesora extends JDialog{
 				if(!(pattern3.matcher(telStr)).matches()) {
 					JOptionPane.showMessageDialog(IzmjenaProfesora.this, "Dozvoljen je samo unos telefona u formatu XXX/xxx-xxx!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
 					txtTelefon.requestFocus();
+					return;
+				}
+				
+				Pattern pattern4 = Pattern.compile("[0-9]{2}\\.[0-9]{2}\\.[0-9]{4}\\.");
+				if(!(pattern4.matcher(datStr)).matches()) {
+					JOptionPane.showMessageDialog(IzmjenaProfesora.this, "Dozvoljen je unos samo datuma rodjenja u fromatu dd.MM.yyyy.!");	
+					txtDatum.requestFocus();
 					return;
 				}
 				
