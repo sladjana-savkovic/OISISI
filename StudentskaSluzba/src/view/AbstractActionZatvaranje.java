@@ -10,6 +10,10 @@ import javax.swing.WindowConstants;
 
 import com.sun.glass.events.KeyEvent;
 
+import model.BazaPredmeta;
+import model.BazaProfesora;
+import model.BazaStudenata;
+
 /**
  * @author Dragana Carapic
  *
@@ -33,9 +37,10 @@ public class AbstractActionZatvaranje extends AbstractAction{
 			MainFrame.getInstance().setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		}else {
 			MainFrame.getInstance().dispose();
-			/*BazaStudenata.getInstance().writeStudenti();
+			BazaStudenata.getInstance().writeStudenti();
 			BazaPredmeta.getInstance().writePredmeti();
-			BazaProfesora.getInstance().writeProfesori();*/
+			BazaProfesora.getInstance().writeProfesori();
+			
 			System.exit(0);
 		}
 	}
