@@ -26,7 +26,7 @@ public class AbstractActionHelp extends AbstractAction
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		HelpDialog help = new HelpDialog(null, "Pomo\u0107", true);
+		HelpDialog help = new HelpDialog(MainFrame.getInstance(), "Pomo\u0107", true);
 		help.setVisible(true);
 	}
 	
