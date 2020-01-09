@@ -81,6 +81,7 @@ public class StudentController {
 		
 		if(listSelectedIndex != -1) {
 			BazaStudenata.getInstance().obrisiPredmet(student.getBrojIndeka(), listSelectedIndex);
+			MyTab.azurirajPrikaz();
 		}else {
 			return;
 		}
