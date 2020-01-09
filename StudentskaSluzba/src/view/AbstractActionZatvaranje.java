@@ -31,7 +31,7 @@ public class AbstractActionZatvaranje extends AbstractAction{
 	public void actionPerformed(ActionEvent arg0) {
 	Object[] options = {"Da","Ne"};
 		//ImageIcon icon = new ImageIcon("logo_images/g.jpg");
-		int input0 = JOptionPane.showOptionDialog(null, "Da li ste sigurni da \u017eelite da zatvorite aplikaciju?","Zatvaranje aplikacije",
+		int input0 = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da \u017eelite da zatvorite aplikaciju?","Zatvaranje aplikacije",
 				JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,options[1]);
 		if(input0!=JOptionPane.YES_OPTION) {
 			MainFrame.getInstance().setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
