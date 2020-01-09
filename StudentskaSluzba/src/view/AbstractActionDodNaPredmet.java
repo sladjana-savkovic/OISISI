@@ -26,10 +26,10 @@ public class AbstractActionDodNaPredmet extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(ButtonColumnPredmet.selectedRow!=-1) {
-			DodavanjeStudentaNaPredmet d = new DodavanjeStudentaNaPredmet(null, "Predmet-dodavanje studenta", true);
+			DodavanjeStudentaNaPredmet d = new DodavanjeStudentaNaPredmet(MainFrame.getInstance(), "Predmet-dodavanje studenta", true);
 			d.setVisible(true);
 		}else  if(ButtonColumnPredmet.selectedRow==-1) {
-			JOptionPane.showMessageDialog(null, "Izaberite neki red u tabeli!","Greška",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izaberite neki red u tabeli!","Greška",JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
