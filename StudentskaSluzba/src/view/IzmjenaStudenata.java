@@ -413,7 +413,7 @@ public class IzmjenaStudenata extends JDialog{
 					god=1;
 				}else if(godStr.contains("druga")) {
 					god=2;
-				}else if(godStr.contains("tre\\u0107a")) {
+				}else if(godStr.contains("tre\u0107a")) {
 					god=3;
 				}else {
 					god=4;
