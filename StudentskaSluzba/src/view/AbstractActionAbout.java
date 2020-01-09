@@ -27,7 +27,7 @@ public class AbstractActionAbout extends AbstractAction{
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		AboutDialog ad = new AboutDialog(null, "O nama", true);
+		AboutDialog ad = new AboutDialog(MainFrame.getInstance(), "O nama", true);
 		ad.setVisible(true);
 	}
 
