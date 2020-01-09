@@ -31,19 +31,19 @@ public class AbstractActionIzmjena extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if(TabbedPane.activeTab == 0 && ButtonColumnStudent.selectedRow != -1) {
-			IzmjenaStudenata i1 = new IzmjenaStudenata(null, "Izmjena studenta", true);
+			IzmjenaStudenata i1 = new IzmjenaStudenata(MainFrame.getInstance(), "Izmjena studenta", true);
 			i1.setVisible(true);
 			
 		}else if(TabbedPane.activeTab == 1 && ButtonColumnProfesor.selectedRow != -1) {
-			IzmjenaProfesora i2 = new IzmjenaProfesora(null, "Izmjena profesora", true);
+			IzmjenaProfesora i2 = new IzmjenaProfesora(MainFrame.getInstance(), "Izmjena profesora", true);
 			i2.setVisible(true);
 			
 		}else if(TabbedPane.activeTab == 2 && ButtonColumnPredmet.selectedRow != -1){
-			IzmjenaPredmeta i3 = new IzmjenaPredmeta(null, "Izmjena predmeta", true);
+			IzmjenaPredmeta i3 = new IzmjenaPredmeta(MainFrame.getInstance(), "Izmjena predmeta", true);
 			i3.setVisible(true);
 			
 		}else if(ButtonColumnStudent.selectedRow == -1 || ButtonColumnProfesor.selectedRow == -1 || ButtonColumnPredmet.selectedRow == -1) {
-			JOptionPane.showMessageDialog(null, "Izaberite neki red u tabeli!","Greška",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izaberite neki red u tabeli!","Greška",JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
