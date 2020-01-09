@@ -26,6 +26,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import controller.PredmetController;
 import controller.ProfesorController;
 import model.Profesor;
 
@@ -42,7 +43,7 @@ public class IzmjenaProfesora extends JDialog{
 	private JPanel panelIme,panelPrezime,panelDatum,panelAdresa,panelTelefon,panelEmail,panelAdrKan,panelBrKar,panelTitula,panelZvanje,panelBottom,panelCenter;
 	private JLabel ime,prezime,datum,adresa,telefon,email,adresaKan,brLicKar,titula;
 	private JComboBox<String> titulaCM;
-	private JRadioButton redovan, vanredan;
+	private JRadioButton redovan, vanredan, docent;
 	private JTextField txtIme,txtPrezime,txtDatum,txtAdresa,txtTelefon,txtAdrKan,txtEmail,txtBrKar;
 	private JButton potvrdi,odustani;
 	
@@ -209,7 +210,7 @@ public class IzmjenaProfesora extends JDialog{
 	
 	private void setTitula() {
 		panelTitula = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		String[] a = new String[] {"doktor", "docent"}; 
+		String[] a = new String[] {"Prof. dr", "Dr"}; 
 		titula = new JLabel();
 		titula.setText("Titula profesora*");
 		titula.setPreferredSize(dim);
@@ -223,14 +224,18 @@ public class IzmjenaProfesora extends JDialog{
 		panelZvanje= new JPanel(new FlowLayout(FlowLayout.LEFT));
 		redovan = new JRadioButton("Redovni profesor");
 		vanredan = new JRadioButton("Vanredni profesor");
+		docent =  new JRadioButton("Docent");
 		redovan.setSelected(true);
 		vanredan.setSelected(false);
+		docent.setSelected(false);
 		
 		ButtonGroup btnGroup1 = new ButtonGroup();
 		btnGroup1.add(redovan);
 		btnGroup1.add(vanredan);
+		btnGroup1.add(docent);
 		panelZvanje.add(redovan);
 		panelZvanje.add(vanredan);
+		panelZvanje.add(docent);
 	}
 	
 	private void createPanelBottom() {
@@ -344,12 +349,19 @@ public class IzmjenaProfesora extends JDialog{
 					return;
 				}
 				
-				Pattern pattern2 = Pattern.compile("[0-9]{3}[a-z]{2}[0-9]{3}");
+				Pattern pattern2 = Pattern.compile("[0-9]{9}");
 				if(!(pattern2.matcher(bkStr)).matches()) {
-					JOptionPane.showMessageDialog(IzmjenaProfesora.this, "Dozvoljen je samo unos licne katre u formatu YYYxxYYY!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(IzmjenaProfesora.this, "Dozvoljen je samo unos li\u010dne karte od 9 cifara!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
 					txtBrKar.requestFocus();
 					return;
-				}	
+				}
+				
+				Pattern pattern3 = Pattern.compile("[0-9]{3}\\/[0-9]{3,4}\\-[0-9]{3}");
+				if(!(pattern3.matcher(telStr)).matches()) {
+					JOptionPane.showMessageDialog(IzmjenaProfesora.this, "Dozvoljen je samo unos telefona u formatu XXX/xxx-xxx!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+					txtTelefon.requestFocus();
+					return;
+				}
 				
 				String titulaStr = (String)titulaCM.getSelectedItem();
 				
@@ -369,6 +381,8 @@ public class IzmjenaProfesora extends JDialog{
 				boolean izmjenjen = ProfesorController.getInstance().izmjeniProfesora(ButtonColumnProfesor.selectedRow, p, r);
 				if(izmjenjen){
 				JOptionPane.showMessageDialog(IzmjenaProfesora.this, "Uspje\u0161no ste izmijenili profesora!");
+				PredmetController.getInstance().izmjenaPredmetnogProfesora(p, r);
+				
 				ButtonColumnStudent.selectedRow=-1;
 				ButtonColumnPredmet.selectedRow=-1;
 				ButtonColumnProfesor.selectedRow=-1;
