@@ -53,16 +53,16 @@ public class DodavanjeStudenata extends JDialog{
 	
 	public DodavanjeStudenata(JFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
-		initStud();
+		initStud(parent);
 	}
 	
-	public void initStud() {
+	public void initStud(JFrame parent) {
 		try {
 			Toolkit kit=Toolkit.getDefaultToolkit();
 			setSize(400,400);
 			Image img=kit.getImage("logo_images/ftn.png");
 			setIconImage(img);
-			setLocationRelativeTo(null);
+			setLocationRelativeTo(parent);
 			
 			createPanelCenter();
 			
@@ -224,7 +224,7 @@ public class DodavanjeStudenata extends JDialog{
 		txtUpis.setPreferredSize(dim);
 		txtUpis.setName("txtUpis");
 		
-		DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.US);
+		DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy.", Locale.US);
 		Calendar todaysDate = Calendar.getInstance();
 		txtUpis.setText(dateFormat.format(todaysDate.getTime()));
 		
@@ -338,6 +338,13 @@ public class DodavanjeStudenata extends JDialog{
 					txtProsjek.requestFocus();
 					return;
 				}
+				
+				String upisStr = txtUpis.getText();
+				if(upisStr.equals("")) {
+					JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Morate unijeti datum upisa studenta!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
+					txtUpis.requestFocus();
+					return;
+				}
 				//samo unos slova dozvonjen
 				Pattern pattern1 = Pattern.compile("[a-zA-Z \\u0160\\u0161\\u0106\\u0107\\u017d\\u017e\\u010c\\u010d\\u0110\\u0111\\u0020]*", Pattern.UNICODE_CHARACTER_CLASS);
 				if(!(pattern1.matcher(imeStr)).matches()) {
@@ -370,13 +377,25 @@ public class DodavanjeStudenata extends JDialog{
 				
 				Pattern pattern4 = Pattern.compile("[0-9]+.[0-9]+");
 				if(!(pattern4.matcher(proStr)).matches()) {
-				JOptionPane.showMessageDialog(null, "Dozvoljen je unos samo brojeva za prosjek studenta u fromatu 0.0!");
+				JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je unos samo brojeva za prosjek studenta u fromatu 0.0!");
 				txtProsjek.setText("");
 				txtProsjek.requestFocus();
 				return;
 				}
 				
-
+				Pattern pattern5 = Pattern.compile("[0-9]{2}\\.[0-9]{2}\\.[0-9]{4}\\.");
+				if(!(pattern5.matcher(datStr)).matches()) {
+					JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je unos samo datuma rodjenja u fromatu dd.MM.yyyy.!");	
+					txtDatum.requestFocus();
+					return;
+				}
+				
+				if(!(pattern5.matcher(upisStr)).matches()) {
+					JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je unos samo datuma rodjenja u fromatu dd.MM.yyyy.!");	
+					txtDatum.requestFocus();
+					return;
+				}
+				
 				String godStr = (String)godinaCM.getSelectedItem();
 				int god;
 				if(godStr.contains("prva")) {
@@ -397,7 +416,7 @@ public class DodavanjeStudenata extends JDialog{
 				}
 				
 				double pros=Double.parseDouble(txtProsjek.getText());
-				String upisStr = txtUpis.getText();
+	
 				ArrayList<String> predmeti = new ArrayList<String>();
 		Student t = new Student(imeStr,przStr,datStr,adrStr,telStr,emStr,indStr,upisStr,god,pros,statusStr,predmeti);
 				
