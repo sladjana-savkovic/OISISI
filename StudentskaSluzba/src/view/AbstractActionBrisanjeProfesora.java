@@ -32,20 +32,25 @@ public class AbstractActionBrisanjeProfesora extends AbstractAction{
 		ImageIcon icon = new ImageIcon("logo_images/garbage.jpg");
 		
 		if((TabbedPane.activeTab == 2) && (ButtonColumnPredmet.selectedRow != -1)) {
-			int input1 = JOptionPane.showOptionDialog(null, "Da li ste sigurni da želite da obrišete profesora sa predmeta?","Brisanje profesora sa predmeta",
+			if(PredmetController.getInstance().vratiSelektovanPredmet(ButtonColumnPredmet.selectedRow).getPredmetniProfesor() == null) {
+				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Ne postoji profesor na predmetu!","Gre\u0161ka",JOptionPane.ERROR_MESSAGE);
+			}else {
+				int input1 = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete profesora sa predmeta?","Brisanje profesora sa predmeta",
 					JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,icon,options,options[1]);
-			if(input1 == JOptionPane.NO_OPTION) {
-				//Brisanje predmeta sa spiska predmeta za odredjenog profesora
-				ProfesorController.getInstance().uklanjanjePredmetaIzListe(ButtonColumnPredmet.selectedRow);
-				//Brisanje profesora sa predmeta
-				PredmetController.getInstance().obrisiProfesoraSaPredmeta(ButtonColumnPredmet.selectedRow);
 				
-				ButtonColumnStudent.selectedRow = -1;
-				ButtonColumnProfesor.selectedRow = -1;
-				ButtonColumnPredmet.selectedRow = -1;
+				if(input1 == JOptionPane.NO_OPTION) {
+					//Brisanje predmeta sa spiska predmeta za odredjenog profesora
+					ProfesorController.getInstance().uklanjanjePredmetaIzListe(ButtonColumnPredmet.selectedRow);
+					//Brisanje profesora sa predmeta
+					PredmetController.getInstance().obrisiProfesoraSaPredmeta(ButtonColumnPredmet.selectedRow);
+					
+					ButtonColumnStudent.selectedRow = -1;
+					ButtonColumnProfesor.selectedRow = -1;
+					ButtonColumnPredmet.selectedRow = -1;
+				}
 			}
 		}else {
-			JOptionPane.showMessageDialog(null, "Izaberite neki red u tabeli!","Gre\u0161ka",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izaberite neki red u tabeli!","Gre\u0161ka",JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
