@@ -34,16 +34,16 @@ public class DodavanjePredmeta extends JDialog{
 	
 	public DodavanjePredmeta(JFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
-		initPredmeti();
+		initPredmeti(parent);
 	}
-	public void initPredmeti() {
+	public void initPredmeti(JFrame parent) {
 		
 		try {
 			Toolkit kit=Toolkit.getDefaultToolkit();
 			setSize(400,400);
 			Image img=kit.getImage("logo_images/ftn.png");
 			setIconImage(img);
-			setLocationRelativeTo(null);
+			setLocationRelativeTo(parent);
 			
 			//Kreiranje centralnog panela sa poljima i labelama
 			createPanelCenter();
@@ -213,7 +213,7 @@ public class DodavanjePredmeta extends JDialog{
 				if(!licnaProfesora.equals("")) {
 					Pattern pattern2 = Pattern.compile("[0-9]{9}", Pattern.UNICODE_CHARACTER_CLASS);
 					if(!(pattern2.matcher(licnaProfesora)).matches()) {
-						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Dozvoljen je unos samo brojeva za li\u010dnu kartu profesora!",
+						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Dozvoljen je samo unos li\u010dne karte od devet cifara!",
 								"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
 						txtProfesorLicna.requestFocus();
 						return;
