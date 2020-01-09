@@ -30,15 +30,15 @@ public class AbstractActionDodavanje extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (TabbedPane.activeTab == 0) {
-			DodavanjeStudenata dod0 = new DodavanjeStudenata(null, "Dodavanje studenta", true);
+			DodavanjeStudenata dod0 = new DodavanjeStudenata(MainFrame.getInstance(), "Dodavanje studenta", true);
 			dod0.setVisible(true);
 
 		}else if(TabbedPane.activeTab == 1) {
-			DodavanjeProfesora dod2 = new DodavanjeProfesora(null, "Dodavanje profesora", true);
+			DodavanjeProfesora dod2 = new DodavanjeProfesora(MainFrame.getInstance(), "Dodavanje profesora", true);
 			dod2.setVisible(true);
 
 		}else if(TabbedPane.activeTab == 2) {
-			DodavanjePredmeta dod1 = new DodavanjePredmeta(null, "Dodavanje predmeta", true);
+			DodavanjePredmeta dod1 = new DodavanjePredmeta(MainFrame.getInstance(), "Dodavanje predmeta", true);
 			dod1.setVisible(true);
 		}
 		
