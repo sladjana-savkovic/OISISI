@@ -211,8 +211,7 @@ public class DodavanjePredmeta extends JDialog{
 				
 				//Samo unos unicode karaktera i razmaka za ime profesora je dozvoljen, ako je  profesor unesen
 				if(!licnaProfesora.equals("")) {
-					Pattern pattern2 = Pattern.compile("[0-9a-z]+", //izmjeniti
-							Pattern.UNICODE_CHARACTER_CLASS);
+					Pattern pattern2 = Pattern.compile("[0-9]{9}", Pattern.UNICODE_CHARACTER_CLASS);
 					if(!(pattern2.matcher(licnaProfesora)).matches()) {
 						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Dozvoljen je unos samo brojeva za li\u010dnu kartu profesora!",
 								"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
