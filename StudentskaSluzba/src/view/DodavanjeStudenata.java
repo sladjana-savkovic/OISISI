@@ -351,10 +351,10 @@ public class DodavanjeStudenata extends JDialog{
 					txtPrezime.requestFocus();
 					return;
 				}
-				//+ i brojevi za telefon
-				Pattern pattern2 = Pattern.compile("\\+[0-9]+");
+				//samo brojevi za telefon, /, -
+				Pattern pattern2 = Pattern.compile("[0-9]{3}\\/[0-9]{3,4}\\-[0-9]{3}");
 				if(!(pattern2.matcher(telStr)).matches()) {
-					JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je unos samo brojeva telefona u formatu +XXX!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je samo unos telefona u formatu XXX/xxx-xxx!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
 					txtTelefon.requestFocus();
 					return;
 				}
