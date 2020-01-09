@@ -69,11 +69,10 @@ public class AbstractActionBrisanje extends AbstractAction{
 				
 				//ovdje treba da se prvo obrise taj predmet sa spiska predmeta profesora
 				ProfesorController.getInstance().uklanjanjePredmetaIzListe(ButtonColumnPredmet.selectedRow);
+				//predmet se brise i sa spiska predmeta studenta
+				StudentController.getInstance().obrisiPredmetSaSpiskaPredmetaStudenta(ButtonColumnPredmet.selectedRow);
 				//zatim se brise sam predmet
 				PredmetController.getInstance().obrisiPredmet(ButtonColumnPredmet.selectedRow);
-				
-				//if(PredmetController.getInstance().provjeriVelicinuListe())
-					//ButtonColumnPredmet.selectedRow = -1;
 					
 				ButtonColumnStudent.selectedRow = -1;
 				ButtonColumnProfesor.selectedRow = -1;
