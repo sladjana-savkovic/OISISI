@@ -12,7 +12,9 @@ import java.util.regex.Pattern;
 import javax.swing.*;
 
 import controller.PredmetController;
+import controller.ProfesorController;
 import model.Predmet;
+import model.Profesor;
 
 /**
  * @author Sladjana Savkovic
@@ -24,9 +26,9 @@ public class DodavanjePredmeta extends JDialog{
 	
 	private Dimension dim;
 	private BoxLayout boxCenter,box;
-	private JPanel panelCenter,pnlSifraPredmeta,pnlNazivPredmeta,pnlPredmetniProfesor,pnlGodinaStudija,pnlSemestar,panelBottom;
-	private JLabel sifraPredmeta,nazivPredmeta,semestar,godinaStudija,predmetniProfesor;
-	private JTextField txtSifraPredmeta,txtNazivPredmeta,txtPredmetniProfesor;
+	private JPanel panelCenter,pnlSifraPredmeta,pnlNazivPredmeta,pnlProfesorLicna,pnlGodinaStudija,pnlSemestar,panelBottom;
+	private JLabel sifraPredmeta,nazivPredmeta,semestar,godinaStudija,profesorLicna;
+	private JTextField txtSifraPredmeta,txtNazivPredmeta,txtProfesorLicna;
 	private JComboBox<String> CBgodina,CBsemestar;
 	private JButton potvrdi,odustani;
 	
@@ -81,7 +83,7 @@ public class DodavanjePredmeta extends JDialog{
 		//dodavanje na centralni panel
 		panelCenter.add(pnlSifraPredmeta);
 		panelCenter.add(pnlNazivPredmeta);
-		panelCenter.add(pnlPredmetniProfesor);
+		panelCenter.add(pnlProfesorLicna);
 		panelCenter.add(pnlGodinaStudija);
 		panelCenter.add(pnlSemestar);
 		
@@ -115,16 +117,16 @@ public class DodavanjePredmeta extends JDialog{
 		pnlNazivPredmeta.add(txtNazivPredmeta);
 	}
 	private void setPredmetniProfesor() {
-		pnlPredmetniProfesor = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		pnlProfesorLicna = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
-		predmetniProfesor = new JLabel("Predmetni profesor");
-		predmetniProfesor.setPreferredSize(dim);
-		txtPredmetniProfesor = new JTextField();
-		txtPredmetniProfesor.setPreferredSize(dim);
-		txtPredmetniProfesor.setName("txtPredmetniProfesor");
+		profesorLicna = new JLabel("Predmetni profesor (li\u010dna)");
+		profesorLicna.setPreferredSize(dim);
+		txtProfesorLicna = new JTextField();
+		txtProfesorLicna.setPreferredSize(dim);
+		txtProfesorLicna.setName("txtPredmetniProfesor");
 		
-		pnlPredmetniProfesor.add(predmetniProfesor);
-		pnlPredmetniProfesor.add(txtPredmetniProfesor);
+		pnlProfesorLicna.add(profesorLicna);
+		pnlProfesorLicna.add(txtProfesorLicna);
 	}
 	private void setGodinaStudija() {
 		pnlGodinaStudija = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -196,7 +198,7 @@ public class DodavanjePredmeta extends JDialog{
 					return;
 				}
 				
-				String profesor = txtPredmetniProfesor.getText();
+				String licnaProfesora = txtProfesorLicna.getText();
 				
 				//samo unos unicode karaktera, brojeva i razmaka je dozvoljen za naziv predmeta
 				Pattern pattern1 = Pattern.compile("[a-zA-Z0-9 \\u0160\\u0161\\u0106\\u0107\\u017d\\u017e\\u010c\\u010d\\u0110\\u0111\\u0020]+");
@@ -208,13 +210,13 @@ public class DodavanjePredmeta extends JDialog{
 				}
 				
 				//Samo unos unicode karaktera i razmaka za ime profesora je dozvoljen, ako je  profesor unesen
-				if(!profesor.equals("")) {
-					Pattern pattern2 = Pattern.compile("[a-zA-Z \\u0160\\u0161\\u0106\\u0107\\u017d\\u017e\\u010c\\u010d\\u0110\\u0111\\u0020]+",
+				if(!licnaProfesora.equals("")) {
+					Pattern pattern2 = Pattern.compile("[0-9a-z]+", //izmjeniti
 							Pattern.UNICODE_CHARACTER_CLASS);
-					if(!(pattern2.matcher(profesor)).matches()) {
-						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Dozvoljen je unos samo slova za profesora!",
+					if(!(pattern2.matcher(licnaProfesora)).matches()) {
+						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Dozvoljen je unos samo brojeva za profesora!",
 								"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
-						txtPredmetniProfesor.requestFocus();
+						txtProfesorLicna.requestFocus();
 						return;
 					}
 				} 
@@ -234,6 +236,11 @@ public class DodavanjePredmeta extends JDialog{
 				int semestar=Integer.parseInt(sem);
 				
 				ArrayList<String> studenti = new ArrayList<String>();	//Lista studenata ce na pocetku biti prazna
+				Profesor profesor = new Profesor();
+				if(!licnaProfesora.equals(""))
+					profesor = ProfesorController.getInstance().getProfesorPrimaryKey(licnaProfesora);
+				else
+					profesor = null;
 				Predmet p = new Predmet(sifra,naziv,profesor,semestar,godina,studenti);
 				
 				//Dodavanje novog predmeta i provjera da li je dodavanje uspjesno
@@ -242,7 +249,12 @@ public class DodavanjePredmeta extends JDialog{
 					JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Uspje\u0161no ste dodali predmet!");
 					txtSifraPredmeta.setText("");
 					txtNazivPredmeta.setText("");
-					txtPredmetniProfesor.setText("");
+					txtProfesorLicna.setText("");
+					 
+					//profesoru koji je na predmetu treba dodati taj predmet
+					if(!licnaProfesora.equals("")) {
+						ProfesorController.getInstance().dodajPredmetNaProfesora(licnaProfesora, sifra);
+					}
 					
 					//Nakon uspjesnog dodavanja, polja vise nisu selektovana
 					ButtonColumnStudent.selectedRow = -1;
