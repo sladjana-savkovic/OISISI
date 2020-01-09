@@ -6,6 +6,9 @@ package view;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.ArrayList;
 import javax.swing.*;
 import controller.PredmetController;
@@ -25,6 +28,7 @@ public class SpisakStudenata extends JDialog{
 	private JPanel pnlList = new JPanel();
 	private JPanel pnlObrisiNazad = new JPanel();
 	DefaultListModel<String> listModel = new DefaultListModel<String>();
+	boolean flag;
 	
 	public SpisakStudenata(Frame parent,String title,boolean modal,int row) {
 		
@@ -34,7 +38,8 @@ public class SpisakStudenata extends JDialog{
 		Image img=kit.getImage("logo_images/ftn.png");
 		setIconImage(img);		
 		setLocationRelativeTo(parent);
-
+		
+		flag=false;
 		addComponentJDialog(row);
 	}
 	public void addComponentJDialog(int row) {
@@ -62,19 +67,53 @@ public class SpisakStudenata extends JDialog{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();	
+				
+				if(flag) {
+					ButtonColumnStudent.selectedRow = -1;
+					ButtonColumnProfesor.selectedRow = -1;
+					ButtonColumnPredmet.selectedRow = -1;
+					
+					flag=false;
+				}
 			}
-			});
+		});
 		this.bObrisi.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(list.getSelectedIndex() == -1) {
-					JOptionPane.showMessageDialog(null, "Izaberite neki red u listi!","Greška",JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izaberite neki red u listi!","Gre\u0161ka",JOptionPane.ERROR_MESSAGE);
 				}else {
 					obrisiStudenta();
+					
+					if(PredmetController.getInstance().studentiNaPredmetu(row).isEmpty()) {
+						ButtonColumnStudent.selectedRow = -1;
+						ButtonColumnProfesor.selectedRow = -1;
+						ButtonColumnPredmet.selectedRow = -1;
+						
+						dispose();
+					}
 				}
 			}
 			
+		});
+		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+		//Ukloni postojeci WindowListeners
+		for ( WindowListener wl : this.getWindowListeners())
+		        this.removeWindowListener(wl);
+		this.addWindowListener(new WindowAdapter() {
+		      @Override
+		      public void windowClosing(WindowEvent e) {
+		    	  dispose();	
+					
+				if(flag) {
+					ButtonColumnStudent.selectedRow = -1;
+					ButtonColumnProfesor.selectedRow = -1;
+					ButtonColumnPredmet.selectedRow = -1;
+						
+					flag=false;
+				}      
+		     }
 		});
 	}
 	public void dodajStudenteNaListu(int row) {
@@ -83,6 +122,8 @@ public class SpisakStudenata extends JDialog{
 			listModel.add(i, studenti.get(i));
 	}
 	public void obrisiStudenta() {
+		flag=true;
+		
 		int selectedIndex = list.getSelectedIndex();
 		String selectedItem = list.getSelectedValue();
 		
@@ -92,6 +133,5 @@ public class SpisakStudenata extends JDialog{
 		StudentController.getInstance().uklanjanjePredmetaIzListe(ButtonColumnPredmet.selectedRow,selectedItem);
 		
 		listModel.remove(selectedIndex);
-		
 	}
 }

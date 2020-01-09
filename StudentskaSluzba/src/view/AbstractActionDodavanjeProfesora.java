@@ -24,10 +24,10 @@ public class AbstractActionDodavanjeProfesora extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if((TabbedPane.activeTab == 2) && (ButtonColumnPredmet.selectedRow != -1)) {
-			DodavanjeProfesoraNaPredmet d = new DodavanjeProfesoraNaPredmet(null, "Predmet-dodavanje profesora", true);
+			DodavanjeProfesoraNaPredmet d = new DodavanjeProfesoraNaPredmet(MainFrame.getInstance(), "Predmet-dodavanje profesora", true);
 			d.setVisible(true);
 		}else {
-			JOptionPane.showMessageDialog(null, "Izaberite neki red u tabeli!","Gre\u0161ka",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izaberite neki red u tabeli!","Gre\u0161ka",JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
