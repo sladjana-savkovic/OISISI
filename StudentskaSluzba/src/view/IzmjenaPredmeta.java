@@ -257,10 +257,9 @@ public class IzmjenaPredmeta extends JDialog{
 				}
 				//Samo unos brojeva i slova za licnu, ako je  profesor unesen
 				if(!licnaProfesora.equals("")) {
-					Pattern pattern2 = Pattern.compile("[0-9a-z]+", //izmjena
-							Pattern.UNICODE_CHARACTER_CLASS);
+					Pattern pattern2 = Pattern.compile("[0-9]{9}", Pattern.UNICODE_CHARACTER_CLASS);
 					if(!(pattern2.matcher(licnaProfesora)).matches()) {
-						JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Dozvoljen je unos samo slova za profesora!",
+						JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Dozvoljen je unos samo brojeva za li\u010dnu kartu profesora!",
 								"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
 						txtProfesorLicna.requestFocus();
 						return;
