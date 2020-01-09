@@ -92,7 +92,7 @@ public class BazaProfesora implements Serializable{
 		case 6:
 			return profesor.getAdresaKancelarije();
 		case 7:
-			return profesor.getBrLicneKarte();
+			return "\""+profesor.getBrLicneKarte()+"\"";
 		case 8:
 			return profesor.getTitula();
 		case 9:

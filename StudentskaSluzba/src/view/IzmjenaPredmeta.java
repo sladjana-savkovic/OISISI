@@ -28,7 +28,9 @@ import javax.swing.JTextField;
 
 import controller.PredmetController;
 import controller.ProfesorController;
+import controller.StudentController;
 import model.Predmet;
+import model.Profesor;
 
 /**
  * @author Sladjana Savkovic
@@ -39,9 +41,9 @@ public class IzmjenaPredmeta extends JDialog{
 	private static final long serialVersionUID = 7231433491060595223L;
 	private Dimension dim;
 	private BoxLayout boxCenter;
-	private JPanel panelCenter,pnlSifraPredmeta,pnlNazivPredmeta,pnlPredmetniProfesor,pnlGodinaStudija,pnlSemestar,panelBottom;
-	private JLabel sifraPredmeta,nazivPredmeta,semestar,godinaStudija,predmetniProfesor;
-	private JTextField txtSifraPredmeta,txtNazivPredmeta,txtPredmetniProfesor;
+	private JPanel panelCenter,pnlSifraPredmeta,pnlNazivPredmeta,pnlProfesorLicna,pnlGodinaStudija,pnlSemestar,panelBottom;
+	private JLabel sifraPredmeta,nazivPredmeta,semestar,godinaStudija,profesorLicna;
+	private JTextField txtSifraPredmeta,txtNazivPredmeta,txtProfesorLicna;
 	private JComboBox<String> CBgodina,CBsemestar;
 	private Predmet t;
 	private JButton potvrdi,odustani;
@@ -98,7 +100,7 @@ public class IzmjenaPredmeta extends JDialog{
 		//dodavanje na centralni panel
 		panelCenter.add(pnlSifraPredmeta);
 		panelCenter.add(pnlNazivPredmeta);
-		panelCenter.add(pnlPredmetniProfesor);
+		panelCenter.add(pnlProfesorLicna);
 		panelCenter.add(pnlGodinaStudija);
 		panelCenter.add(pnlSemestar);
 		
@@ -132,16 +134,16 @@ public class IzmjenaPredmeta extends JDialog{
 		CBgodina.setModel(cmbGodinaStudija);
 	}
 	private void setPredmetniProfesor() {
-		pnlPredmetniProfesor = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		pnlProfesorLicna = new JPanel(new FlowLayout(FlowLayout.LEFT));
 		
-		predmetniProfesor = new JLabel("Predmetni profesor*");
-		predmetniProfesor.setPreferredSize(dim);
-		txtPredmetniProfesor = new JTextField();
-		txtPredmetniProfesor.setPreferredSize(dim);
-		txtPredmetniProfesor.setName("txtPredmetniProfesor");
+		profesorLicna = new JLabel("Predmetni profesor*");
+		profesorLicna.setPreferredSize(dim);
+		txtProfesorLicna = new JTextField();
+		txtProfesorLicna.setPreferredSize(dim);
+		txtProfesorLicna.setName("txtPredmetniProfesor");
 		
-		pnlPredmetniProfesor.add(predmetniProfesor);
-		pnlPredmetniProfesor.add(txtPredmetniProfesor);
+		pnlProfesorLicna.add(profesorLicna);
+		pnlProfesorLicna.add(txtProfesorLicna);
 	}
 	private void setNazivPredmeta() {
 		pnlNazivPredmeta = new JPanel(new FlowLayout(FlowLayout.LEFT));
@@ -171,16 +173,16 @@ public class IzmjenaPredmeta extends JDialog{
 		t = PredmetController.getInstance().vratiSelektovanPredmet(ButtonColumnPredmet.selectedRow);
 		txtSifraPredmeta.setText(t.getSifra());
 		txtNazivPredmeta.setText(t.getNaziv());
-		txtPredmetniProfesor.setText(t.getPredmetniProfesor());
+		txtProfesorLicna.setText(t.getPredmetniProfesor().getBrLicneKarte());
 		
 		if(t.getGodinaStudija() == 1){
 			CBgodina.setSelectedItem("I (prva)");
 		}else if(t.getGodinaStudija() == 2){
 			CBgodina.setSelectedItem("II (druga)");
 		}else if(t.getGodinaStudija() == 3) {
-			CBgodina.setSelectedItem("III (tre\\u0107a)");
+			CBgodina.setSelectedItem("III (tre\u0107a)");
 		}else {
-			CBgodina.setSelectedItem("IV (\\u010detvrta)");
+			CBgodina.setSelectedItem("IV (\u010detvrta)");
 		}
 		
 		if(t.getSemestar() == 1){
@@ -243,7 +245,7 @@ public class IzmjenaPredmeta extends JDialog{
 					return;
 				}
 				
-				String profesor = txtPredmetniProfesor.getText();
+				String licnaProfesora = txtProfesorLicna.getText();
 				
 				//Samo unos unicode karaktera, razmaka i brojeva je dozvoljen za naziv predmeta
 				Pattern pattern1 = Pattern.compile("[a-zA-Z0-9 \\u0160\\u0161\\u0106\\u0107\\u017d\\u017e\\u010c\\u010d\\u0110\\u0111\\u0020]+");
@@ -253,14 +255,14 @@ public class IzmjenaPredmeta extends JDialog{
 					txtNazivPredmeta.requestFocus();
 					return;
 				}
-				//Samo unos unicode karaktera i razmaka za ime profesora je dozvoljen, ako je  profesor unesen
-				if(!profesor.equals("")) {
-					Pattern pattern2 = Pattern.compile("[a-zA-Z \\u0160\\u0161\\u0106\\u0107\\u017d\\u017e\\u010c\\u010d\\u0110\\u0111\\u0020]+",
+				//Samo unos brojeva i slova za licnu, ako je  profesor unesen
+				if(!licnaProfesora.equals("")) {
+					Pattern pattern2 = Pattern.compile("[0-9a-z]+", //izmjena
 							Pattern.UNICODE_CHARACTER_CLASS);
-					if(!(pattern2.matcher(profesor)).matches()) {
+					if(!(pattern2.matcher(licnaProfesora)).matches()) {
 						JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Dozvoljen je unos samo slova za profesora!",
 								"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
-						txtPredmetniProfesor.requestFocus();
+						txtProfesorLicna.requestFocus();
 						return;
 					}
 				}
@@ -279,16 +281,26 @@ public class IzmjenaPredmeta extends JDialog{
 				String sem = (String)CBsemestar	.getSelectedItem();
 				int semestar=Integer.parseInt(sem);
 				
+				if (((godina==1)&&(semestar>2)) || ((godina==2)&&(semestar<3 || semestar>4)) || ((godina==3)&&(semestar<5 || semestar>6)) || ((godina==4)&&(semestar<7))) {
+					JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Izabrali ste pogre\u0161an semestar!",
+							"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+					CBsemestar.requestFocus();
+					return;
+				}
+				
 				ArrayList<String> studenti = new ArrayList<String>();
+				Profesor profesor = ProfesorController.getInstance().getProfesorPrimaryKey(licnaProfesora);
 				Predmet p = new Predmet(sifra,naziv,profesor,semestar,godina,studenti);
 				String staraSifra = t.getSifra();
-						
+				
+				//Poziv metode za izmjenu i rezultat uspjesnosti izmjene koji cuvam u boolean promjenljivoj
 				boolean izmjenjen = PredmetController.getInstance().izmjeniPredmet(ButtonColumnPredmet.selectedRow, t, p);
+				
 				if(izmjenjen){
 					JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Uspje\u0161no ste izmijenili predmet!");
 					//nakon izmjene u tabeli, predmet treba da se promijeni i na svim listama na kojima se nalazi
 					ProfesorController.getInstance().izmjenaListePredmeta(staraSifra,p.getSifra());
-					//ovdje ce biti pozvan i student kontroler
+					StudentController.getInstance().izmjenaListePredmeta(staraSifra, p.getSifra());
 					
 					//Nakon uspjesne izmjene polja vise nisu selektovana
 					ButtonColumnStudent.selectedRow = -1;
