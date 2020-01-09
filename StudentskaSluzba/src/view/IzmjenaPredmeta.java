@@ -50,16 +50,16 @@ public class IzmjenaPredmeta extends JDialog{
 	
 	public IzmjenaPredmeta(JFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
-		initPredmeti();
+		initPredmeti(parent);
 	}
-	public void initPredmeti() {
+	public void initPredmeti(JFrame parent) {
 		
 		try {
 			Toolkit kit=Toolkit.getDefaultToolkit();
 			setSize(400,400);
 			Image img=kit.getImage("logo_images/ftn.png");
 			setIconImage(img);
-			setLocationRelativeTo(null);
+			setLocationRelativeTo(parent);
 			
 			//Kreiranje centralnog panela sa poljima i labelama
 			createPanelCenter();
