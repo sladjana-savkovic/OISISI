@@ -34,17 +34,17 @@ public class HelpDialog extends JDialog{
 	
 	public HelpDialog(JFrame parent, String title, boolean modal) {
 		super(parent,title,modal);
-		init();
+		init(parent);
 		
 	}
 	
-	public void init() {
+	public void init(JFrame parent) {
 		try {
 			Toolkit kit=Toolkit.getDefaultToolkit();
 			setSize(400,400);
 			Image img=kit.getImage("logo_images/ftn.png");
 			setIconImage(img);
-			setLocationRelativeTo(null);
+			setLocationRelativeTo(parent);
 			
 			JPanel panelCenter = new JPanel(new BorderLayout());
 			BoxLayout boxCenter = new BoxLayout(panelCenter, BoxLayout.Y_AXIS);
