@@ -30,6 +30,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+import controller.PredmetController;
 import controller.StudentController;
 import model.Student;
 import model.Student.statusStudenta;
@@ -429,10 +430,15 @@ public class IzmjenaStudenata extends JDialog{
 				ArrayList<String> predmeti = new ArrayList<String>();
 				
 				Student r = new Student(imeStr,przStr,datStr,adrStr,telStr,emStr,indStr,upisStr,god,pros,statusStr,predmeti);
+				String stariIndeks = t.getBrojIndeka();
+				String noviIndeks = r.getBrojIndeka();
 				
 				boolean izmjenjen = StudentController.getInstance().izmjeniStudenta(ButtonColumnStudent.selectedRow, t, r);
 				if(izmjenjen) {
 					JOptionPane.showMessageDialog(IzmjenaStudenata.this, "Uspje\u0161no ste izmijenili studenta!");
+					
+					PredmetController.getInstance().izmjenaListeStudenata(stariIndeks, noviIndeks);
+					
 					ButtonColumnStudent.selectedRow = -1;
 					ButtonColumnPredmet.selectedRow = -1;
 					ButtonColumnProfesor.selectedRow = -1;

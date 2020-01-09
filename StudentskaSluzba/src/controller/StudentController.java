@@ -115,6 +115,27 @@ public class StudentController {
 		}
 		
 	}
+	
+	public void obrisiPredmetSaSpiskaPredmetaStudenta(int row) {
+		Predmet p =BazaPredmeta.getInstance().getPredmetIndex(row);
+		for(int i=0; i<p.getSpisakStudenata().size(); i++)
+			for(int j=0; j<BazaStudenata.getInstance().getStudenti().size(); j++) {
+				if(BazaStudenata.getInstance().getStudenti().get(j).getBrojIndeka().equals(p.getSpisakStudenata().get(i))){
+					BazaStudenata.getInstance().getStudenti().get(j).getSpisakPredmeta().remove(p.getSifra());
+				}
+			}
+		
+	}
+	
+	public void izmjenaListePredmeta(String staraSifra, String novaSifra) {
+		for(int i=0; i<BazaStudenata.getInstance().getStudenti().size(); i++) 
+			for(int j=0; j<BazaStudenata.getInstance().getStudenti().get(i).getSpisakPredmeta().size(); j++) {
+				if(BazaStudenata.getInstance().getStudenti().get(i).getSpisakPredmeta().get(j).equals(staraSifra)) {
+					BazaStudenata.getInstance().getStudenti().get(i).getSpisakPredmeta().remove(staraSifra);
+					BazaStudenata.getInstance().getStudenti().get(i).getSpisakPredmeta().add(j, novaSifra);
+				}
+			}
+	}
 
 	
 }
