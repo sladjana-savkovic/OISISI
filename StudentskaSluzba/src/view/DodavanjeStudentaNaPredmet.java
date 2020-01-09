@@ -44,16 +44,16 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 	
 	public DodavanjeStudentaNaPredmet(JFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
-		initStudPred();
+		initStudPred(parent);
 	}
 	
-	public void initStudPred() {
+	public void initStudPred(JFrame parent) {
 		try {
 			Toolkit kit=Toolkit.getDefaultToolkit();
 			setSize(200,200);
 			Image img=kit.getImage("logo_images/ftn.png");
 			setIconImage(img);
-			setLocationRelativeTo(null);
+			setLocationRelativeTo(parent);
 			
 			JPanel panelCenter = new JPanel();
 			BoxLayout boxCenter = new BoxLayout(panelCenter, BoxLayout.Y_AXIS);
