@@ -214,7 +214,7 @@ public class DodavanjePredmeta extends JDialog{
 					Pattern pattern2 = Pattern.compile("[0-9a-z]+", //izmjeniti
 							Pattern.UNICODE_CHARACTER_CLASS);
 					if(!(pattern2.matcher(licnaProfesora)).matches()) {
-						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Dozvoljen je unos samo brojeva za profesora!",
+						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Dozvoljen je unos samo brojeva za li\u010dnu kartu profesora!",
 								"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
 						txtProfesorLicna.requestFocus();
 						return;
@@ -234,6 +234,13 @@ public class DodavanjePredmeta extends JDialog{
 				
 				String sem = (String)CBsemestar.getSelectedItem();
 				int semestar=Integer.parseInt(sem);
+				
+				if (((godina==1)&&(semestar>2)) || ((godina==2)&&(semestar<3 || semestar>4)) || ((godina==3)&&(semestar<5 || semestar>6)) || ((godina==4)&&(semestar<7))) {
+					JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Izabrali ste pogre\u0161an semestar!",
+							"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+					CBsemestar.requestFocus();
+					return;
+				}
 				
 				ArrayList<String> studenti = new ArrayList<String>();	//Lista studenata ce na pocetku biti prazna
 				Profesor profesor = new Profesor();
