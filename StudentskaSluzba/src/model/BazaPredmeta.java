@@ -106,7 +106,11 @@ public class BazaPredmeta implements Serializable{
 		case 3:
 			return Integer.toString(predmet.getSemestar());
 		case 4:
-			return predmet.getPredmetniProfesor();
+			if(predmet.getPredmetniProfesor() != null)
+				return "\""+predmet.getPredmetniProfesor().getBrLicneKarte()+"\", "
+					+predmet.getPredmetniProfesor().getIme()+" "+predmet.getPredmetniProfesor().getPrezime(); //izmjena
+			else
+				return null;
 		case 5:
 			return Integer.toString(predmet.getBrojStudenata());
 		default:
@@ -224,7 +228,7 @@ public class BazaPredmeta implements Serializable{
 				}
 		}
 		
-		predmet.setPredmetniProfesor(profesor.getIme()+" "+profesor.getPrezime());
+		predmet.setPredmetniProfesor(profesor);
 		
 		//Novom profesoru dodajem predmet u listu njegovih predmeta
 		BazaProfesora.getInstance().getProfesor(licnaKarta).getSpisakPredmeta().add(predmet.getSifra());
