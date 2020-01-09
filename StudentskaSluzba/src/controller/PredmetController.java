@@ -83,7 +83,7 @@ public class PredmetController {
 			MyTab.azurirajPrikaz();
 			return true;
 		}else {
-			 //nova metosa koja provjerava da li postoji st sa tim br indeksa ako postoji(vrati true) ret, a ako ne opet pozovi izmjenu
+			 //nova metoda koja provjerava da li postoji predmet sa tom sifrom, ako postoji(vrati true) ret, a ako ne opet pozovi izmjenu
 			if(BazaPredmeta.getInstance().getPredmet(t.getSifra()) != null){
 				return false;
 			}else {
@@ -105,12 +105,12 @@ public class PredmetController {
 		if(rowSelectedIndex < 0){
 			return;
 		}
-		BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex).setPredmetniProfesor("");
+		BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex).setPredmetniProfesor(null); //izmjena
 		MyTab.azurirajPrikaz();
 	}
 	public void uklanjanjeProfesoraSaPredmeta(String sifraPredmeta) {
 		
-		BazaPredmeta.getInstance().getPredmet(sifraPredmeta).setPredmetniProfesor("");
+		BazaPredmeta.getInstance().getPredmet(sifraPredmeta).setPredmetniProfesor(null); //izmjena
 		MyTab.azurirajPrikaz();
 	}
 	public void uklanjanjeProfesoraSaSvakogPredmeta(int rowSelectedIndex) {
@@ -121,7 +121,7 @@ public class PredmetController {
 		for(int i=0; i<p.getSpisakPredmeta().size(); i++)
 			for(int j=0; j<BazaPredmeta.getInstance().getPredmeti().size(); j++) {
 				if(BazaPredmeta.getInstance().getPredmeti().get(j).getSifra().equals(p.getSpisakPredmeta().get(i))) {
-					BazaPredmeta.getInstance().getPredmeti().get(j).setPredmetniProfesor("");
+					BazaPredmeta.getInstance().getPredmeti().get(j).setPredmetniProfesor(null); //izmjena
 					break;
 				}
 		}
@@ -166,6 +166,7 @@ public class PredmetController {
 		for(int i=0; i<stariPodaci.getSpisakPredmeta().size(); i++)
 			for(int j=0; j<BazaPredmeta.getInstance().getPredmeti().size(); j++) 
 				if(BazaPredmeta.getInstance().getPredmeti().get(j).getSifra().equals(stariPodaci.getSpisakPredmeta().get(i)))
-					BazaPredmeta.getInstance().getPredmeti().get(j).setPredmetniProfesor(stariPodaci.getIme()+" "+stariPodaci.getPrezime());
+					//BazaPredmeta.getInstance().getPredmeti().get(j).setPredmetniProfesor(stariPodaci.getIme()+" "+stariPodaci.getPrezime());
+					BazaPredmeta.getInstance().getPredmeti().get(j).setPredmetniProfesor(noviPodaci);
 	}
 }
