@@ -97,27 +97,21 @@ private static ProfesorController instance = null;
 		String[] licneKarte = new String[BazaProfesora.getInstance().getProfesori().size()];
 		
 		//ime i prezime profesora
-		String predmetniProfesor = BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex).getPredmetniProfesor();
+		Profesor predmetniProfesor = BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex).getPredmetniProfesor();
+		
 		String licnaPredmetnogProfesora = "";
 		boolean flag=true;
 		
 		/*Uzmem sifru predmeta, nadjem profesora koji su svom spisku predmeta ima taj predmet i dobijem njegovu licnu*/
-		
 		String sifraPredmeta = BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex).getSifra();
 		
-		if(!predmetniProfesor.equals("")) {
+		if(predmetniProfesor != null) { //provjeriti
 			for(int i=0; i<BazaProfesora.getInstance().getProfesori().size(); i++)
 				if(BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().contains(sifraPredmeta))
 					licnaPredmetnogProfesora = BazaProfesora.getInstance().getProfesori().get(i).getBrLicneKarte();
 		}
-				
-		/*if(!predmetniProfesor.equals("")){
-			for(int i=0; i<BazaProfesora.getInstance().getProfesori().size(); i++)
-				if(predmetniProfesor.contains(BazaProfesora.getInstance().getProfesori().get(i).getIme()) && 
-						predmetniProfesor.contains(BazaProfesora.getInstance().getProfesori().get(i).getPrezime()))
-							licnaPredmetnogProfesora = BazaProfesora.getInstance().getProfesori().get(i).getBrLicneKarte();
-		}*/ //NIJE DOBRO
 		
+				
 		if(licnaPredmetnogProfesora.equals("")) {
 			flag=false;
 			for(int i=0; i<licneKarte.length; i++) {
@@ -174,5 +168,15 @@ private static ProfesorController instance = null;
 					BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().add(j, novaSifraPredmeta);
 				}
 			}
+	}
+	public Profesor getProfesorPrimaryKey(String licna) {
+		return BazaProfesora.getInstance().getProfesor(licna);
+	}
+
+	public void dodajPredmetNaProfesora(String licnaProfesora, String sifra) {
+		
+		for(int i=0; i<BazaProfesora.getInstance().getProfesori().size(); i++)
+			if(BazaProfesora.getInstance().getProfesori().get(i).getBrLicneKarte().equals(licnaProfesora))
+				BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().add(sifra);
 	}
 }
