@@ -381,10 +381,10 @@ public class IzmjenaStudenata extends JDialog{
 					txtPrezime.requestFocus();
 					return;
 				}
-				//+ i brojevi za telefon
-				Pattern pattern2 = Pattern.compile("\\+[0-9]+");
+				//samo brojevi za telefon, /, -
+				Pattern pattern2 = Pattern.compile("[0-9]{3}\\/[0-9]{3,4}\\-[0-9]{3}");
 				if(!(pattern2.matcher(telStr)).matches()) {
-					JOptionPane.showMessageDialog(IzmjenaStudenata.this, "Dozvoljen je unos samo brojeva telefona u formatu +381!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(IzmjenaStudenata.this, "Dozvoljen je samo unos telefona u formatu XXX/xxx-xxx!", "Upozorenje", JOptionPane.INFORMATION_MESSAGE);
 					txtTelefon.requestFocus();
 					return;
 				}
