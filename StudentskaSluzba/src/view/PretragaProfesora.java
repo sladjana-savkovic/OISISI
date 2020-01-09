@@ -40,7 +40,7 @@ public class PretragaProfesora {
 		int rezultatPretrage = pretrazi(pretraga);
 		
 		if(rezultatPretrage == 0 && !pretraga.equals("")) {
-			JOptionPane.showMessageDialog(null, "Pogresan unos za pretragu!","Greška",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogre\u0161an unos za pretragu!","Gre\u0161ka",JOptionPane.ERROR_MESSAGE);
 		}
 		else {
 			for(int i=0;i<rezultatPretrage;i++) {
