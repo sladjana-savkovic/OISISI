@@ -148,6 +148,7 @@ public class PredmetController {
 				BazaPredmeta.getInstance().getPredmeti().get(i).getSpisakStudenata().remove(s.getBrojIndeka());
 			}
 		}
+		MyTab.azurirajPrikaz();
 	}
 	//Metoda koja ce se pozivati iz klase Izmjena studenta nakon if(izmjenjen)
 	public void izmjenaListeStudenata(String stariIndeksStudenta, String noviIndeksStudenta) {
