@@ -28,6 +28,7 @@ import javax.swing.JTextField;
 
 import controller.PredmetController;
 import controller.ProfesorController;
+import controller.StudentController;
 import model.Predmet;
 import model.Profesor;
 
@@ -290,7 +291,7 @@ public class IzmjenaPredmeta extends JDialog{
 					JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Uspje\u0161no ste izmijenili predmet!");
 					//nakon izmjene u tabeli, predmet treba da se promijeni i na svim listama na kojima se nalazi
 					ProfesorController.getInstance().izmjenaListePredmeta(staraSifra,p.getSifra());
-					//ovdje ce biti pozvan i student kontroler
+					StudentController.getInstance().izmjenaListePredmeta(staraSifra, p.getSifra());
 					
 					
 					//Nakon uspjesne izmjene polja vise nisu selektovana
