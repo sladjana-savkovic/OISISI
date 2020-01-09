@@ -31,7 +31,8 @@ public class BazaPredmeta implements Serializable{
 	private ArrayList<String> studenti4;
 	private ArrayList<String> studenti5;
 	private ArrayList<String> studenti6;
-	private Profesor p1,p2,p3;*/
+	private ArrayList<String> studenti7;
+	private Profesor p1,p2,p3,p4;*/
 	
 	
 	private BazaPredmeta() {  
@@ -47,9 +48,11 @@ public class BazaPredmeta implements Serializable{
 		this.studenti4= new ArrayList<String>();
 		this.studenti5= new ArrayList<String>();
 		this.studenti6= new ArrayList<String>();
+		this.studenti7 = new ArrayList<String>();
 		this.p1 = BazaProfesora.getInstance().getProfesorIndex(0);
 		this.p2= BazaProfesora.getInstance().getProfesorIndex(1);
 		this.p3= BazaProfesora.getInstance().getProfesorIndex(2);
+		this.p4 = BazaProfesora.getInstance().getProfesorIndex(3);
 		
 		studenti1.add("RA1/2017");
 		studenti1.add("RA78/2015");
@@ -73,13 +76,15 @@ public class BazaPredmeta implements Serializable{
 		
 		studenti6.add("RA44/2017");
 		
+		studenti7.add("RA44/2017");
+		
 		predmeti.add(new Predmet("E2123","Matematička analiza 1", p1, 1, 1, studenti1));
 		predmeti.add(new Predmet("E2485", "Arhitektura računara", p2, 2, 1, studenti2));
 		predmeti.add(new Predmet("E2458", "Fizika", p3, 2, 1, studenti3));
 		predmeti.add(new Predmet("E1042", "Mehanika", p3, 1, 1, studenti4));
 		predmeti.add(new Predmet("MA750", "Algebra", p1, 1, 1, studenti5));
-		predmeti.add(new Predmet("II802", "Operativni sistemi", p2, 2, 2, studenti6));
-		
+		predmeti.add(new Predmet("II802", "Operativni sistemi", p4, 2, 2, studenti6));
+		predmeti.add(new Predmet("GR203","Otpornost materijala 1",p3,2,1,studenti7));
 	}*/
 	public ArrayList<Predmet> getPredmeti() {
 		return predmeti;
@@ -210,23 +215,32 @@ public class BazaPredmeta implements Serializable{
 		Profesor profesor = BazaProfesora.getInstance().getProfesor(licnaKarta);
 		
 		//Pronalazim broj licne karte profesora koji je nekad predavao predmet, ako takav postoji
-		String stariProfesor="";
+		String stariProfesor;
 		
-		for(int i=0;i<BazaProfesora.getInstance().getProfesori().size();i++)
+		if(predmet.getPredmetniProfesor() != null) {
+			stariProfesor = predmet.getPredmetniProfesor().getBrLicneKarte();
+		} else {
+			stariProfesor = "";
+		}
+		
+		/*for(int i=0;i<BazaProfesora.getInstance().getProfesori().size();i++)
 			for(int j=0; j<BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().size(); j++) {
 				if(BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().get(j).equals(predmet.getSifra())) {
 					stariProfesor = BazaProfesora.getInstance().getProfesori().get(i).getBrLicneKarte();
 					break;
 				}
-			}
+			}*/
+		
+		//stariProfesor = predmet.getPredmetniProfesor().getBrLicneKarte();
 						
 		//Ako smo nasli profesora, brisem iz njegove liste predmeta, onaj predmet koji je nekad predavao
 		if(!stariProfesor.equals("")) {
-			for(int i=0;i<BazaProfesora.getInstance().getProfesor(stariProfesor).getSpisakPredmeta().size();i++)
+			/*for(int i=0;i<BazaProfesora.getInstance().getProfesor(stariProfesor).getSpisakPredmeta().size();i++)
 				if(BazaProfesora.getInstance().getProfesor(stariProfesor).getSpisakPredmeta().get(i).equals(predmet.getSifra())) {
 					BazaProfesora.getInstance().getProfesor(stariProfesor).getSpisakPredmeta().remove(i);
 					break;
-				}
+				}*/
+			BazaProfesora.getInstance().getProfesor(stariProfesor).getSpisakPredmeta().remove(predmet.getSifra());
 		}
 		
 		predmet.setPredmetniProfesor(profesor);
