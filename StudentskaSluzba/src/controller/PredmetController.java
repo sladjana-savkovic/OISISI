@@ -166,7 +166,6 @@ public class PredmetController {
 		for(int i=0; i<stariPodaci.getSpisakPredmeta().size(); i++)
 			for(int j=0; j<BazaPredmeta.getInstance().getPredmeti().size(); j++) 
 				if(BazaPredmeta.getInstance().getPredmeti().get(j).getSifra().equals(stariPodaci.getSpisakPredmeta().get(i)))
-					//BazaPredmeta.getInstance().getPredmeti().get(j).setPredmetniProfesor(stariPodaci.getIme()+" "+stariPodaci.getPrezime());
 					BazaPredmeta.getInstance().getPredmeti().get(j).setPredmetniProfesor(noviPodaci);
 	}
 }
