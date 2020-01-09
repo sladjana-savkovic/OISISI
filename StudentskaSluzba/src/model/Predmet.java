@@ -14,13 +14,14 @@ public class Predmet implements Serializable{
 
 	private static final long serialVersionUID = 1640112284986110952L;
 	
-	private String sifra,naziv,predmetniProfesor;
+	private String sifra,naziv;
+	private Profesor predmetniProfesor;
 	private int semestar,godinaStudija;
 	//U ArrayList-i cuvam indekse studenata jer su mi oni "primarni kljucevi" za studenta
 	private ArrayList<String> spisakStudenata=new ArrayList<String>();
 	
 	public Predmet() {}
-	public Predmet(String sifra, String naziv, String predmetniProfesor, int semestar, int godinaStudija,
+	public Predmet(String sifra, String naziv, Profesor predmetniProfesor, int semestar, int godinaStudija,
 			ArrayList<String> spisakStudenata) {
 		super();
 		this.sifra = sifra;
@@ -47,11 +48,11 @@ public class Predmet implements Serializable{
 		this.naziv = naziv;
 	}
 
-	public String getPredmetniProfesor() {
+	public Profesor getPredmetniProfesor() {
 		return predmetniProfesor;
 	}
 
-	public void setPredmetniProfesor(String predmetniProfesor) {
+	public void setPredmetniProfesor(Profesor predmetniProfesor) {
 		this.predmetniProfesor = predmetniProfesor;
 	}
 
