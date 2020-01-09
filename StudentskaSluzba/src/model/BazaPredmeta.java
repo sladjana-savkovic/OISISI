@@ -30,7 +30,8 @@ public class BazaPredmeta implements Serializable{
 	private ArrayList<String> studenti3;
 	private ArrayList<String> studenti4;
 	private ArrayList<String> studenti5;
-	private ArrayList<String> studenti6;*/
+	private ArrayList<String> studenti6;
+	private Profesor p1,p2,p3;*/
 	
 	
 	private BazaPredmeta() {  
@@ -46,6 +47,10 @@ public class BazaPredmeta implements Serializable{
 		this.studenti4= new ArrayList<String>();
 		this.studenti5= new ArrayList<String>();
 		this.studenti6= new ArrayList<String>();
+		this.p1 = BazaProfesora.getInstance().getProfesorIndex(0);
+		this.p2= BazaProfesora.getInstance().getProfesorIndex(1);
+		this.p3= BazaProfesora.getInstance().getProfesorIndex(2);
+		
 		studenti1.add("RA1/2017");
 		studenti1.add("RA78/2015");
 		studenti1.add("RA25/2016");
@@ -68,12 +73,12 @@ public class BazaPredmeta implements Serializable{
 		
 		studenti6.add("RA44/2017");
 		
-		predmeti.add(new Predmet("E2123","Matematička analiza 1", "Nebojša Ralević", 1, 1, studenti1));
-		predmeti.add(new Predmet("E2485", "Arhitektura računara", "Miroslav Hajduković", 2, 1, studenti2));
-		predmeti.add(new Predmet("E2458", "Fizika", "Ljuba Budinski", 2, 1, studenti3));
-		predmeti.add(new Predmet("E1042", "Mehanika", "Ljuba Budinski", 1, 1, studenti4));
-		predmeti.add(new Predmet("MA750", "Algebra", "Nebojša Ralević", 1, 1, studenti5));
-		predmeti.add(new Predmet("II802", "Operativni sistemi", "Miroslav Hajduković", 2, 2, studenti6));
+		predmeti.add(new Predmet("E2123","Matematička analiza 1", p1, 1, 1, studenti1));
+		predmeti.add(new Predmet("E2485", "Arhitektura računara", p2, 2, 1, studenti2));
+		predmeti.add(new Predmet("E2458", "Fizika", p3, 2, 1, studenti3));
+		predmeti.add(new Predmet("E1042", "Mehanika", p3, 1, 1, studenti4));
+		predmeti.add(new Predmet("MA750", "Algebra", p1, 1, 1, studenti5));
+		predmeti.add(new Predmet("II802", "Operativni sistemi", p2, 2, 2, studenti6));
 		
 	}*/
 	public ArrayList<Predmet> getPredmeti() {
@@ -106,7 +111,11 @@ public class BazaPredmeta implements Serializable{
 		case 3:
 			return Integer.toString(predmet.getSemestar());
 		case 4:
-			return predmet.getPredmetniProfesor();
+			if(predmet.getPredmetniProfesor() != null)
+				return "\""+predmet.getPredmetniProfesor().getBrLicneKarte()+"\", "
+					+predmet.getPredmetniProfesor().getIme()+" "+predmet.getPredmetniProfesor().getPrezime(); //izmjena
+			else
+				return null;
 		case 5:
 			return Integer.toString(predmet.getBrojStudenata());
 		default:
@@ -196,16 +205,12 @@ public class BazaPredmeta implements Serializable{
 			}
 		}
 	}
-	public void profesorNaPredmet(String licnaKarta,int index) {
+	public void profesorNaPredmet(String licnaKarta,int index) { 
 		Predmet predmet = getPredmetIndex(index);
 		Profesor profesor = BazaProfesora.getInstance().getProfesor(licnaKarta);
 		
 		//Pronalazim broj licne karte profesora koji je nekad predavao predmet, ako takav postoji
 		String stariProfesor="";
-		/*for(int i=0;i<BazaProfesora.getInstance().getProfesori().size();i++)
-			if(predmet.getPredmetniProfesor().contains(BazaProfesora.getInstance().getProfesori().get(i).getIme()) && 
-			   predmet.getPredmetniProfesor().contains(BazaProfesora.getInstance().getProfesori().get(i).getPrezime()))
-			   		stariProfesor =  BazaProfesora.getInstance().getProfesori().get(i).getBrLicneKarte();*/ //NIJE DOBRO
 		
 		for(int i=0;i<BazaProfesora.getInstance().getProfesori().size();i++)
 			for(int j=0; j<BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().size(); j++) {
@@ -224,7 +229,8 @@ public class BazaPredmeta implements Serializable{
 				}
 		}
 		
-		predmet.setPredmetniProfesor(profesor.getIme()+" "+profesor.getPrezime());
+		//predmet.setPredmetniProfesor(profesor.getIme()+" "+profesor.getPrezime());
+		predmet.setPredmetniProfesor(profesor);
 		
 		//Novom profesoru dodajem predmet u listu njegovih predmeta
 		BazaProfesora.getInstance().getProfesor(licnaKarta).getSpisakPredmeta().add(predmet.getSifra());
