@@ -358,6 +358,14 @@ public class DodavanjeStudenata extends JDialog{
 					txtPrezime.requestFocus();
 					return;
 				}
+				
+				Pattern pattern5 = Pattern.compile("[0-9]{2}\\.[0-9]{2}\\.[0-9]{4}\\.");
+				if(!(pattern5.matcher(datStr)).matches()) {
+					JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je unos samo datuma ro\u0111enja u fromatu dd.MM.yyyy.!");	
+					txtDatum.requestFocus();
+					return;
+				}
+				
 				//samo brojevi za telefon, /, -
 				Pattern pattern2 = Pattern.compile("[0-9]{3}\\/[0-9]{3,4}\\-[0-9]{3}");
 				if(!(pattern2.matcher(telStr)).matches()) {
@@ -374,6 +382,12 @@ public class DodavanjeStudenata extends JDialog{
 					return;
 				}
 			
+				Pattern pattern6 = Pattern.compile("[a-zA-Z._]+@[a-zA-Z]+.[a-zA-Z]+");
+				if(!(pattern6.matcher(emStr)).matches()) {
+					JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je samo unos email-a u formatu xxxx_yyy@email.com!");	
+					txtEmail.requestFocus();
+					return;
+				}
 				
 				Pattern pattern4 = Pattern.compile("[0-9]+.[0-9]+");
 				if(!(pattern4.matcher(proStr)).matches()) {
@@ -383,18 +397,13 @@ public class DodavanjeStudenata extends JDialog{
 				return;
 				}
 				
-				Pattern pattern5 = Pattern.compile("[0-9]{2}\\.[0-9]{2}\\.[0-9]{4}\\.");
-				if(!(pattern5.matcher(datStr)).matches()) {
-					JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je unos samo datuma rodjenja u fromatu dd.MM.yyyy.!");	
-					txtDatum.requestFocus();
-					return;
-				}
-				
 				if(!(pattern5.matcher(upisStr)).matches()) {
-					JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je unos samo datuma rodjenja u fromatu dd.MM.yyyy.!");	
-					txtDatum.requestFocus();
+					JOptionPane.showMessageDialog(DodavanjeStudenata.this, "Dozvoljen je unos samo datuma upisa u fromatu dd.MM.yyyy.!");	
+					txtUpis.requestFocus();
 					return;
 				}
+
+	
 				
 				String godStr = (String)godinaCM.getSelectedItem();
 				int god;
