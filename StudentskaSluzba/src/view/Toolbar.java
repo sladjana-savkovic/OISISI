@@ -26,7 +26,7 @@ public class Toolbar extends JToolBar{
 
 	public Toolbar() {
 		
-		// u konstruktor natklase, JToolbar prosledjujemo orijentaciju toolbar-a
+		// u konstruktor natklase, JToolbar prosledjujem orijentaciju toolbar-a
 		super(SwingConstants.HORIZONTAL);
 		lightBlue= new Color(160,215,255);
 		

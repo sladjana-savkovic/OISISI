@@ -200,9 +200,18 @@ public class DodavanjePredmeta extends JDialog{
 				
 				String licnaProfesora = txtProfesorLicna.getText();
 				
+				//samo unos slova i brojeva je dozvoljen za sifru predmeta
+				Pattern pattern1 = Pattern.compile("[a-zA-Z0-9]+");
+				if(!(pattern1.matcher(sifra)).matches()) {
+					JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Dozvoljen je unos slova i brojeva za \u0161ifru predmeta!",
+							"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+					txtSifraPredmeta.requestFocus();
+					return;
+				}
+				
 				//samo unos unicode karaktera, brojeva i razmaka je dozvoljen za naziv predmeta
-				Pattern pattern1 = Pattern.compile("[a-zA-Z0-9 \\u0160\\u0161\\u0106\\u0107\\u017d\\u017e\\u010c\\u010d\\u0110\\u0111\\u0020]+");
-				if(!(pattern1.matcher(naziv)).matches()) {
+				Pattern pattern2 = Pattern.compile("[a-zA-Z0-9 \\u0160\\u0161\\u0106\\u0107\\u017d\\u017e\\u010c\\u010d\\u0110\\u0111\\u0020]+");
+				if(!(pattern2.matcher(naziv)).matches()) {
 					JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Dozvoljen je unos slova, brojeva i razmaka za naziv predmeta!",
 							"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
 					txtNazivPredmeta.requestFocus();
@@ -211,8 +220,8 @@ public class DodavanjePredmeta extends JDialog{
 				
 				//Samo unos unicode karaktera i razmaka za ime profesora je dozvoljen, ako je  profesor unesen
 				if(!licnaProfesora.equals("")) {
-					Pattern pattern2 = Pattern.compile("[0-9]{9}", Pattern.UNICODE_CHARACTER_CLASS);
-					if(!(pattern2.matcher(licnaProfesora)).matches()) {
+					Pattern pattern3 = Pattern.compile("[0-9]{9}", Pattern.UNICODE_CHARACTER_CLASS);
+					if(!(pattern3.matcher(licnaProfesora)).matches()) {
 						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Dozvoljen je samo unos li\u010dne karte od devet cifara!",
 								"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
 						txtProfesorLicna.requestFocus();
@@ -243,10 +252,21 @@ public class DodavanjePredmeta extends JDialog{
 				
 				ArrayList<String> studenti = new ArrayList<String>();	//Lista studenata ce na pocetku biti prazna
 				Profesor profesor = new Profesor();
-				if(!licnaProfesora.equals(""))
-					profesor = ProfesorController.getInstance().getProfesorPrimaryKey(licnaProfesora);
-				else
+				
+				if(!licnaProfesora.equals("")) {
+					if(!PredmetController.getInstance().profesorNaPredmetu(licnaProfesora)) {
+						JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Ne postoji profesor sa unesenom li\u010dnom kartom!");
+						txtProfesorLicna.requestFocus();
+						txtProfesorLicna.setText("");
+						return;
+					}else {
+						profesor = ProfesorController.getInstance().getProfesorPrimaryKey(licnaProfesora);
+					}
+				}
+				else {
 					profesor = null;
+				}
+				
 				Predmet p = new Predmet(sifra,naziv,profesor,semestar,godina,studenti);
 				
 				//Dodavanje novog predmeta i provjera da li je dodavanje uspjesno

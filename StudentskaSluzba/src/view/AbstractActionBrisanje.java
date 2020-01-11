@@ -25,8 +25,8 @@ public class AbstractActionBrisanje extends AbstractAction{
 
 	public AbstractActionBrisanje() {
 		putValue(SHORT_DESCRIPTION, "Obri\u0161i");
-		putValue(MNEMONIC_KEY, KeyEvent.VK_O);
-		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_K,KeyEvent.CTRL_MASK));
+		putValue(MNEMONIC_KEY, KeyEvent.VK_B);
+		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_B,KeyEvent.CTRL_MASK));
 	}
 
 	@Override
