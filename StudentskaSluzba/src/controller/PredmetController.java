@@ -168,4 +168,13 @@ public class PredmetController {
 				if(BazaPredmeta.getInstance().getPredmeti().get(j).getSifra().equals(stariPodaci.getSpisakPredmeta().get(i)))
 					BazaPredmeta.getInstance().getPredmeti().get(j).setPredmetniProfesor(noviPodaci);
 	}
+	public boolean profesorNaPredmetu(String licnaKarta) {
+				
+		for(int i=0; i<BazaPredmeta.getInstance().getPredmeti().size(); i++){
+			if(BazaPredmeta.getInstance().getPredmeti().get(i).getPredmetniProfesor() != null)
+				if(BazaPredmeta.getInstance().getPredmeti().get(i).getPredmetniProfesor().getBrLicneKarte().equals(licnaKarta))
+						return true;
+		}
+		return false;
+	}
 }
