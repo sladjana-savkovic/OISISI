@@ -179,4 +179,8 @@ private static ProfesorController instance = null;
 			if(BazaProfesora.getInstance().getProfesori().get(i).getBrLicneKarte().equals(licnaProfesora))
 				BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().add(sifra);
 	}
+	public void obrisiPredmetOdProfesora(String licnaProfesora,String sifraPredmeta) {
+		
+		BazaProfesora.getInstance().getProfesor(licnaProfesora).getSpisakPredmeta().remove(sifraPredmeta);
+	}
 }
