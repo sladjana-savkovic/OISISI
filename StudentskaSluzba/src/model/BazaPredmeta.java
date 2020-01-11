@@ -222,16 +222,6 @@ public class BazaPredmeta implements Serializable{
 		} else {
 			stariProfesor = "";
 		}
-		
-		/*for(int i=0;i<BazaProfesora.getInstance().getProfesori().size();i++)
-			for(int j=0; j<BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().size(); j++) {
-				if(BazaProfesora.getInstance().getProfesori().get(i).getSpisakPredmeta().get(j).equals(predmet.getSifra())) {
-					stariProfesor = BazaProfesora.getInstance().getProfesori().get(i).getBrLicneKarte();
-					break;
-				}
-			}*/
-		
-		//stariProfesor = predmet.getPredmetniProfesor().getBrLicneKarte();
 						
 		//Ako smo nasli profesora, brisem iz njegove liste predmeta, onaj predmet koji je nekad predavao
 		if(!stariProfesor.equals("")) {
