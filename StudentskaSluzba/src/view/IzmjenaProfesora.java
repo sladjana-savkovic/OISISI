@@ -370,6 +370,13 @@ public class IzmjenaProfesora extends JDialog{
 					return;
 				}
 				
+				Pattern pattern5 = Pattern.compile("[a-zA-Z._]+@[a-zA-Z]+.[a-zA-Z]+");
+				if(!(pattern5.matcher(emStr)).matches()) {
+					JOptionPane.showMessageDialog(IzmjenaProfesora.this, "Dozvoljen je samo unos email-a u formatu xxxx_yyy@email.com!");	
+					txtEmail.requestFocus();
+					return;
+				}
+				
 				String titulaStr = (String)titulaCM.getSelectedItem();
 				
 				String zvanjeStr="";
