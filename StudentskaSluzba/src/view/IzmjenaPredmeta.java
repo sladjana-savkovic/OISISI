@@ -173,7 +173,11 @@ public class IzmjenaPredmeta extends JDialog{
 		t = PredmetController.getInstance().vratiSelektovanPredmet(ButtonColumnPredmet.selectedRow);
 		txtSifraPredmeta.setText(t.getSifra());
 		txtNazivPredmeta.setText(t.getNaziv());
-		txtProfesorLicna.setText(t.getPredmetniProfesor().getBrLicneKarte());
+		if(t.getPredmetniProfesor() == null) {
+			txtProfesorLicna.setText("");
+		}else {
+			txtProfesorLicna.setText(t.getPredmetniProfesor().getBrLicneKarte());
+		}
 		
 		if(t.getGodinaStudija() == 1){
 			CBgodina.setSelectedItem("I (prva)");
@@ -259,7 +263,7 @@ public class IzmjenaPredmeta extends JDialog{
 				if(!licnaProfesora.equals("")) {
 					Pattern pattern2 = Pattern.compile("[0-9]{9}", Pattern.UNICODE_CHARACTER_CLASS);
 					if(!(pattern2.matcher(licnaProfesora)).matches()) {
-						JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Dozvoljen je unos samo brojeva za li\u010dnu kartu profesora!",
+						JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Dozvoljen je samo unos li\u010dne karte od devet cifara!",
 								"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
 						txtProfesorLicna.requestFocus();
 						return;
@@ -287,16 +291,43 @@ public class IzmjenaPredmeta extends JDialog{
 					return;
 				}
 				
+				Profesor profesor;
+				
+				if(!licnaProfesora.equals("")) {
+					if(!PredmetController.getInstance().profesorNaPredmetu(licnaProfesora)) {
+						JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Ne postoji profesor sa unesenom li\u010dnom kartom!");
+						txtProfesorLicna.requestFocus();
+						txtProfesorLicna.setText("");
+						return;
+					}else {
+						profesor = ProfesorController.getInstance().getProfesorPrimaryKey(licnaProfesora);
+					}
+				}
+				else {
+					profesor = null;
+				}
+				
 				ArrayList<String> studenti = new ArrayList<String>();
-				Profesor profesor = ProfesorController.getInstance().getProfesorPrimaryKey(licnaProfesora);
+				//Profesor profesor = ProfesorController.getInstance().getProfesorPrimaryKey(licnaProfesora);
 				Predmet p = new Predmet(sifra,naziv,profesor,semestar,godina,studenti);
 				String staraSifra = t.getSifra();
+				String staraLicnaProfesora="";
+				if(t.getPredmetniProfesor() != null) {
+					staraLicnaProfesora = t.getPredmetniProfesor().getBrLicneKarte();
+				}
 				
 				//Poziv metode za izmjenu i rezultat uspjesnosti izmjene koji cuvam u boolean promjenljivoj
 				boolean izmjenjen = PredmetController.getInstance().izmjeniPredmet(ButtonColumnPredmet.selectedRow, t, p);
 				
 				if(izmjenjen){
 					JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Uspje\u0161no ste izmijenili predmet!");
+					
+					//novom profesoru koji je na predmetu treba dodati taj predmet, a starom profesoru ukloniti predmet ako su razliciti
+					if(!licnaProfesora.equals(staraLicnaProfesora) && !staraLicnaProfesora.equals("")) {
+						ProfesorController.getInstance().dodajPredmetNaProfesora(licnaProfesora, sifra);
+						ProfesorController.getInstance().obrisiPredmetOdProfesora(staraLicnaProfesora, sifra);
+					}
+					
 					//nakon izmjene u tabeli, predmet treba da se promijeni i na svim listama na kojima se nalazi
 					ProfesorController.getInstance().izmjenaListePredmeta(staraSifra,p.getSifra());
 					StudentController.getInstance().izmjenaListePredmeta(staraSifra, p.getSifra());
@@ -308,7 +339,7 @@ public class IzmjenaPredmeta extends JDialog{
 					
 					dispose();
 				}else{
-					JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Neuspje\u0161na izmjena! Takva \\u0161ifra ve\u0107 predmeta postoji!");
+					JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Neuspje\u0161na izmjena! Takva \u0161ifra predmeta ve\u0107 postoji!");
 					txtSifraPredmeta.setText("");
 					txtSifraPredmeta.requestFocus();
 				}
