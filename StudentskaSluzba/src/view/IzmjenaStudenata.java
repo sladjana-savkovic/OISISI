@@ -426,6 +426,13 @@ public class IzmjenaStudenata extends JDialog{
 					return;
 				}
 				
+				Pattern pattern6 = Pattern.compile("[a-zA-Z._]+@[a-zA-Z]+.[a-zA-Z]+");
+				if(!(pattern6.matcher(emStr)).matches()) {
+					JOptionPane.showMessageDialog(IzmjenaStudenata.this, "Dozvoljen je samo unos email-a u formatu xxxx_yyy@email.com!");	
+					txtEmail.requestFocus();
+					return;
+				}
+				
 				
 				statusStudenta statusStr;
 				String godStr = (String)godinaCM.getSelectedItem();
