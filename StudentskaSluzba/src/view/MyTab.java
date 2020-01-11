@@ -32,7 +32,7 @@ public class MyTab extends JPanel{
 		if(tabName.equals("Studenti")) {
 			JScrollPane scrollPane = new JScrollPane(tabelaStudenata);
 			add(scrollPane, BorderLayout.CENTER);
-			
+						
 			azurirajPrikaz();
 			setVisible(true);
 		}
