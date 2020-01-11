@@ -31,22 +31,16 @@ public class MainFrame extends JFrame{
 	private MainFrame() {
 		Toolkit kit=Toolkit.getDefaultToolkit();
 		Dimension screenSize = kit.getScreenSize();
-		// Podesavamo dimenzije prozora na 3/4 duzine i sirine monitora
+		
 		setSize(screenSize.width * 3 / 4, screenSize.height * 3 / 4);
-		//postavljamo JFrame na centar ekrana
 		setLocationRelativeTo(null);
-		 //Postavljamo akciju pri zatvaranju prozora
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		//dodavanje listener-a na akciju zatvaranja
-		addWindowListener(new MyWindowListener());
-		//Podesavanje naslova
 		setTitle("Studentska slu\u017eba");	
-		//Podesavanje boje pozadine
 		Color lightBlue= new Color(221,245,250);
 		getContentPane().setBackground(lightBlue);
-		//Dodavanje ikonice
 		Image img=kit.getImage("logo_images/ftn.png");
 		setIconImage(img);
+		
+		addWindowListener(new MyWindowListener());
 		
 		createMenuBar();
 		createToolbar();
