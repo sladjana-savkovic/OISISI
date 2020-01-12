@@ -23,69 +23,12 @@ public class BazaPredmeta implements Serializable{
 		return instance;
 	}
 	
-	//samo da ubacim neke podatke za pocetak
 	private ArrayList<Predmet> predmeti;
-	/*private ArrayList<String> studenti1;
-	private ArrayList<String> studenti2;
-	private ArrayList<String> studenti3;
-	private ArrayList<String> studenti4;
-	private ArrayList<String> studenti5;
-	private ArrayList<String> studenti6;
-	private ArrayList<String> studenti7;
-	private Profesor p1,p2,p3,p4;*/
-	
 	
 	private BazaPredmeta() {  
 		readPredmeti();
-		//initPredmete();
-		//writePredmeti();
 	}
-	/*public void initPredmete() {
-		this.predmeti = new ArrayList<Predmet>();
-		this.studenti1= new ArrayList<String>();
-		this.studenti2= new ArrayList<String>();
-		this.studenti3= new ArrayList<String>();
-		this.studenti4= new ArrayList<String>();
-		this.studenti5= new ArrayList<String>();
-		this.studenti6= new ArrayList<String>();
-		this.studenti7 = new ArrayList<String>();
-		this.p1 = BazaProfesora.getInstance().getProfesorIndex(0);
-		this.p2= BazaProfesora.getInstance().getProfesorIndex(1);
-		this.p3= BazaProfesora.getInstance().getProfesorIndex(2);
-		this.p4 = BazaProfesora.getInstance().getProfesorIndex(3);
-		
-		studenti1.add("RA1/2017");
-		studenti1.add("RA78/2015");
-		studenti1.add("RA25/2016");
-		
-		studenti2.add("RA1/2017");
-		studenti2.add("RA78/2015");
-		studenti2.add("RA25/2016");
-		
-		studenti3.add("RA1/2017");
-		studenti3.add("RA78/2015");
-		studenti3.add("RA25/2016");
-		
-		studenti4.add("PSI14/2017");
-		studenti4.add("E3154/2015");
-		studenti4.add("MEH215/2016");
-		
-		studenti5.add("PSI14/2017");
-		studenti5.add("E3154/2015");
-		studenti5.add("MEH215/2016");
-		
-		studenti6.add("RA44/2017");
-		
-		studenti7.add("RA44/2017");
-		
-		predmeti.add(new Predmet("E2123","Matematička analiza 1", p1, 1, 1, studenti1));
-		predmeti.add(new Predmet("E2485", "Arhitektura računara", p2, 2, 1, studenti2));
-		predmeti.add(new Predmet("E2458", "Fizika", p3, 2, 1, studenti3));
-		predmeti.add(new Predmet("E1042", "Mehanika", p3, 1, 1, studenti4));
-		predmeti.add(new Predmet("MA750", "Algebra", p1, 1, 1, studenti5));
-		predmeti.add(new Predmet("II802", "Operativni sistemi", p4, 2, 2, studenti6));
-		predmeti.add(new Predmet("GR203","Otpornost materijala 1",p3,2,1,studenti7));
-	}*/
+	
 	public ArrayList<Predmet> getPredmeti() {
 		return predmeti;
 	}
@@ -118,7 +61,7 @@ public class BazaPredmeta implements Serializable{
 		case 4:
 			if(predmet.getPredmetniProfesor() != null)
 				return "\""+predmet.getPredmetniProfesor().getBrLicneKarte()+"\", "
-					+predmet.getPredmetniProfesor().getIme()+" "+predmet.getPredmetniProfesor().getPrezime(); //izmjena
+					+predmet.getPredmetniProfesor().getIme()+" "+predmet.getPredmetniProfesor().getPrezime(); 
 			else
 				return null;
 		case 5:
@@ -165,16 +108,9 @@ public class BazaPredmeta implements Serializable{
 				predmeti.add(p);
 				return true;
 			}
-			break;
 		}
 		return false;
 	}
-
-	@Override
-	public String toString() {
-		return "BazaPredmeta [predmeti=" + predmeti + "]";
-	}
-	
 	public Predmet getPredmet(String sifraPredmeta) {
 		for(Predmet p : predmeti) {
 			if(p.getSifra().equals(sifraPredmeta)) {
@@ -196,9 +132,8 @@ public class BazaPredmeta implements Serializable{
 		ArrayList<String> spisakStudenata = getPredmetIndex(index).getSpisakStudenata();
 		return spisakStudenata;
 	}
-	public void izmjeniPredmet(Predmet predmet, Predmet t) {
+	public void izmijeniPredmet(Predmet predmet, Predmet t) {
 		for(Predmet p : predmeti) {
-			
 			if(predmet.getSifra().equals(p.getSifra())) {
 				if(!(t.getSifra().equals(p.getSifra()))) {
 					p.setSifra(t.getSifra());
@@ -225,11 +160,6 @@ public class BazaPredmeta implements Serializable{
 						
 		//Ako smo nasli profesora, brisem iz njegove liste predmeta, onaj predmet koji je nekad predavao
 		if(!stariProfesor.equals("")) {
-			/*for(int i=0;i<BazaProfesora.getInstance().getProfesor(stariProfesor).getSpisakPredmeta().size();i++)
-				if(BazaProfesora.getInstance().getProfesor(stariProfesor).getSpisakPredmeta().get(i).equals(predmet.getSifra())) {
-					BazaProfesora.getInstance().getProfesor(stariProfesor).getSpisakPredmeta().remove(i);
-					break;
-				}*/
 			BazaProfesora.getInstance().getProfesor(stariProfesor).getSpisakPredmeta().remove(predmet.getSifra());
 		}
 		

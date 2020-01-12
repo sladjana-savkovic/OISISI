@@ -48,9 +48,9 @@ public class PredmetController {
 	}
 	public void obrisiStudentaSaPredmeta(int tableSelectedIndex,int listSelectedIndex) {
 		Predmet predmet = BazaPredmeta.getInstance().getPredmetIndex(tableSelectedIndex);
-		if(listSelectedIndex != -1) {	//Ako se klikne na dugme Prikazi, neki red u tabeli ce sigurno biti selektovan
+		if(listSelectedIndex != -1) {	
 			BazaPredmeta.getInstance().obrisiStudenta(predmet.getSifra(), listSelectedIndex);
-			MyTab.azurirajPrikaz(); //novo
+			MyTab.azurirajPrikaz(); 
 		}else {
 			return;
 		}
@@ -71,22 +71,23 @@ public class PredmetController {
 		p = BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex);
 		return p;
 	}
-	
-	//izmjena
-	public boolean izmjeniPredmet(int rowSelectedIndex, Predmet predmet, Predmet t) {
+
+	public boolean izmijeniPredmet(int rowSelectedIndex, Predmet predmet, Predmet t) {
 		if(rowSelectedIndex < 0) {
 			return false;
 		}
+		//ako je sifra ostala ista, treba da se pozove izmjena nad ostalim podacima
 		if(predmet.getSifra().equals(t.getSifra())) {
-			BazaPredmeta.getInstance().izmjeniPredmet(predmet, t);
+			BazaPredmeta.getInstance().izmijeniPredmet(predmet, t);
 			MyTab.azurirajPrikaz();
 			return true;
+		//ako sifra nije ista
 		}else {
-			 //nova metoda koja provjerava da li postoji predmet sa tom sifrom, ako postoji(vrati true) ret, a ako ne opet pozovi izmjenu
+			 //provjera da li postoji predmet sa tom sifrom, ako postoji vrati false, a ako ne opet pozove izmjenu
 			if(BazaPredmeta.getInstance().getPredmet(t.getSifra()) != null){
 				return false;
 			}else {
-				BazaPredmeta.getInstance().izmjeniPredmet(predmet, t);
+				BazaPredmeta.getInstance().izmijeniPredmet(predmet, t);
 				MyTab.azurirajPrikaz();
 				return true;
 			}
@@ -104,12 +105,12 @@ public class PredmetController {
 		if(rowSelectedIndex < 0){
 			return;
 		}
-		BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex).setPredmetniProfesor(null); //izmjena
+		BazaPredmeta.getInstance().getPredmetIndex(rowSelectedIndex).setPredmetniProfesor(null);
 		MyTab.azurirajPrikaz();
 	}
 	public void uklanjanjeProfesoraSaPredmeta(String sifraPredmeta) {
 		
-		BazaPredmeta.getInstance().getPredmet(sifraPredmeta).setPredmetniProfesor(null); //izmjena
+		BazaPredmeta.getInstance().getPredmet(sifraPredmeta).setPredmetniProfesor(null);
 		MyTab.azurirajPrikaz();
 	}
 	public void uklanjanjeProfesoraSaSvakogPredmeta(int rowSelectedIndex) {
@@ -120,7 +121,7 @@ public class PredmetController {
 		for(int i=0; i<p.getSpisakPredmeta().size(); i++)
 			for(int j=0; j<BazaPredmeta.getInstance().getPredmeti().size(); j++) {
 				if(BazaPredmeta.getInstance().getPredmeti().get(j).getSifra().equals(p.getSpisakPredmeta().get(i))) {
-					BazaPredmeta.getInstance().getPredmeti().get(j).setPredmetniProfesor(null); //izmjena
+					BazaPredmeta.getInstance().getPredmeti().get(j).setPredmetniProfesor(null); 
 					break;
 				}
 		}
