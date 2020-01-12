@@ -45,9 +45,9 @@ public class MyWindowListener implements WindowListener{
 			frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		} else {
 			//upis u fajl 
-			/*BazaStudenata.getInstance().writeStudenti();
+			BazaStudenata.getInstance().writeStudenti();
 			BazaPredmeta.getInstance().writePredmeti();
-			BazaProfesora.getInstance().writeProfesori();*/
+			BazaProfesora.getInstance().writeProfesori();
 			
 			frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		}		

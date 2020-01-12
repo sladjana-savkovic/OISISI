@@ -35,7 +35,7 @@ public class AbstractActionBrisanjeProfesora extends AbstractAction{
 			if(PredmetController.getInstance().vratiSelektovanPredmet(ButtonColumnPredmet.selectedRow).getPredmetniProfesor() == null) {
 				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Ne postoji profesor na predmetu!","Gre\u0161ka",JOptionPane.ERROR_MESSAGE);
 			}else {
-				int input1 = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete profesora sa predmeta?","Brisanje profesora sa predmeta",
+				int input1 = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da \u017eelite da obri\u0161ete profesora sa predmeta?","Brisanje profesora sa predmeta",
 					JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,icon,options,options[1]);
 				
 				if(input1 == JOptionPane.NO_OPTION) {

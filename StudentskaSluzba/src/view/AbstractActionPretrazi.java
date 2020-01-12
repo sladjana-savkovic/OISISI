@@ -18,7 +18,7 @@ public class AbstractActionPretrazi extends AbstractAction{
 	private static final long serialVersionUID = -9043326786403157765L;
 
 	public AbstractActionPretrazi() {
-		putValue(SHORT_DESCRIPTION, "Pretraži");
+		putValue(SHORT_DESCRIPTION, "Pretra\u017ei");
 		putValue(MNEMONIC_KEY, KeyEvent.VK_T);
 	}
 

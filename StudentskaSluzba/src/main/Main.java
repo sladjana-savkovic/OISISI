@@ -5,6 +5,7 @@ package main;
 
 import model.BazaPredmeta;
 import model.BazaProfesora;
+import model.BazaStudenata;
 import view.MainFrame;
 
 /**
@@ -14,8 +15,9 @@ import view.MainFrame;
 public class Main {
 
 	public static void main(String[] args) {
-		BazaPredmeta.getInstance();
+		BazaStudenata.getInstance();
 		BazaProfesora.getInstance();
+		BazaPredmeta.getInstance();
 		MainFrame.getInstance();
 	}
 

@@ -108,7 +108,7 @@ public class AboutDialog extends JDialog{
 			JPanel panelBottom = new JPanel(new FlowLayout());
 			
 			JButton ok = new JButton("U redu");
-		//	ok.setPreferredSize(new Dimension(80,20));
+			//ok.setPreferredSize(new Dimension(80,20));
 			ok.addActionListener(new ActionListener() {
 				
 				@Override

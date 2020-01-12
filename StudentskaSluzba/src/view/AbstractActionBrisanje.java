@@ -35,7 +35,7 @@ public class AbstractActionBrisanje extends AbstractAction{
 		ImageIcon icon = new ImageIcon("logo_images/garbage.jpg");
 				
 		if ((TabbedPane.activeTab == 0) && (ButtonColumnStudent.selectedRow != -1)) {
-			int input0 = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete studenta?","Brisanje studenta",
+			int input0 = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da \u017eelite da obri\u0161ete studenta?","Brisanje studenta",
 					JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,icon,options,options[1]);
 			if(input0 == JOptionPane.NO_OPTION) {
 				
@@ -49,7 +49,7 @@ public class AbstractActionBrisanje extends AbstractAction{
 				ButtonColumnPredmet.selectedRow = -1;
 			}
 		} else if ((TabbedPane.activeTab == 1) && (ButtonColumnProfesor.selectedRow != -1)) {
-			int input1 = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete profesora?","Brisanje profesora",
+			int input1 = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da \u017eelite da obri\u0161ete profesora?","Brisanje profesora",
 					JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,icon,options,options[1]);
 			if(input1 == JOptionPane.NO_OPTION) {
 				
@@ -63,7 +63,7 @@ public class AbstractActionBrisanje extends AbstractAction{
 				ButtonColumnPredmet.selectedRow = -1;
 			}
 		} else if ((TabbedPane.activeTab == 2) && (ButtonColumnPredmet.selectedRow != -1)) {
-			int input2 = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete predmet?","Brisanje predmeta",
+			int input2 = JOptionPane.showOptionDialog(MainFrame.getInstance(), "Da li ste sigurni da \u017eelite da obri\u0161ete predmet?","Brisanje predmeta",
 					JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE,icon,options,options[1]);
 			if(input2 == JOptionPane.NO_OPTION) {
 				
@@ -79,7 +79,7 @@ public class AbstractActionBrisanje extends AbstractAction{
 				ButtonColumnPredmet.selectedRow = -1;
 			}
 		} else if((ButtonColumnStudent.selectedRow == -1) || (ButtonColumnProfesor.selectedRow == -1) || (ButtonColumnProfesor.selectedRow == -1)){
-			JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izaberite neki red u tabeli!","Greška",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(MainFrame.getInstance(), "Izaberite neki red u tabeli!","Gre\u0161ka",JOptionPane.ERROR_MESSAGE);
 		}
 		
 	}
