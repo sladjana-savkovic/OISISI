@@ -110,11 +110,7 @@ public class DodavanjeStudentaNaPredmet extends JDialog{
 				public void actionPerformed(ActionEvent e) {
 					Predmet p = PredmetController.getInstance().vratiSelektovanPredmet(ButtonColumnPredmet.selectedRow);
 					String indStr = (String)indeksCM.getSelectedItem();
-					if(b.length!=0) {
-					//moje staro rjesenje
-					//PredmetController.getInstance().studentiNaPredmetu(ButtonColumnPredmet.selectedRow).add(indStr);
-					//otkomentarisi posle dodavanje metode u predmet kontroler
-						
+					if(b.length!=0) {	
 					PredmetController.getInstance().dodajStudentaPredmetu(indStr,ButtonColumnPredmet.selectedRow);
 					StudentController.getInstance().dodajPredmetStudentu(indStr, p.getSifra());
 		

@@ -29,55 +29,10 @@ public class BazaStudenata implements Serializable{
 	}
 	
 	private ArrayList<Student> studenti;
-	/*private ArrayList<String> predmeti1;
-	private ArrayList<String> predmeti2;
-	private ArrayList<String> predmeti3;
-	private ArrayList<String> predmeti4;
-	private ArrayList<String> predmeti5;
-	private ArrayList<String> predmeti6;
-	private ArrayList<String> predmeti7;*/
 	
 	private BazaStudenata() {
 		readStudenti();
-		//initStudent();
-		//writeStudenti();
-		
-	}/*
-	public void initStudent() {
-		this.studenti = new ArrayList<Student>();
-		this.predmeti1 = new ArrayList<String>();
-		this.predmeti2 = new ArrayList<String>();
-		this.predmeti3 = new ArrayList<String>();
-		this.predmeti4 = new ArrayList<String>();
-		this.predmeti5 = new ArrayList<String>();
-		this.predmeti6 = new ArrayList<String>();
-		this.predmeti7 = new ArrayList<String>();
-		
-		predmeti1.add("E2123");
-		predmeti1.add("E2485");
-		predmeti1.add("E2458");
-		predmeti2.add("E2123");
-		predmeti2.add("E2485");
-		predmeti2.add("E2458");
-		predmeti3.add("E2123");
-		predmeti3.add("E2485");
-		predmeti3.add("E2458");
-		predmeti4.add("E1042");
-		predmeti4.add("MA750");
-		predmeti5.add("E1042");
-		predmeti5.add("MA750");
-		predmeti6.add("E1042");
-		predmeti6.add("MA750");
-		predmeti7.add("II802");
-		
-		studenti.add(new Student("Ana","Mihić","13.05.1998.","Despota Stefana 8", "+38165987654", "anam@gmail.com", "RA1/2017","01.07.2017",1,9.42,statusStudenta.B,predmeti1));
-		studenti.add(new Student("Miloš","Lukić","31.12.1996.","Cara Dušana 91", "+38169981132", "milos996@gmail.com", "RA78/2015","03.07.2015",1,7.56,statusStudenta.S,predmeti2));
-		studenti.add(new Student("Tijana","Marić","18.10.1997.","Šekspirova 84", "+38162001882", "mtijana1997@gmail.com", "RA25/2016","10.09.2015",1,7.02,statusStudenta.B,predmeti3));
-		studenti.add(new Student("Igor","Trivalić","10.03.1998.","Cara Lazara 3", "+38163335789", "igort98@gmail.com", "PSI14/2017","10.07.2017",1,9.50,statusStudenta.B,predmeti4));
-		studenti.add(new Student("Aleksa","Tadić","11.08.1996.","Stražilovska 10", "+38165130065", "talek996@gmail.com", "E3154/2015","01.07.2015",1,6.98,statusStudenta.S,predmeti5));
-		studenti.add(new Student("Milica","Sarić","10.02.1996.","Maksima Gorkog 23", "+38163133099", "milicas96@gmail.com", "MEH215/2016","04.07.2016",1,8.76,statusStudenta.B,predmeti6));
-		studenti.add(new Student("Nikola","Dodić","14.01.1998.","Novosadski put 123", "+38162199977", "nikolad98@gmail.com", "RA44/2017","01.07.2017",2,7.96,statusStudenta.S,predmeti7));
-	}*/
+	}
 	
 	public ArrayList<Student> getStudenti(){
 		return studenti;
