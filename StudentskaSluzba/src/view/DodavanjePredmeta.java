@@ -48,7 +48,7 @@ public class DodavanjePredmeta extends JDialog{
 			//Kreiranje centralnog panela sa poljima i labelama
 			createPanelCenter();
 			
-			//kreiranje donjeg panel na kojem se naleze dva dugmeta: Potvrda, Odustanak
+			//kreiranje donjeg panela na kojem se naleze dva dugmeta: Potvrda, Odustanak
 			createPanelBottom();
 			
 			pack();
@@ -58,7 +58,6 @@ public class DodavanjePredmeta extends JDialog{
 	}
 	
 	private void createPanelCenter() {
-		//Kreiranje centralnog panela
 		panelCenter = new JPanel();
 		boxCenter = new BoxLayout(panelCenter, BoxLayout.Y_AXIS);
 		panelCenter.setLayout(boxCenter);
@@ -161,10 +160,7 @@ public class DodavanjePredmeta extends JDialog{
 		box = new BoxLayout(panelBottom, BoxLayout.X_AXIS);
 		panelBottom.setLayout(box);
 		
-		//dodavanje dugmeta za potvdu i reagovanje da dogadjaj klika
 		addButtomPotvrdi();	
-		
-		//dodavanje dugmeta za odustanak i reagovanje da dogadjaj klika
 		addButtonOdustani();
 		
 		//dodavanje kreiranih dugmica na panel
@@ -218,7 +214,7 @@ public class DodavanjePredmeta extends JDialog{
 					return;
 				}
 				
-				//Samo unos unicode karaktera i razmaka za ime profesora je dozvoljen, ako je  profesor unesen
+				//Samo unos 9 cifara za licnu kartu profesora je dozvoljen, ako je profesor unesen
 				if(!licnaProfesora.equals("")) {
 					Pattern pattern3 = Pattern.compile("[0-9]{9}", Pattern.UNICODE_CHARACTER_CLASS);
 					if(!(pattern3.matcher(licnaProfesora)).matches()) {
@@ -271,6 +267,7 @@ public class DodavanjePredmeta extends JDialog{
 				
 				//Dodavanje novog predmeta i provjera da li je dodavanje uspjesno
 				boolean unesen = PredmetController.getInstance().dodajPredmet(p);
+				
 				if(unesen) {
 					JOptionPane.showMessageDialog(DodavanjePredmeta.this, "Uspje\u0161no ste dodali predmet!");
 					txtSifraPredmeta.setText("");
