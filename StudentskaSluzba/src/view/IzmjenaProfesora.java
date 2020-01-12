@@ -56,7 +56,7 @@ public class IzmjenaProfesora extends JDialog{
 	public void initProf(JFrame parent) {
 		try {
 			Toolkit kit=Toolkit.getDefaultToolkit();
-			setSize(400,400);
+			setSize(400,500);
 			Image img=kit.getImage("logo_images/ftn.png");
 			setIconImage(img);
 			setLocationRelativeTo(parent);
