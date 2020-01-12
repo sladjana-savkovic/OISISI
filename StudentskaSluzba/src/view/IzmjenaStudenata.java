@@ -60,8 +60,7 @@ public class IzmjenaStudenata extends JDialog{
 	public void initStud(JFrame parent) {
 		try {
 			Toolkit kit=Toolkit.getDefaultToolkit();
-			//Dimension screenSize = kit.getScreenSize();
-			setSize(400,400);
+			setSize(400,500);
 			Image img=kit.getImage("logo_images/ftn.png");
 			setIconImage(img);
 			setLocationRelativeTo(parent);
