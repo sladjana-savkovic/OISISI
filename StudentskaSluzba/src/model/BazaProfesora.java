@@ -28,35 +28,11 @@ public class BazaProfesora implements Serializable{
 		return instance;
 	}
 	
-	//samo da ubacim neke podatke za pocetak
 	private ArrayList<Profesor> profesori;
-	/*private ArrayList<String> predmeti1;
-	private ArrayList<String> predmeti2;
-	private ArrayList<String> predmeti3;*/
 	
 	public BazaProfesora() {
 		readProfesori();
-		//initProfesore();
-		//writeProfesori();
 	}
-	/*public void initProfesore() {
-		this.profesori = new ArrayList<Profesor>();
-		this.predmeti1 = new ArrayList<String>();
-		this.predmeti2 = new ArrayList<String>();
-		this.predmeti3 = new ArrayList<String>();
-		predmeti1.add("E2123");
-		predmeti1.add("MA750");
-		predmeti2.add("E2485");
-		predmeti2.add("II802");
-		predmeti3.add("E2458");
-		predmeti3.add("E1042");
-		profesori.add(new Profesor("Nebojša","Ralević","23.08.1965.","Ćirpanova 25","062/782-41-02","rale65@gmail.com",
-				"Trg Dositeja Obradovića 10","124kl789","doktor","redovni prof.",predmeti1));
-		profesori.add(new Profesor("Miroslav","Hajduković","17.11.1983.","Narodnog fronta 105","062/581-00-72","miroslav.hajdukovic@1981@gmail.com",
-				"Trg Dositeja Obradovića 10","581af102","doktor","vanredni prof.",predmeti2));
-		profesori.add(new Profesor("Ljuba","Budinski","01.12.1959.","Bulevar oslobodjenja 108a","063/250-78-44","ljuba.budinski59@gmail.com",
-				"Trg Dositeja Obradovića 10","102af188","doktor","redovni prof.",predmeti3));
-	}*/
 	public ArrayList<Profesor> getProfesori() {
 		return profesori;
 	}
@@ -169,7 +145,7 @@ public class BazaProfesora implements Serializable{
 		ArrayList<String> spisakPredmeta = getProfesorIndex(index).getSpisakPredmeta();
 		return spisakPredmeta;
 	}
-	public void izmjeniProfesora(Profesor profesor, Profesor t) {
+	public void izmijeniProfesora(Profesor profesor, Profesor t) {
 		for(Profesor p : profesori) {
 			
 			if(profesor.getBrLicneKarte().equals(p.getBrLicneKarte())) {

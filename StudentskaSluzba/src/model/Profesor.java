@@ -105,12 +105,4 @@ public class Profesor implements Serializable{
 	public int getBrojPredmeta() {
 		return this.spisakPredmeta.size();
 	}
-	@Override
-	public String toString() {
-		return "Profesor [ime=" + ime + ", prezime=" + prezime + ", datumRodjenja=" + datumRodjenja
-				+ ", adresaStanovanja=" + adresaStanovanja + ", telefon=" + telefon + ", email=" + email
-				+ ", adresaKancelarije=" + adresaKancelarije + ", brLicneKarte=" + brLicneKarte + ", titula=" + titula
-				+ ", zvanje=" + zvanje + ", spisakPredmeta=" + spisakPredmeta + "]";
-	}
-	
 }

@@ -23,14 +23,12 @@ public class ButtonColumnProfesor extends AbstractCellEditor
 	private JButton renderButton;
 	// dugme koje obradjuje akciju
 	private JButton editorButton;
-	// referenca na tabelu
 	private JTable table;
 	// da li je aktivno editovanje celije tabele
 	// (da li se obradjuju dogadjaji pritiska misa)
 	private boolean isEditorActive = false;
 	
 	public ButtonColumnProfesor(JTable table, int column) {
-		// povezivanje sa tabelom
 		this.table = table;
 		// nacin iscrtavanje celije
 		this.table.getColumnModel().getColumn(column).setCellRenderer(this);
@@ -39,8 +37,8 @@ public class ButtonColumnProfesor extends AbstractCellEditor
 		this.table.addMouseListener(this);
 
 		// dugme koje ce biti iscrtavanp
-		this.renderButton = new JButton("Prikaži");
-		this.editorButton = new JButton("Prikaži");
+		this.renderButton = new JButton("Prika\u017ei");
+		this.editorButton = new JButton("Prika\u017ei");
 
 		this.editorButton.addActionListener(new ActionListener() {
 			
@@ -50,7 +48,7 @@ public class ButtonColumnProfesor extends AbstractCellEditor
 			if(ProfesorController.getInstance().predmetiProfesora(selectedRow).size() == 0)
 				JOptionPane.showMessageDialog(null, "Lista predmeta je prazna!", "Upozorenje!", JOptionPane.INFORMATION_MESSAGE);
 			else
-				new SpisakPredmeta(null,"Spisak predmeta",true,selectedRow).setVisible(true);
+				new SpisakPredmeta(MainFrame.getInstance(),"Spisak predmeta",true,selectedRow).setVisible(true);
 		}
 		});
 
