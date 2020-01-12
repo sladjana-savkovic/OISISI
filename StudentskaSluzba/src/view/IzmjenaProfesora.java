@@ -392,7 +392,7 @@ public class IzmjenaProfesora extends JDialog{
 				Profesor r = new Profesor(imeStr,przStr,datStr,stanStr,telStr,emStr,adrStr,bkStr,titulaStr,zvanjeStr,predmeti);
 			
 				
-				boolean izmjenjen = ProfesorController.getInstance().izmjeniProfesora(ButtonColumnProfesor.selectedRow, p, r);
+				boolean izmjenjen = ProfesorController.getInstance().izmijeniProfesora(ButtonColumnProfesor.selectedRow, p, r);
 				if(izmjenjen){
 				JOptionPane.showMessageDialog(IzmjenaProfesora.this, "Uspje\u0161no ste izmijenili profesora!");
 				PredmetController.getInstance().izmjenaPredmetnogProfesora(p, r);
