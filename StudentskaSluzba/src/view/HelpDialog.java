@@ -4,6 +4,7 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Image;
@@ -44,8 +45,7 @@ public class HelpDialog extends JDialog{
 			setSize(450,500);
 			Image img=kit.getImage("logo_images/ftn.png");
 			setIconImage(img);
-			setLocationRelativeTo(parent);
-	
+			setLocationRelativeTo(parent);	
 			
 			JPanel panelCenter = new JPanel(new BorderLayout());
 			BoxLayout boxCenter = new BoxLayout(panelCenter, BoxLayout.Y_AXIS);
@@ -62,7 +62,6 @@ public class HelpDialog extends JDialog{
 			text.setPreferredSize(dim);
 			panel1.add(text);
 			
-			//JPanel p1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			a1= new JTextArea(
 					" Aplikacija prikazuje informacioni sistem studenstke slu\u017ebe i sadr\u017ei\n"
 					+ " opcije za rukovanje podacima tog sistema. Osnovne funkcionalnosti\n"
@@ -76,16 +75,14 @@ public class HelpDialog extends JDialog{
 					+ " maksimizaciju prozora.\n"+
 					" Biografije autora se nalaze u stavci menija pod nazivom \"O nama\".");
 			a1.setMaximumSize(dim1);
-			//a1.getPreferredScrollableViewportSize();
-			//a1.setMaximumSize(getPreferredSize());
 			a1.setBackground(getBackground());
 			a1.setEditable(false);
+			a1.setBackground(Color.white);
 			
 			JScrollPane scroll = new JScrollPane(a1);
 			scroll.setPreferredSize(dim1);
-			//scroll.setMaximumSize(dim1);
 	        scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-	        //scroll.setMaximumSize(dim1);
+	  
 			
 			JPanel panel2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			text1 = new JLabel("Rukovanje aplikacijom");
@@ -93,7 +90,6 @@ public class HelpDialog extends JDialog{
 			
 			panel2.add(text1);
 			
-			//JPanel p2 = new JPanel(new FlowLayout(FlowLayout.LEFT));
 			a2= new JTextArea(
 					" Glavni prozor aplikacije sadr\u017ei meni bar, toolbar, tabove sa\n"
 					+ " tabelama entiteta i status bar. Osnovnim funkcionalnostima\n "
@@ -136,17 +132,14 @@ public class HelpDialog extends JDialog{
 					+ " preostale dvije tabele."
 					);
 			a2.setMaximumSize(dim1);
-			//a2.setMaximumSize(getPreferredSize());
 			a2.getPreferredScrollableViewportSize();
 			a2.setBackground(getBackground());
 			a2.setEditable(false);
+			a2.setBackground(Color.white);
 			
 			JScrollPane scroll1 = new JScrollPane(a2);
 			scroll1.setPreferredSize(dim1);
-			//scroll1.getVerticalScrollBar().setUnitIncrement(10);
-			//scroll1.setMaximumSize(dim1);
 	        scroll1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-	        //scroll1.setMaximumSize(dim1);
 		
 			panelCenter.add(panel1);
 			panelCenter.add(scroll);
@@ -160,7 +153,7 @@ public class HelpDialog extends JDialog{
 			JPanel panelBottom = new JPanel(new FlowLayout());
 			
 			JButton ok = new JButton("U redu");
-		//	ok.setPreferredSize(new Dimension(80,20));
+		//ok.setPreferredSize(new Dimension(80,20));
 			ok.addActionListener(new ActionListener() {
 				
 				@Override
@@ -169,9 +162,7 @@ public class HelpDialog extends JDialog{
 				}
 			});
 			
-			//panelBottom.add(Box.createGlue());
 			panelBottom.add(ok, "");
-			//panelBottom.add(Box.createHorizontalStrut(10));
 	
 			this.add(panelBottom, BorderLayout.SOUTH);
 			pack();
