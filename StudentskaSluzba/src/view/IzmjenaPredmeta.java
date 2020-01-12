@@ -97,7 +97,6 @@ public class IzmjenaPredmeta extends JDialog{
 		//polje za odabir semestra u kojem se predmet slusa
 		setSemestar();	
 		
-		//dodavanje na centralni panel
 		panelCenter.add(pnlSifraPredmeta);
 		panelCenter.add(pnlNazivPredmeta);
 		panelCenter.add(pnlProfesorLicna);
@@ -213,13 +212,9 @@ public class IzmjenaPredmeta extends JDialog{
 		BoxLayout box = new BoxLayout(panelBottom, BoxLayout.X_AXIS);
 		panelBottom.setLayout(box);
 		
-		//dodavanje dugmeta za potvdu i reagovanje da dogadjaj klika
 		addButtomPotvrdi();	
-				
-		//dodavanje dugmeta za odustanak i reagovanje da dogadjaj klika
 		addButtonOdustani();
 		
-		//dodavanje kreiranih dugmica na panel
 		panelBottom.add(Box.createGlue());
 		panelBottom.add(odustani);
 		panelBottom.add(Box.createHorizontalStrut(10));
@@ -251,6 +246,15 @@ public class IzmjenaPredmeta extends JDialog{
 				
 				String licnaProfesora = txtProfesorLicna.getText();
 				
+				//samo unos slova i brojeva je dozvoljen za sifru predmeta
+				Pattern pattern0 = Pattern.compile("[a-zA-Z0-9]+");
+				if(!(pattern0.matcher(sifra)).matches()) {
+					JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Dozvoljen je unos slova i brojeva za \u0161ifru predmeta!",
+							"Upozorenje", JOptionPane.INFORMATION_MESSAGE);
+					txtSifraPredmeta.requestFocus();
+					return;
+				}
+				
 				//Samo unos unicode karaktera, razmaka i brojeva je dozvoljen za naziv predmeta
 				Pattern pattern1 = Pattern.compile("[a-zA-Z0-9 \\u0160\\u0161\\u0106\\u0107\\u017d\\u017e\\u010c\\u010d\\u0110\\u0111\\u0020]+");
 				if(!(pattern1.matcher(naziv)).matches()) {
@@ -259,7 +263,7 @@ public class IzmjenaPredmeta extends JDialog{
 					txtNazivPredmeta.requestFocus();
 					return;
 				}
-				//Samo unos brojeva i slova za licnu, ako je  profesor unesen
+				//Samo unos 9 cifara za licnu kartu profesora je dozvoljen, ako je profesor unesen
 				if(!licnaProfesora.equals("")) {
 					Pattern pattern2 = Pattern.compile("[0-9]{9}", Pattern.UNICODE_CHARACTER_CLASS);
 					if(!(pattern2.matcher(licnaProfesora)).matches()) {
@@ -308,7 +312,6 @@ public class IzmjenaPredmeta extends JDialog{
 				}
 				
 				ArrayList<String> studenti = new ArrayList<String>();
-				//Profesor profesor = ProfesorController.getInstance().getProfesorPrimaryKey(licnaProfesora);
 				Predmet p = new Predmet(sifra,naziv,profesor,semestar,godina,studenti);
 				String staraSifra = t.getSifra();
 				String staraLicnaProfesora="";
@@ -317,14 +320,17 @@ public class IzmjenaPredmeta extends JDialog{
 				}
 				
 				//Poziv metode za izmjenu i rezultat uspjesnosti izmjene koji cuvam u boolean promjenljivoj
-				boolean izmjenjen = PredmetController.getInstance().izmjeniPredmet(ButtonColumnPredmet.selectedRow, t, p);
+				boolean izmjenjen = PredmetController.getInstance().izmijeniPredmet(ButtonColumnPredmet.selectedRow, t, p);
 				
 				if(izmjenjen){
 					JOptionPane.showMessageDialog(IzmjenaPredmeta.this, "Uspje\u0161no ste izmijenili predmet!");
 					
-					//novom profesoru koji je na predmetu treba dodati taj predmet, a starom profesoru ukloniti predmet ako su razliciti
-					if(!licnaProfesora.equals(staraLicnaProfesora) && !staraLicnaProfesora.equals("")) {
+					//novom profesoru koji je na predmetu treba dodati taj predmet
+					if(!licnaProfesora.equals(staraLicnaProfesora)) {
 						ProfesorController.getInstance().dodajPredmetNaProfesora(licnaProfesora, sifra);
+					}
+					//starom profesoru ukloniti predmet ako je stari profesor postojao
+					if(!staraLicnaProfesora.equals("")) {
 						ProfesorController.getInstance().obrisiPredmetOdProfesora(staraLicnaProfesora, sifra);
 					}
 					

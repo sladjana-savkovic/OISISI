@@ -23,11 +23,11 @@ public class SpisakStudenata extends JDialog{
 	private static final long serialVersionUID = 5273652697018074107L;
 	
 	private JList<String> list = null;
-	private JButton bObrisi = new JButton("Obriši");
-	private JButton bNazad = new JButton("Nazad");
-	private JPanel pnlList = new JPanel();
-	private JPanel pnlObrisiNazad = new JPanel();
-	DefaultListModel<String> listModel = new DefaultListModel<String>();
+	private JButton bObrisi;
+	private JButton bNazad;
+	private JPanel pnlList;
+	private JPanel pnlObrisiNazad;
+	DefaultListModel<String> listModel;
 	boolean flag;
 	
 	public SpisakStudenata(Frame parent,String title,boolean modal,int row) {
@@ -39,7 +39,13 @@ public class SpisakStudenata extends JDialog{
 		setIconImage(img);		
 		setLocationRelativeTo(parent);
 		
+		bObrisi = new JButton("Obri\u0161i");
+		bNazad = new JButton("Nazad");
+		pnlList = new JPanel();
+		pnlObrisiNazad = new JPanel();
+		listModel = new DefaultListModel<String>();
 		flag=false;
+		
 		addComponentJDialog(row);
 	}
 	public void addComponentJDialog(int row) {
@@ -98,7 +104,7 @@ public class SpisakStudenata extends JDialog{
 			
 		});
 		setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-		//Ukloni postojeci WindowListeners
+		//Ukloni postojeci WindowListeners da bi se ponasao kao dugme nazad
 		for ( WindowListener wl : this.getWindowListeners())
 		        this.removeWindowListener(wl);
 		this.addWindowListener(new WindowAdapter() {
